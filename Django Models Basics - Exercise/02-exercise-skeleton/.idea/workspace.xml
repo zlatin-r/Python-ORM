@@ -5,16 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a210e7dc-672e-4b3c-b851-b58b8502fd8b" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/main_app/migrations/0002_weatherforecast.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_app/migrations/0003_delete_weatherforecast.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/submission-08-08_21.06.24.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_app/migrations/0005_blog_delete_weatherforecast.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_app/migrations/0006_weatherforecast.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_app/migrations/0007_rename_pressure_weatherforecast_precipitation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/02-exercise-skeleton.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/02-exercise-skeleton.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/ae2d8a29-c035-4109-87a5-7b5b734f8664.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ae2d8a29-c035-4109-87a5-7b5b734f8664.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/ae2d8a29-c035-4109-87a5-7b5b734f8664/storage_v2/_src_/database/models_db.c_Y1iA/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ae2d8a29-c035-4109-87a5-7b5b734f8664/storage_v2/_src_/database/models_db.c_Y1iA/schema/information_schema.FNRwLQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/ae2d8a29-c035-4109-87a5-7b5b734f8664/storage_v2/_src_/database/models_db.c_Y1iA/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ae2d8a29-c035-4109-87a5-7b5b734f8664/storage_v2/_src_/database/models_db.c_Y1iA/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/ae2d8a29-c035-4109-87a5-7b5b734f8664/storage_v2/_src_/database/models_db.c_Y1iA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ae2d8a29-c035-4109-87a5-7b5b734f8664/storage_v2/_src_/database/models_db.c_Y1iA/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../pack.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../pack.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +57,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/zlatin/Python DB/Python ORM/Exercise: Django Models Basics/02-exercise-skeleton",
+    "last_opened_file_path": "/home/zlatin/Python DB/Python ORM/Django Models Basics - Exercise/02-exercise-skeleton",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -112,6 +115,7 @@
       <updated>1718947879439</updated>
       <workItem from="1718947880472" duration="41000" />
       <workItem from="1718948032284" duration="2057000" />
+      <workItem from="1718951630908" duration="1039000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
