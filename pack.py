@@ -4,10 +4,6 @@ import zipfile
 
 
 def pack():
-    # Remove old archive
-    for item in os.listdir('.'):
-        if item.endswith(".zip"):
-            os.remove(item)
 
     dt = datetime.datetime.now().strftime('%H-%M_%d.%m.%y')
 
