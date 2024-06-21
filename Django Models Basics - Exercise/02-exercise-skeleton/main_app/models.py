@@ -118,7 +118,7 @@ class Book(models.Model):
     )
     genre = models.CharField(
         max_length=20,
-        choices=Genres  # maybe Genre.choices
+        choices=Genres.choices
     )
     publication_date = models.DateField(
         editable=False,
