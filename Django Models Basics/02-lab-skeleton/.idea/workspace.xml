@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04666078-4618-4a29-b11f-c680cf6fba1d" name="Changes" comment="Initial Commit">
-      <change afterPath="$PROJECT_DIR$/main_app/migrations/0002_project.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pack.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3.zip" afterDir="false" />
+    <list default="true" id="04666078-4618-4a29-b11f-c680cf6fba1d" name="Changes" comment="Commit">
+      <change afterPath="$PROJECT_DIR$/../../Exercise: Django Models Basics/02-exercise-skeleton/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission-21-05_20.06.24.zip" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +54,7 @@
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/zlatin/Python DB/Python ORM/Django Models Basics/02-lab-skeleton",
+    "last_opened_file_path": "/home/zlatin/Python DB/Python ORM/Exercise: Django Models Basics/02-exercise-skeleton",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -143,7 +140,8 @@
       <option name="presentableId" value="Default" />
       <updated>1718904018469</updated>
       <workItem from="1718904019491" duration="38000" />
-      <workItem from="1718904218210" duration="3578000" />
+      <workItem from="1718904218210" duration="3762000" />
+      <workItem from="1718947854844" duration="32000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -201,7 +199,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718907442416</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Commit">
+      <option name="closed" value="true" />
+      <created>1718907959950</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1718907959950</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,7 +216,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Initial Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit" />
+    <MESSAGE value="Commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/02_lab_skeleton$pack.coverage" NAME="pack Coverage Results" MODIFIED="1718907532243" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
