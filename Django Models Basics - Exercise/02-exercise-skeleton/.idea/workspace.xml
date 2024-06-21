@@ -5,18 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a210e7dc-672e-4b3c-b851-b58b8502fd8b" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/main_app/migrations/0005_blog_delete_weatherforecast.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_app/migrations/0006_weatherforecast.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_app/migrations/0007_rename_pressure_weatherforecast_precipitation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/02-exercise-skeleton.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/02-exercise-skeleton.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ae2d8a29-c035-4109-87a5-7b5b734f8664.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ae2d8a29-c035-4109-87a5-7b5b734f8664.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ae2d8a29-c035-4109-87a5-7b5b734f8664/storage_v2/_src_/database/models_db.c_Y1iA/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ae2d8a29-c035-4109-87a5-7b5b734f8664/storage_v2/_src_/database/models_db.c_Y1iA/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ae2d8a29-c035-4109-87a5-7b5b734f8664/storage_v2/_src_/database/models_db.c_Y1iA/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ae2d8a29-c035-4109-87a5-7b5b734f8664/storage_v2/_src_/database/models_db.c_Y1iA/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ae2d8a29-c035-4109-87a5-7b5b734f8664/storage_v2/_src_/database/models_db.c_Y1iA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ae2d8a29-c035-4109-87a5-7b5b734f8664/storage_v2/_src_/database/models_db.c_Y1iA/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -115,7 +103,7 @@
       <updated>1718947879439</updated>
       <workItem from="1718947880472" duration="41000" />
       <workItem from="1718948032284" duration="2057000" />
-      <workItem from="1718951630908" duration="1039000" />
+      <workItem from="1718951630908" duration="1434000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -149,7 +137,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718949419397</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="commit">
+      <option name="closed" value="true" />
+      <created>1718953276863</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1718953276863</updated>
+    </task>
+    <task id="LOCAL-00006" summary="commit">
+      <option name="closed" value="true" />
+      <created>1718953426604</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1718953426604</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
