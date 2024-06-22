@@ -47,7 +47,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/zlatin/Python DB/Python ORM/Django Models Basics - Exercise/02-exercise-skeleton",
+    "last_opened_file_path": "/home/zlatin/Python/Tasks",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -106,7 +106,7 @@
       <updated>1718947879439</updated>
       <workItem from="1718947880472" duration="41000" />
       <workItem from="1718948032284" duration="2057000" />
-      <workItem from="1718951630908" duration="6492000" />
+      <workItem from="1718951630908" duration="6531000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -204,7 +204,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718959566541</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="commit">
+      <option name="closed" value="true" />
+      <created>1718959575399</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1718959575399</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
