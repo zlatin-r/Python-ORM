@@ -3,11 +3,33 @@
 from django.db import migrations
 
 
-class Migration(migrations.Migration):
+def set_new_price(apps, schema_editor):
+    Smartphone = apps.get_model('main_app', 'Smartphone')
 
+    for phone in Smartphone.objects.all():
+        phone.price = len(phone.brand) * 120
+
+        phone.save()
+
+
+def set_category(apps, schema_editor):
+    Smartphone = apps.get_model('main_app', 'Smartphone')
+
+    for phone in Smartphone.objects.all():
+        if phone.price >= 750:
+            phone.category = 'Expensive'
+        else:
+            phone.category = 'Cheap'
+
+        phone.save()
+
+
+class Migration(migrations.Migration):
     dependencies = [
         ('main_app', '0015_smartphone'),
     ]
 
     operations = [
+        migrations.RunPython(set_new_price),
+        migrations.RunPython(set_category),
     ]
