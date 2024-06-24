@@ -10,12 +10,12 @@ def set_delivery_warranty(apps, schema_editor):
     for order in Order.objects.all():
         if order.status == 'Pending':
             order.delivery = order.order_date + timedelta(days=3)
+            order.save()
         elif order.status == 'Completed':
             order.warranty = "24 months"
+            order.save()
         elif order.status == 'Cancelled':
             order.delete()
-
-        order.save()
 
 
 class Migration(migrations.Migration):
