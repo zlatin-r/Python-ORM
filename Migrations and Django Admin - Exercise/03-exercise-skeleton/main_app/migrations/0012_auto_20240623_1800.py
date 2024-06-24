@@ -6,7 +6,9 @@ from django.db import migrations
 def set_age_group(apps, schema_editor):
     Person = apps.get_model('main_app', 'Person')
 
-    for person in Person.objects.all():
+    people = Person.objects.all()
+
+    for person in people:
         if person.age <= 12:
             person.age_group = "Child"
         elif 13 <= person.age <= 17:
@@ -14,6 +16,17 @@ def set_age_group(apps, schema_editor):
         else:
             person.age_group = "Adult"
 
+        person.save()
+    # Person.object.bulk_update(people, ['age_group']) -- no person.save()
+
+
+def set_age_group_default(apps, schema_editor):
+    Person = apps.get_model('main_app', 'Person')
+
+    people = Person.objects.all()
+
+    for person in people:
+        person.age_group = Person._meta.get_field('age_group').default
         person.save()
 
 
@@ -23,5 +36,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(set_age_group)
+        migrations.RunPython(set_age_group, set_age_group_default)
     ]
