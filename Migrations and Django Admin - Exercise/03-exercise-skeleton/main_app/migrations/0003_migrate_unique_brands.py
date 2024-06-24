@@ -6,13 +6,12 @@ from django.db import migrations
 def create_unique_brands(apps, schema_editor):
     shoe = apps.get_model('main_app', 'Shoe')
     unique_brands = apps.get_model('main_app', 'UniqueBrands')
-
-    db_alias = schema_editor.connection.alias
-
     unique_brand_names = shoe.objects.values_list('brand', flat=True).distinct()
 
-    for brand_name in unique_brand_names:
-        unique_brands.objects.using(db_alias).create(brand_name=brand_name)
+    unique_brands.objects.bulk_create([unique_brands(brand=brand_name) for brand_name in unique_brand_names])
+
+    # for brand_name in unique_brand_names:
+    #     unique_brands.create(brand_name=brand_name) # Slower
 
 
 class Migration(migrations.Migration):
