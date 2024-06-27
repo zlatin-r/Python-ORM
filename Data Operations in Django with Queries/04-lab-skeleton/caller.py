@@ -44,7 +44,7 @@ def add_students():
     )
 
 
-def get_student_info():
+def get_students_info():
     result = []
     all_students = Student.objects.all()
 
@@ -57,4 +57,3 @@ def get_student_info():
 
 
 # Run and print your queries
-print(get_student_info())
