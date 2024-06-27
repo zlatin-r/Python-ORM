@@ -55,4 +55,6 @@ def get_student_info():
                       f"Email: {student.email}")
     return '\n'.join(result)
 
+
 # Run and print your queries
+print(get_student_info())
