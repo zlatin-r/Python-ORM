@@ -44,12 +44,15 @@ def add_students():
     )
 
 
-'''
-FC5204	John	Doe	15/05/1995	john.doe@university.com
-FE0054	Jane	Smith	null	jane.smith@university.com
-FH2014	Alice	Johnson	10/02/1998	alice.johnson@university.com
-FH2015	Bob	Wilson	25/11/1996	bob.wilson@university.com
+def get_student_info():
+    result = []
+    all_students = Student.objects.all()
 
-'''
+    for student in all_students:
+        result.append(f"Student №{student.student_id}: "
+                      f"{student.first_name} "
+                      f"{student.last_name}; "
+                      f"Email: {student.email}")
+    return '\n'.join(result)
+
 # Run and print your queries
-
