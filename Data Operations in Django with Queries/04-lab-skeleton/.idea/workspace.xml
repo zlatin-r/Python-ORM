@@ -62,7 +62,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="Python.pack">
+  <component name="RunManager" selected="Python.caller">
     <configuration name="caller" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="04-lab-skeleton" />
       <option name="ENV_FILES" value="" />
@@ -137,8 +137,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.pack" />
         <item itemvalue="Python.caller" />
+        <item itemvalue="Python.pack" />
       </list>
     </recent_temporary>
   </component>
