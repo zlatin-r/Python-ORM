@@ -52,5 +52,4 @@ FH2015	Bob	Wilson	25/11/1996	bob.wilson@university.com
 
 '''
 # Run and print your queries
-add_students()
-print(Student.objects.all())
+
