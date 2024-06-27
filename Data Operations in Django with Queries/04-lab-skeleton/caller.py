@@ -56,4 +56,11 @@ def get_students_info():
     return '\n'.join(result)
 
 
+def update_students_emails():
+    all_students = Student.objects.all()
+
+    for student in all_students:
+        student.email = student.email.replace(student.email.split('@')[1], 'uni-students.com')
+        student.save()
+
 # Run and print your queries
