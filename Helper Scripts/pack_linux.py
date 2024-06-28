@@ -7,7 +7,7 @@ def pack():
     dt = datetime.datetime.now().strftime('%H-%M_%d.%m.%y')
     with zipfile.ZipFile(f'submission-{dt}.zip', 'w', zipfile.ZIP_DEFLATED) as zipf:
         for root, dirs, files in os.walk(os.getcwd()):
-            if '.venv' in root.split(os.sep):
+            if '.venv' or 'venv' in root.split(os.sep):
                 continue
             for file in files:
                 file_path = os.path.join(root, file)
