@@ -8,7 +8,6 @@ django.setup()
 
 # Import your models here
 from main_app.models import Pet, Artifact, Location
-from populate_db import populate_model_with_data
 
 
 # Create queries within functions
@@ -65,6 +64,3 @@ def get_capitals() -> QuerySet:
 
 def delete_first_location():
     Location.objects.first().delete()
-
-
-print(show_all_locations())

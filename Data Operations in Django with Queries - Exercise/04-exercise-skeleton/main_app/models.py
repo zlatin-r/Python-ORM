@@ -24,4 +24,4 @@ class Location(models.Model):
     is_capital = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{Location.name} has a population of {Location.population}!"
+        return f"{self.name} has a population of {self.population}!"
