@@ -7,7 +7,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
 
 # Import your models here
-from populate_db import populate_model_with_data
+# from populate_db import populate_model_with_data
 from main_app.models import Pet, Artifact, Location, Car
 
 
