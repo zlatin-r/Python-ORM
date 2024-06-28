@@ -40,3 +40,6 @@ class Task(models.Model):
     description = models.TextField()
     due_date = models.DateField()
     is_finished = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Task - {self.title} needs to be done until {self.due_date}!"

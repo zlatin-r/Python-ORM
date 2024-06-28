@@ -7,8 +7,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
 
 # Import your models here
-# from populate_db import populate_model_with_data
-from main_app.models import Pet, Artifact, Location, Car
+from main_app.models import Pet, Artifact, Location, Car, Task
+from populate_db import populate_model_with_data
 
 
 # Create queries within functions
@@ -82,3 +82,12 @@ def get_recent_cars() -> QuerySet:
 
 def delete_last_car() -> None:
     Car.objects.last().delete()
+
+
+def show_unfinished_tasks() -> str:
+    tasks = Task.objects.all().filter(is_finished=False)
+
+    return '\n'.join(str(t) for t in tasks)
+
+
+print(show_unfinished_tasks())
