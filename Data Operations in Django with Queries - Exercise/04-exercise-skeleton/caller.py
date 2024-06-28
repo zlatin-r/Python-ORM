@@ -80,3 +80,5 @@ def get_recent_cars() -> QuerySet:
     return Car.objects.all().filter(year__gt=2020).values('model', 'price_with_discount')
 
 
+def delete_last_car() -> None:
+    Car.objects.last().delete()
