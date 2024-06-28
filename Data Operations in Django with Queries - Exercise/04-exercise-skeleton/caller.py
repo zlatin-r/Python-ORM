@@ -85,9 +85,31 @@ def delete_last_car() -> None:
 
 
 def show_unfinished_tasks() -> str:
-    tasks = Task.objects.all().filter(is_finished=False)
+    tasks = Task.objects.filter(is_finished=False)
 
     return '\n'.join(str(t) for t in tasks)
 
 
-print(show_unfinished_tasks())
+def complete_odd_tasks() -> None:
+    tasks = Task.objects.all()
+    for task in tasks:
+        if task.pk % 2 == 0:
+            task.is_finished = True
+            task.save()
+
+    # Task.objects.bulk_update(tasks, ['is_finished'])
+
+
+def encode_and_replace(text: str, task_title: str) -> None:
+    tasks = Task.objects.filter(Task.title == task_title)
+    new_title = ''
+
+    for i in range(len(text)):
+        new_title += ord(text[i + 3])
+
+    for task in tasks:
+        task.title = new_title
+        task.save()
+
+
+encode_and_replace("Zdvk#wkh#glvkhv$", "Simple Task")
