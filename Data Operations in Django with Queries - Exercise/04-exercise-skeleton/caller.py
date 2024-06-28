@@ -7,7 +7,9 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
 
 # Import your models here
-from main_app.models import Pet, Artifact, Location, Car, Task
+from main_app.models import Pet, Artifact, Location, Car, Task, HotelRoom
+
+
 # from populate_db import populate_model_with_data
 
 
@@ -112,3 +114,17 @@ def encode_and_replace(text: str, task_title: str) -> None:
         task.save()
 
     # Task.objects.bulk_update(tasks, ['description'])
+
+
+def get_deluxe_rooms() -> str:
+    deluxe_rooms = HotelRoom.objects.filter(room_type='Deluxe')
+    rooms = []
+
+    for room in deluxe_rooms:
+        if room.id % 2 == 0:
+            rooms.append(room)
+
+    return '\n'.join(str(room) for room in rooms)
+
+
+print(get_deluxe_rooms())

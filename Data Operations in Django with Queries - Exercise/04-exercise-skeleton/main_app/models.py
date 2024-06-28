@@ -46,9 +46,9 @@ class Task(models.Model):
 
 
 class RoomTypeChoices(models.TextChoices):
-    STANDARD = 'St', 'Standard'
-    DELUXE = 'Dx', 'Deluxe'
-    SUITE = 'Su', 'Suite'
+    STANDARD = 'Standard', 'Standard'
+    DELUXE = 'Deluxe', 'Deluxe'
+    SUITE = 'Suite', 'Suite'
 
 
 class HotelRoom(models.Model):
@@ -58,3 +58,7 @@ class HotelRoom(models.Model):
     amenities = models.TextField()
     price_rep_night = models.DecimalField(max_digits=8, decimal_places=2)
     is_reserved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return (f"{self.room_type} room with number {self.room_number} "
+                f"costs {self.price_rep_night}$ per night!")
