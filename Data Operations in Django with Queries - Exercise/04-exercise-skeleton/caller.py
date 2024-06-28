@@ -128,3 +128,22 @@ def get_deluxe_rooms() -> str:
     return '\n'.join(str(room) for room in rooms)
 
 
+def increase_room_capacity() -> None:
+    rooms = HotelRoom.objects.all().order_by('id')
+
+    for i in range(len(rooms)):
+        if not rooms[i].is_reserved:
+            continue
+        if i == 0 or len(rooms) == 1:
+            rooms[i].capacity += rooms[i].id
+        else:
+            if not rooms[i - 1].is_reserved and rooms[i].is_reserved:
+                rooms[i].capacity += rooms[i - 1].capacity
+
+
+def reserve_first_room() -> None:
+    HotelRoom.objects.first().reserved = True
+
+
+def delete_last_room() -> None:
+    HotelRoom.objects.last().delete()

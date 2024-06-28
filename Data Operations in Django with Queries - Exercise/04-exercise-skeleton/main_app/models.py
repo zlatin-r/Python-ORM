@@ -56,9 +56,9 @@ class HotelRoom(models.Model):
     room_type = models.CharField(max_length=10, choices=RoomTypeChoices.choices)
     capacity = models.PositiveIntegerField()
     amenities = models.TextField()
-    price_rep_night = models.DecimalField(max_digits=8, decimal_places=2)
+    price_per_night = models.DecimalField(max_digits=8, decimal_places=2)
     is_reserved = models.BooleanField(default=False)
 
     def __str__(self):
         return (f"{self.room_type} room with number {self.room_number} "
-                f"costs {self.price_rep_night}$ per night!")
+                f"costs {self.price_per_night}$ per night!")
