@@ -7,7 +7,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
 
 # Import your models here
-from main_app.models import Pet, Artifact, Location
+from populate_db import populate_model_with_data
+from main_app.models import Pet, Artifact, Location, Car
 
 
 # Create queries within functions
@@ -64,4 +65,18 @@ def get_capitals() -> QuerySet:
 
 def delete_first_location() -> None:
     Location.objects.first().delete()
+
+
+def apply_discount() -> None:
+    cars = Car.objects.all()
+    for car in cars:
+        discount_percentage = sum(int(x) for x in str(car.year)) / 100
+        discount = float(car.price) * discount_percentage
+        car.price_with_discount = float(car.price) - discount
+        car.save()
+
+
+def get_recent_cars() -> QuerySet:
+    return Car.objects.all().filter(year__gt=2020).values('model', 'price_with_discount')
+
 
