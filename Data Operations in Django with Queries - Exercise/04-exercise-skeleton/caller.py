@@ -11,6 +11,7 @@ from main_app.models import Pet, Artifact, Location, Car, Task, HotelRoom
 
 
 # from populate_db import populate_model_with_data
+# populate_model_with_data(HotelRoom, 10)
 
 
 # Create queries within functions
@@ -127,4 +128,3 @@ def get_deluxe_rooms() -> str:
     return '\n'.join(str(room) for room in rooms)
 
 
-print(get_deluxe_rooms())
