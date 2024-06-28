@@ -8,7 +8,7 @@ django.setup()
 
 # Import your models here
 from main_app.models import Pet, Artifact, Location, Car, Task
-from populate_db import populate_model_with_data
+# from populate_db import populate_model_with_data
 
 
 # Create queries within functions
@@ -93,7 +93,7 @@ def show_unfinished_tasks() -> str:
 def complete_odd_tasks() -> None:
     tasks = Task.objects.all()
     for task in tasks:
-        if task.pk % 2 == 0:
+        if task.pk % 2 == 1:
             task.is_finished = True
             task.save()
 
@@ -101,15 +101,14 @@ def complete_odd_tasks() -> None:
 
 
 def encode_and_replace(text: str, task_title: str) -> None:
-    tasks = Task.objects.filter(Task.title == task_title)
-    new_title = ''
+    decoded_text = ''.join(chr(ord(symbol) - 3) for symbol in text)
 
-    for i in range(len(text)):
-        new_title += ord(text[i + 3])
+    # Task.objects.filter(title=task_title).update(description=decoded_text)
+
+    tasks = Task.objects.filter(title=task_title)
 
     for task in tasks:
-        task.title = new_title
+        task.description = decoded_text
         task.save()
 
-
-encode_and_replace("Zdvk#wkh#glvkhv$", "Simple Task")
+    # Task.objects.bulk_update(tasks, ['description'])
