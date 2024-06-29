@@ -160,17 +160,47 @@ def delete_last_room() -> None:
         room.delete()
 
 
-def update_characters():
+def update_characters() -> None:
     characters = Character.objects.all()
 
     for character in characters:
         if character.class_name == 'Mage':
             character.level += 3
             character.intelligence -= 7
+            character.save()
+
         elif character.class_name == 'Warrior':
             character.hit_points = character.hit_points / 2
             character.dexterity += 4
+            character.save()
         else:
             character.inventory = 'The inventory is empty'
+            character.save()
 
-        character.save()
+
+def fuse_characters(first_character: Character, second_character: Character) -> None:
+    new_character = Character
+    new_character.name = f"{first_character.name} {second_character.name}"
+    new_character.class_name = "Fusion"
+    new_character.level = (first_character.level + second_character.level) // 2
+    new_character.strength = (first_character.strength + second_character.strength) * 1.2
+    new_character.dexterity = (first_character.dexterity + second_character.dexterity) * 1.4
+    new_character.intelligence = (first_character.intelligence + second_character.intelligence) * 1.5
+    new_character.hit_points = first_character.hit_points + second_character.hit_points
+    first_fusion_character = Character.objects.filter(class_name='Fusion').first()
+
+
+def grand_dexterity() -> None:
+    Character.objects.update(dexterity=30)
+
+
+def grant_intelligence() -> None:
+    Character.objects.update(intelligence=40)
+
+
+def grant_strength() -> None:
+    Character.objects.update(strength=50)
+
+
+def delete_characters() -> None:
+    Character.objects.filter(inventory='The inventory is empty').delete()
