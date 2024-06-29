@@ -96,3 +96,11 @@ def filter_authors_by_nationalities(nationality):
     result = [a.biography if a.biography else f"{a.first_name} {a.last_name}" for a in authors]
 
     return '\n'.join(result)
+
+
+def filter_authors_by_birth_year(start_year, end_year):
+    filtered_authors = Author.objects.filter(birth_date__year__range=(start_year, end_year)).order_by('-birth_date')
+
+    result = [f"{a.birth_date}: {a.first_name} {a.last_name}" for a in filtered_authors]
+
+    return '\n'.join(result)
