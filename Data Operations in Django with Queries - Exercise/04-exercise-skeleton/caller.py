@@ -161,16 +161,18 @@ def delete_last_room() -> None:
 
 
 def update_characters() -> None:
-    Character.objects.filter(class_name='Mage').update(
+    Character.objects.filter(class_name="Mage").update(
         level=F('level') + 3,
-        intelligence=F('intelligence') - 7,
+        intelligence=F('intelligence') - 7
     )
-    Character.objects.filter(class_name='Warrior').update(
+
+    Character.objects.filter(class_name="Warrior").update(
         hit_points=F('hit_points') / 2,
-        dexterity=F('dexterity') + 4,
+        dexterity=F('dexterity') + 4
     )
-    Character.objects.filter(class_name__in=['Assassin', 'Scout']).update(
-        inventory='Inventory is empty',
+
+    Character.objects.filter(class_name__in=["Assassin", "Scout"]).update(
+        inventory="The inventory is empty"
     )
 
     # characters = Character.objects.all()
@@ -191,28 +193,45 @@ def update_characters() -> None:
 
 
 def fuse_characters(first_character: Character, second_character: Character) -> None:
-    new_character = Character
-    new_character.name = f"{first_character.name} {second_character.name}"
-    new_character.class_name = "Fusion"
-    new_character.level = (first_character.level + second_character.level) // 2
-    new_character.strength = (first_character.strength + second_character.strength) * 1.2
-    new_character.dexterity = (first_character.dexterity + second_character.dexterity) * 1.4
-    new_character.intelligence = (first_character.intelligence + second_character.intelligence) * 1.5
-    new_character.hit_points = first_character.hit_points + second_character.hit_points
-    first_fusion_character = Character.objects.filter(class_name='Fusion').first()
+    fusion_name = first_character.name + " " + second_character.name
+    class_name = "Fusion"
+    level = (first_character.level + second_character.level) // 2
+    strength = (first_character.strength + second_character.strength) * 1.2
+    dexterity = (first_character.dexterity + second_character.dexterity) * 1.4
+    intelligence = (first_character.intelligence + second_character.intelligence) * 1.5
+    hit_points = first_character.hit_points + second_character.hit_points
+
+    if first_character.class_name in ["Mage", "Scout"]:
+        inventory = "Bow of the Elven Lords, Amulet of Eternal Wisdom"
+    else:
+        inventory = "Dragon Scale Armor, Excalibur"
+
+    Character.objects.create(
+        name=fusion_name,
+        class_name=class_name,
+        level=level,
+        strength=strength,
+        dexterity=dexterity,
+        intelligence=intelligence,
+        hit_points=hit_points,
+        inventory=inventory
+    )
+
+    first_character.delete()
+    second_character.delete()
 
 
 def grand_dexterity() -> None:
     Character.objects.update(dexterity=30)
 
 
-def grant_intelligence() -> None:
+def grand_intelligence() -> None:
     Character.objects.update(intelligence=40)
 
 
-def grant_strength() -> None:
+def grand_strength() -> None:
     Character.objects.update(strength=50)
 
 
 def delete_characters() -> None:
-    Character.objects.filter(inventory='The inventory is empty').delete()
+    Character.objects.filter(inventory="The inventory is empty").delete()
