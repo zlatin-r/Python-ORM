@@ -66,8 +66,19 @@ def find_books_by_genre_and_language(genre, language):
 
 
 def find_authors_nationalities():
-    authors = Author.objects.filter(nationality__isnull=False)
+    authors = Author.objects.exclude(nationality=None)
+
+    # authors = Author.objects.filter(nationality__isnull=False)
 
     result = [f"{a.first_name} {a.last_name} is {a.nationality}" for a in authors]
 
     return '\n'.join(result)
+
+
+def order_books_by_year():
+    books = Book.objects.all().order_by('publication_year', 'title')
+
+    result = [f"{b.publication_year} year: {b.title} by {b.author}" for b in books]
+
+    return '\n'.join(result)
+
