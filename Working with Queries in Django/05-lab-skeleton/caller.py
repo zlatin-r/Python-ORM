@@ -82,3 +82,9 @@ def order_books_by_year():
 
     return '\n'.join(result)
 
+
+def delete_review_by_id(review_id):
+    review = Review.objects.get(id=review_id)
+    review.delete()
+
+    return f"Review by {review.reviewer_name} was deleted"
