@@ -1,6 +1,6 @@
 import os
 import django
-from django.db.models import QuerySet
+from django.db.models import QuerySet, F
 
 # Set up Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
@@ -161,21 +161,33 @@ def delete_last_room() -> None:
 
 
 def update_characters() -> None:
-    characters = Character.objects.all()
+    Character.objects.filter(class_name='Mage').update(
+        level=F('level') + 3,
+        intelligence=F('intelligence') - 7,
+    )
+    Character.objects.filter(class_name='Warrior').update(
+        hit_points=F('hit_points') / 2,
+        dexterity=F('dexterity') + 4,
+    )
+    Character.objects.filter(class_name__in=['Assassin', 'Scout']).update(
+        inventory='Inventory is empty',
+    )
 
-    for character in characters:
-        if character.class_name == 'Mage':
-            character.level += 3
-            character.intelligence -= 7
-            character.save()
-
-        elif character.class_name == 'Warrior':
-            character.hit_points = character.hit_points / 2
-            character.dexterity += 4
-            character.save()
-        else:
-            character.inventory = 'The inventory is empty'
-            character.save()
+    # characters = Character.objects.all()
+    #
+    # for character in characters:
+    #     if character.class_name == 'Mage':
+    #         character.level += 3
+    #         character.intelligence -= 7
+    #         character.save()
+    #
+    #     elif character.class_name == 'Warrior':
+    #         character.hit_points = character.hit_points / 2
+    #         character.dexterity += 4
+    #         character.save()
+    #     else:
+    #         character.inventory = 'The inventory is empty'
+    #         character.save()
 
 
 def fuse_characters(first_character: Character, second_character: Character) -> None:
