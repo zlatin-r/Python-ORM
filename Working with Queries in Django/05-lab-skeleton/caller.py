@@ -88,3 +88,11 @@ def delete_review_by_id(review_id):
     review.delete()
 
     return f"Review by {review.reviewer_name} was deleted"
+
+
+def filter_authors_by_nationalities(nationality):
+    authors = Author.objects.filter(nationality=nationality).order_by('first_name', 'last_name')
+
+    result = [a.biography if a.biography else f"{a.first_name} {a.last_name}" for a in authors]
+
+    return '\n'.join(result)
