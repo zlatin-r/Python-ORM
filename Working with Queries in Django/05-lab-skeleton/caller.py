@@ -104,3 +104,9 @@ def filter_authors_by_birth_year(start_year, end_year):
     result = [f"{a.birth_date}: {a.first_name} {a.last_name}" for a in filtered_authors]
 
     return '\n'.join(result)
+
+
+def change_reviewer_name(reviewer_name, new_name):
+    Review.objects.filter(reviewer_name=reviewer_name).update(reviewer_name=new_name)
+
+    return Review.objects.all()
