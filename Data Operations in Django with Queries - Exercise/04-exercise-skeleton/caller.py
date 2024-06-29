@@ -7,7 +7,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
 
 # Import your models here
-from main_app.models import Pet, Artifact, Location, Car, Task, HotelRoom
+from main_app.models import Pet, Artifact, Location, Car, Task, HotelRoom, Character
 
 
 # from populate_db import populate_model_with_data
@@ -158,3 +158,19 @@ def delete_last_room() -> None:
 
     if not room.is_reserved:
         room.delete()
+
+
+def update_characters():
+    characters = Character.objects.all()
+
+    for character in characters:
+        if character.class_name == 'Mage':
+            character.level += 3
+            character.intelligence -= 7
+        elif character.class_name == 'Warrior':
+            character.hit_points = character.hit_points / 2
+            character.dexterity += 4
+        else:
+            character.inventory = 'The inventory is empty'
+
+        character.save()
