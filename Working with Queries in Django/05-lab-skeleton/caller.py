@@ -63,6 +63,3 @@ def add_records_to_database():
 
 def find_books_by_genre_and_language(genre, language):
     return Book.objects.filter(genre=genre, language=language)
-
-
-def find_authors_nationalities()
