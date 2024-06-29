@@ -71,6 +71,3 @@ def find_authors_nationalities():
     result = [f"{a.first_name} {a.last_name} is {a.nationality}" for a in authors]
 
     return '\n'.join(result)
-
-
-print(find_authors_nationalities())
