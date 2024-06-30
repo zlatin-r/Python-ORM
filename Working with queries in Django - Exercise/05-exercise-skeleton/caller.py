@@ -7,7 +7,7 @@ import django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
 
-from main_app.models import ArtworkGallery, Laptop, ChessPlayer, Meal, Dungeon
+from main_app.models import ArtworkGallery, Laptop, ChessPlayer, Meal, Dungeon, Workout
 
 
 def show_highest_rated_art() -> str:
@@ -300,6 +300,7 @@ dungeon2 = Dungeon(name="Dungeon 2",
                    location="Crystal Caverns",
                    difficulty="Easy", )
 
+
 # # Bulk save the instances
 # bulk_create_dungeons([dungeon1, dungeon2])
 #
@@ -327,3 +328,25 @@ dungeon2 = Dungeon(name="Dungeon 2",
 # print(dungeons[1].reward)
 
 
+def show_workouts() -> str:
+    workouts = Workout.objects.filter(workout_type__in=["Calisthenics", "Crossfit"]).order_by("id")
+
+    result = [f"{w.name} from {w.workout_type} type has {w.difficulty} difficulty!" for w in workouts]
+
+    return '\n'.join(result)
+
+
+def get_high_difficulty_cardio_workouts() -> Workout:
+    return Workout.objects.filter(workout_type="Cardio", difficulty="High").order_by("instructor")
+
+
+def set_new_instructors() -> None:
+    pass
+
+
+def set_new_duration_times() -> None:
+    pass
+
+
+def delete_workouts() -> None:
+    pass
