@@ -5,9 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eacc229b-6bf8-490e-8c0c-d7d875872987" name="Changes" comment="Commit">
-      <change beforePath="$PROJECT_DIR$/../../Working with Queries in Django/05-lab-skeleton/caller.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../Working with Queries in Django/05-lab-skeleton/caller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Working with Queries in Django/05-lab-skeleton/pack_linux.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../Working with Queries in Django/05-lab-skeleton/pack_linux.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Working with Queries in Django/05-lab-skeleton/submission-14-14_29.06.24.zip" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Working with queries in Django - Exercise/05-exercise/.idea/05-exercise.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/befa4c9e-74e1-445f-8f53-a2a11c7a86ed.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/befa4c9e-74e1-445f-8f53-a2a11c7a86ed/storage_v2/_src_/database/lab_04.9kHQvQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/befa4c9e-74e1-445f-8f53-a2a11c7a86ed/storage_v2/_src_/database/lab_04.9kHQvQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/befa4c9e-74e1-445f-8f53-a2a11c7a86ed/storage_v2/_src_/database/lab_04.9kHQvQ/schema/information_schema.FNRwLQ.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/befa4c9e-74e1-445f-8f53-a2a11c7a86ed/storage_v2/_src_/database/lab_04.9kHQvQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/befa4c9e-74e1-445f-8f53-a2a11c7a86ed/storage_v2/_src_/database/lab_04.9kHQvQ/schema/pg_catalog.0S1ZNQ.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/befa4c9e-74e1-445f-8f53-a2a11c7a86ed/storage_v2/_src_/database/lab_04.9kHQvQ/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/befa4c9e-74e1-445f-8f53-a2a11c7a86ed/storage_v2/_src_/database/lab_04_ex.nGMtzg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/befa4c9e-74e1-445f-8f53-a2a11c7a86ed/storage_v2/_src_/database/lab_04_ex.nGMtzg/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/befa4c9e-74e1-445f-8f53-a2a11c7a86ed/storage_v2/_src_/database/lab_04_ex.nGMtzg/schema/information_schema.FNRwLQ.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/befa4c9e-74e1-445f-8f53-a2a11c7a86ed/storage_v2/_src_/database/lab_04_ex.nGMtzg/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/befa4c9e-74e1-445f-8f53-a2a11c7a86ed/storage_v2/_src_/database/lab_04_ex.nGMtzg/schema/pg_catalog.0S1ZNQ.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/befa4c9e-74e1-445f-8f53-a2a11c7a86ed/storage_v2/_src_/database/lab_04_ex.nGMtzg/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/befa4c9e-74e1-445f-8f53-a2a11c7a86ed/storage_v2/_src_/database/postgres.edMnLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/befa4c9e-74e1-445f-8f53-a2a11c7a86ed/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Working with queries in Django - Exercise/05-exercise/caller.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../Working with queries in Django - Exercise/05-exercise/caller.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,6 +179,8 @@
       <workItem from="1719650748934" duration="386000" />
       <workItem from="1719651621785" duration="875000" />
       <workItem from="1719663511447" duration="396000" />
+      <workItem from="1719757346867" duration="35000" />
+      <workItem from="1719757405477" duration="35000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
