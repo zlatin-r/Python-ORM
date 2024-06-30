@@ -360,36 +360,36 @@ def delete_workouts() -> None:
     Workout.objects.exclude(workout_type__in=["Strength", "Calisthenics"]).delete()
 
 
-# Create two Workout instances
-workout1 = Workout.objects.create(
-    name="Push-Ups",
-    workout_type="Calisthenics",
-    duration="10 minutes",
-    difficulty="Intermediate",
-    calories_burned=200,
-    instructor="Bob"
-)
-
-workout2 = Workout.objects.create(
-    name="Running",
-    workout_type="Cardio",
-    duration="30 minutes",
-    difficulty="High",
-    calories_burned=400,
-    instructor="Lilly"
-)
-
-# Run the functions
-print(show_workouts())
-
-high_difficulty_cardio_workouts = get_high_difficulty_cardio_workouts()
-for workout in high_difficulty_cardio_workouts:
-    print(f"{workout.name} by {workout.instructor}")
-
-set_new_instructors()
-for workout in Workout.objects.all():
-    print(f"Instructor: {workout.instructor}")
-
-set_new_duration_times()
-for workout in Workout.objects.all():
-    print(f"Duration: {workout.duration}")
+# # Create two Workout instances
+# workout1 = Workout.objects.create(
+#     name="Push-Ups",
+#     workout_type="Calisthenics",
+#     duration="10 minutes",
+#     difficulty="Intermediate",
+#     calories_burned=200,
+#     instructor="Bob"
+# )
+#
+# workout2 = Workout.objects.create(
+#     name="Running",
+#     workout_type="Cardio",
+#     duration="30 minutes",
+#     difficulty="High",
+#     calories_burned=400,
+#     instructor="Lilly"
+# )
+#
+# # Run the functions
+# print(show_workouts())
+#
+# high_difficulty_cardio_workouts = get_high_difficulty_cardio_workouts()
+# for workout in high_difficulty_cardio_workouts:
+#     print(f"{workout.name} by {workout.instructor}")
+#
+# set_new_instructors()
+# for workout in Workout.objects.all():
+#     print(f"Instructor: {workout.instructor}")
+#
+# set_new_duration_times()
+# for workout in Workout.objects.all():
+#     print(f"Duration: {workout.duration}")
