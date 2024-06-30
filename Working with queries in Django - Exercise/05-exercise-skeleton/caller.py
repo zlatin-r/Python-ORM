@@ -262,4 +262,68 @@ def update_dungeon_names() -> None:
 
 
 def update_dungeon_bosses_health() -> None:
+    Dungeon.objects.exclude(difficulty='Easy').update(boss_health=500)
+
+
+def update_dungeon_recommended_levels() -> None:
+    Dungeon.objects.filter(difficulty='Easy').update(recommended_levels=25)
+    Dungeon.objects.filter(difficulty='Medium').update(recommended_levels=50)
+    Dungeon.objects.filter(difficulty='Hard').update(recommended_levels=75)
+
+
+def update_dungeon_rewards() -> None:
+    Dungeon.objects.filter(boss_health=500).update(reward=1000)
+    Dungeon.objects.filter(location__startswith='E').update(reward='New dungeon unlocked')
+    Dungeon.objects.filter(location__endswith='s').update(reward='Dragonheart Amulet')
+
+
+def set_new_locations() -> None:
+    Dungeon.objects.filter(recommended_level=25).update(location='Enchanted Maze')
+    Dungeon.objects.filter(recommended_level=50).update(location='Grimstone Mines')
+    Dungeon.objects.filter(recommended_level=75).update(location='Shadowed Abyss')
+
+
+# Create two instances
+dungeon1 = Dungeon(name="Dungeon 1",
+                   boss_name="Boss 1",
+                   boss_health=1000,
+                   recommended_level=75,
+                   reward="Gold",
+                   location="Eternal Hell",
+                   difficulty="Hard", )
+
+dungeon2 = Dungeon(name="Dungeon 2",
+                   boss_name="Boss 2",
+                   boss_health=400,
+                   recommended_level=25,
+                   reward="Experience",
+                   location="Crystal Caverns",
+                   difficulty="Easy", )
+
+# # Bulk save the instances
+# bulk_create_dungeons([dungeon1, dungeon2])
+#
+# # Update boss's health
+# update_dungeon_bosses_health()
+#
+# # Show hard dungeons
+# hard_dungeons_info = show_hard_dungeons()
+# print(hard_dungeons_info)
+#
+# # Change dungeon names based on difficulty
+# update_dungeon_names()
+#
+# dungeons = Dungeon.objects.order_by('boss_health')
+#
+# print(dungeons[0].name)
+# print(dungeons[1].name)
+#
+# # Change the dungeon rewards
+# update_dungeon_rewards()
+#
+# dungeons = Dungeon.objects.order_by('boss_health')
+#
+# print(dungeons[0].reward)
+# print(dungeons[1].reward)
+
 
