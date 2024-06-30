@@ -161,6 +161,7 @@ def grand_chess_title_FM() -> None:
 def grand_chess_title_regular_player() -> None:
     ChessPlayer.objects.filter(rating__range=[0, 2199]).update(title='regular player')
 
+
 # player1 = ChessPlayer(username='Player1',
 #                       title='no title',
 #                       rating=2200,
@@ -185,3 +186,57 @@ def grand_chess_title_regular_player() -> None:
 
 
 def set_new_chefs() -> None:
+    Meal.objects.filter(meal_type='Breakfast').update(chef='Gordon Ramsey')
+    Meal.objects.filter(meal_type='Lunch').update(chef='Julia Child')
+    Meal.objects.filter(meal_type='Dinner').update(chef='Jamie Oliver')
+    Meal.objects.filter(meal_type='Snack').update(chef='Thomas Keller')
+
+
+def set_new_preparation_times() -> None:
+    Meal.objects.filter(meal_type='Breakfast').update(preparation_time='10 minutes')
+    Meal.objects.filter(meal_type='Lunch').update(preparation_time='12 minutes')
+    Meal.objects.filter(meal_type='Dinner').update(preparation_time='15 minutes')
+    Meal.objects.filter(meal_type='Snack').update(preparation_time='5 minutes')
+
+
+def update_low_calorie_meals() -> None:
+    Meal.objects.filter(meal_type__in=['Breakfast', 'Dinner']).update(calories=400)
+
+
+def update_high_calorie_meals() -> None:
+    Meal.objects.filter(meal_type__in=['Lunch', 'Snack']).update(calories=700)
+
+
+def delete_lunch_and_snack_meals() -> None:
+    Meal.objects.filter(meal_type__in=['Lunch', 'Snack']).delete()
+
+
+# meal1 = Meal.objects.create(name="Pancakes",
+#                             meal_type="Breakfast",
+#                             preparation_time="20 minutes",
+#                             difficulty=3,
+#                             calories=350,
+#                             chef="Jane", )
+#
+# meal2 = Meal.objects.create(name="Spaghetti Bolognese",
+#                             meal_type="Dinner",
+#                             preparation_time="45 minutes",
+#                             difficulty=4,
+#                             calories=550,
+#                             chef="Sarah", )
+#
+# # Test the set_new_chefs function
+# set_new_chefs()
+#
+# # Test the set_new_preparation_times function
+# set_new_preparation_times()
+#
+# # Refreshes the instances
+# meal1.refresh_from_db()
+# meal2.refresh_from_db()
+#
+# # Print the updated meal information
+# print("Meal 1 Chef:", meal1.chef)
+# print("Meal 1 Preparation Time:", meal1.preparation_time)
+# print("Meal 2 Chef:", meal2.chef)
+# print("Meal 2 Preparation Time:", meal2.preparation_time)
