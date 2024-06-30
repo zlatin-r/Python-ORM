@@ -7,7 +7,7 @@ import django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
 
-from main_app.models import ArtworkGallery, Laptop, ChessPlayer, Meal
+from main_app.models import ArtworkGallery, Laptop, ChessPlayer, Meal, Dungeon
 
 
 def show_highest_rated_art() -> str:
@@ -240,3 +240,26 @@ def delete_lunch_and_snack_meals() -> None:
 # print("Meal 1 Preparation Time:", meal1.preparation_time)
 # print("Meal 2 Chef:", meal2.chef)
 # print("Meal 2 Preparation Time:", meal2.preparation_time)
+
+
+def show_hard_dungeons() -> str:
+    hard_dungeons = Dungeon.objects.filter(difficulty='Hard').order_by('-location')
+
+    result = [f"{d.name} is guarded by {d.boss_name} who has {d.boss_health} health points!"
+              for d in hard_dungeons]
+
+    return '\n'.join(result)
+
+
+def bulk_create_dungeons(args: List[Dungeon]) -> None:
+    Dungeon.objects.bulk_create(args)
+
+
+def update_dungeon_names() -> None:
+    Dungeon.objects.filter(difficulty='Easy').update(name='The Erased Thombs')
+    Dungeon.objects.filter(difficulty='Medium').update(name='The Coral Labyrinth')
+    Dungeon.objects.filter(difficulty='Hard').update(name='The Lost Haunt')
+
+
+def update_dungeon_bosses_health() -> None:
+
