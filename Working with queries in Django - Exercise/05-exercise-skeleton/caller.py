@@ -7,7 +7,7 @@ import django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
 
-from main_app.models import ArtworkGallery, Laptop, ChessPlayer
+from main_app.models import ArtworkGallery, Laptop, ChessPlayer, Meal
 
 
 def show_highest_rated_art() -> str:
@@ -161,25 +161,27 @@ def grand_chess_title_FM() -> None:
 def grand_chess_title_regular_player() -> None:
     ChessPlayer.objects.filter(rating__range=[0, 2199]).update(title='regular player')
 
-
-player1 = ChessPlayer(username='Player1',
-                      title='no title',
-                      rating=2200,
-                      games_played=50,
-                      games_won=20,
-                      games_lost=25,
-                      games_drawn=5, )
-player2 = ChessPlayer(username='Player2',
-                      title='IM',
-                      rating=2350,
-                      games_played=80,
-                      games_won=40,
-                      games_lost=25,
-                      games_drawn=15, )
-
+# player1 = ChessPlayer(username='Player1',
+#                       title='no title',
+#                       rating=2200,
+#                       games_played=50,
+#                       games_won=20,
+#                       games_lost=25,
+#                       games_drawn=5, )
+# player2 = ChessPlayer(username='Player2',
+#                       title='IM',
+#                       rating=2350,
+#                       games_played=80,
+#                       games_won=40,
+#                       games_lost=25,
+#                       games_drawn=15, )
+#
 # # Call the bulk_create_chess_players function
 # bulk_create_chess_players([player1, player2])
 # # Call the delete_chess_players function
 # delete_chess_players()
 # # Check that the players are deleted
 # print("Number of Chess Players after deletion:", ChessPlayer.objects.count())
+
+
+def set_new_chefs() -> None:
