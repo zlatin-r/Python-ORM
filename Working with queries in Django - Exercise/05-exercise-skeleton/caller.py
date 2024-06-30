@@ -329,7 +329,7 @@ dungeon2 = Dungeon(name="Dungeon 2",
 
 
 def show_workouts() -> str:
-    workouts = Workout.objects.filter(workout_type__in=["Calisthenics", "Crossfit"]).order_by("id")
+    workouts = Workout.objects.filter(workout_type__in=["Calisthenics", "CrossFit"]).order_by("id")
 
     result = [f"{w.name} from {w.workout_type} type has {w.difficulty} difficulty!" for w in workouts]
 
@@ -341,12 +341,55 @@ def get_high_difficulty_cardio_workouts() -> Workout:
 
 
 def set_new_instructors() -> None:
-    pass
+    Workout.objects.filter(workout_type="Cardio").update(instructor="John Smith")
+    Workout.objects.filter(workout_type="Strength").update(instructor="Michael Williams")
+    Workout.objects.filter(workout_type="Yoga").update(instructor="Emily Johnson")
+    Workout.objects.filter(workout_type="CrossFit").update(instructor="Sarah Davis")
+    Workout.objects.filter(workout_type="Calisthenics").update(instructor="Chris Heria")
 
 
 def set_new_duration_times() -> None:
-    pass
+    Workout.objects.filter(instructor="John Smith").update(duration="15 minutes")
+    Workout.objects.filter(instructor="Sarah Davis").update(duration="30 minutes")
+    Workout.objects.filter(instructor="Chris Heria").update(duration="45 minutes")
+    Workout.objects.filter(instructor="Michael Williams").update(duration="1 hour")
+    Workout.objects.filter(instructor="Emily Johnson").update(duration="1 hour and 30 minutes")
 
 
 def delete_workouts() -> None:
-    pass
+    Workout.objects.exclude(workout_type__in=["Strength", "Calisthenics"]).delete()
+
+
+# Create two Workout instances
+workout1 = Workout.objects.create(
+    name="Push-Ups",
+    workout_type="Calisthenics",
+    duration="10 minutes",
+    difficulty="Intermediate",
+    calories_burned=200,
+    instructor="Bob"
+)
+
+workout2 = Workout.objects.create(
+    name="Running",
+    workout_type="Cardio",
+    duration="30 minutes",
+    difficulty="High",
+    calories_burned=400,
+    instructor="Lilly"
+)
+
+# Run the functions
+print(show_workouts())
+
+high_difficulty_cardio_workouts = get_high_difficulty_cardio_workouts()
+for workout in high_difficulty_cardio_workouts:
+    print(f"{workout.name} by {workout.instructor}")
+
+set_new_instructors()
+for workout in Workout.objects.all():
+    print(f"Instructor: {workout.instructor}")
+
+set_new_duration_times()
+for workout in Workout.objects.all():
+    print(f"Duration: {workout.duration}")
