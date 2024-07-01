@@ -268,4 +268,112 @@ def set_new_locations() -> None:
     Dungeon.objects.filter(recommended_level=75).update(location='Shadowed Abyss')
 
 
+# Create two instances
+# dungeon1 = Dungeon(name="Dungeon 1",
+#                    boss_name="Boss 1",
+#                    boss_health=1000,
+#                    recommended_level=75,
+#                    reward="Gold",
+#                    location="Eternal Hell",
+#                    difficulty="Hard", )
+#
+# dungeon2 = Dungeon(name="Dungeon 2",
+#                    boss_name="Boss 2",
+#                    boss_health=400,
+#                    recommended_level=25,
+#                    reward="Experience",
+#                    location="Crystal Caverns",
+#                    difficulty="Easy", )
 
+
+# # Bulk save the instances
+# bulk_create_dungeons([dungeon1, dungeon2])
+#
+# # Update boss's health
+# update_dungeon_bosses_health()
+#
+# # Show hard dungeons
+# hard_dungeons_info = show_hard_dungeons()
+# print(hard_dungeons_info)
+#
+# # Change dungeon names based on difficulty
+# update_dungeon_names()
+#
+# dungeons = Dungeon.objects.order_by('boss_health')
+#
+# print(dungeons[0].name)
+# print(dungeons[1].name)
+#
+# # Change the dungeon rewards
+# update_dungeon_rewards()
+#
+# dungeons = Dungeon.objects.order_by('boss_health')
+#
+# print(dungeons[0].reward)
+# print(dungeons[1].reward)
+
+
+def show_workouts() -> str:
+    workouts = Workout.objects.filter(workout_type__in=["Calisthenics", "CrossFit"]).order_by("id")
+
+    result = [f"{w.name} from {w.workout_type} type has {w.difficulty} difficulty!" for w in workouts]
+
+    return '\n'.join(result)
+
+
+def get_high_difficulty_cardio_workouts() -> Workout:
+    return Workout.objects.filter(workout_type="Cardio", difficulty="High").order_by("instructor")
+
+
+def set_new_instructors() -> None:
+    Workout.objects.filter(workout_type="Cardio").update(instructor="John Smith")
+    Workout.objects.filter(workout_type="Strength").update(instructor="Michael Williams")
+    Workout.objects.filter(workout_type="Yoga").update(instructor="Emily Johnson")
+    Workout.objects.filter(workout_type="CrossFit").update(instructor="Sarah Davis")
+    Workout.objects.filter(workout_type="Calisthenics").update(instructor="Chris Heria")
+
+
+def set_new_duration_times() -> None:
+    Workout.objects.filter(instructor="John Smith").update(duration="15 minutes")
+    Workout.objects.filter(instructor="Sarah Davis").update(duration="30 minutes")
+    Workout.objects.filter(instructor="Chris Heria").update(duration="45 minutes")
+    Workout.objects.filter(instructor="Michael Williams").update(duration="1 hour")
+    Workout.objects.filter(instructor="Emily Johnson").update(duration="1 hour and 30 minutes")
+
+
+def delete_workouts() -> None:
+    Workout.objects.exclude(workout_type__in=["Strength", "Calisthenics"]).delete()
+
+# # Create two Workout instances
+# workout1 = Workout.objects.create(
+#     name="Push-Ups",
+#     workout_type="Calisthenics",
+#     duration="10 minutes",
+#     difficulty="Intermediate",
+#     calories_burned=200,
+#     instructor="Bob"
+# )
+#
+# workout2 = Workout.objects.create(
+#     name="Running",
+#     workout_type="Cardio",
+#     duration="30 minutes",
+#     difficulty="High",
+#     calories_burned=400,
+#     instructor="Lilly"
+# )
+#
+# # Run the functions
+# print(show_workouts())
+#
+# high_difficulty_cardio_workouts = get_high_difficulty_cardio_workouts()
+# for workout in high_difficulty_cardio_workouts:
+#     print(f"{workout.name} by {workout.instructor}")
+#
+# set_new_instructors()
+# for workout in Workout.objects.all():
+#     print(f"Instructor: {workout.instructor}")
+#
+# set_new_duration_times()
+# for workout in Workout.objects.all():
+#     print(f"Duration: {workout.duration}")
