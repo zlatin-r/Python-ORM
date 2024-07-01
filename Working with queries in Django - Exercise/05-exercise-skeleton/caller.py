@@ -266,9 +266,9 @@ def update_dungeon_bosses_health() -> None:
 
 
 def update_dungeon_recommended_levels() -> None:
-    Dungeon.objects.filter(difficulty='Easy').update(recommended_levels=25)
-    Dungeon.objects.filter(difficulty='Medium').update(recommended_levels=50)
-    Dungeon.objects.filter(difficulty='Hard').update(recommended_levels=75)
+    Dungeon.objects.filter(difficulty='Easy').update(recommended_level=25)
+    Dungeon.objects.filter(difficulty='Medium').update(recommended_level=50)
+    Dungeon.objects.filter(difficulty='Hard').update(recommended_level=75)
 
 
 def update_dungeon_rewards() -> None:
@@ -284,21 +284,21 @@ def set_new_locations() -> None:
 
 
 # Create two instances
-dungeon1 = Dungeon(name="Dungeon 1",
-                   boss_name="Boss 1",
-                   boss_health=1000,
-                   recommended_level=75,
-                   reward="Gold",
-                   location="Eternal Hell",
-                   difficulty="Hard", )
-
-dungeon2 = Dungeon(name="Dungeon 2",
-                   boss_name="Boss 2",
-                   boss_health=400,
-                   recommended_level=25,
-                   reward="Experience",
-                   location="Crystal Caverns",
-                   difficulty="Easy", )
+# dungeon1 = Dungeon(name="Dungeon 1",
+#                    boss_name="Boss 1",
+#                    boss_health=1000,
+#                    recommended_level=75,
+#                    reward="Gold",
+#                    location="Eternal Hell",
+#                    difficulty="Hard", )
+#
+# dungeon2 = Dungeon(name="Dungeon 2",
+#                    boss_name="Boss 2",
+#                    boss_health=400,
+#                    recommended_level=25,
+#                    reward="Experience",
+#                    location="Crystal Caverns",
+#                    difficulty="Easy", )
 
 
 # # Bulk save the instances

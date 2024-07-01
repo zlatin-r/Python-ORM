@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83c49d5e-ca0c-4282-bd49-adc21d7e4f5f" name="Changes" comment="Commit">
-      <change beforePath="$PROJECT_DIR$/../05-exercise/caller.py" beforeDir="false" afterPath="$PROJECT_DIR$/../05-exercise/caller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/caller.py" beforeDir="false" afterPath="$PROJECT_DIR$/caller.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +63,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="Python.caller">
+  <component name="RunManager" selected="Python.pack_linux">
     <configuration name="caller" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="05-exercise-skeleton" />
       <option name="ENV_FILES" value="" />
@@ -136,8 +136,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.caller" />
         <item itemvalue="Python.pack_linux" />
+        <item itemvalue="Python.caller" />
       </list>
     </recent_temporary>
   </component>
@@ -164,7 +164,7 @@
       <workItem from="1719732109113" duration="132000" />
       <workItem from="1719732249139" duration="13749000" />
       <workItem from="1719753780745" duration="5130000" />
-      <workItem from="1719833379273" duration="1055000" />
+      <workItem from="1719833379273" duration="1373000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
