@@ -41,46 +41,31 @@ def delete_negative_rated_arts() -> None:
 # print(ArtworkGallery.objects.all())
 
 
-def show_the_most_expensive_laptop() -> str:
-    most_expensive = Laptop.objects.order_by('-price', '-id').first()
+def show_the_most_expensive_laptop():
+    most_expensive_laptop = Laptop.objects.order_by('-price', '-id').first()
+    return f"{most_expensive_laptop.brand} is the most expensive laptop available for {most_expensive_laptop.price}$!"
 
-    return f"{most_expensive.brand} is the most expensive laptop available for {most_expensive.price}$!"
 
-
-def bulk_create_laptops(args: List[Laptop]) -> None:
+def bulk_create_laptops(args):
     Laptop.objects.bulk_create(args)
 
 
-def update_to_512_GB_storage() -> None:
-    Laptop.objects.filter(brand__in=['Asus', 'Lenovo']).update(storage=512)
+def update_to_512_GB_storage():
+    Laptop.objects.filter(brand__in=["Asus", "Lenovo"]).update(storage=512)
 
 
-def update_to_16_GB_memory() -> None:
-    Laptop.objects.filter(brand__in=['Apple', 'Dell']).update(memory=16)
+def update_to_16_GB_memory():
+    Laptop.objects.filter(brand__in=["Apple", "Dell", "Acer"]).update(memory=16)
 
 
-def update_operation_systems() -> None:
-    all_laptops = Laptop.objects.all()
-
-    for laptop in all_laptops:
-        if laptop.brand == "Asus":
-            laptop.operation_system = "Windows"
-        elif laptop.brand == "Apple":
-            laptop.operation_system = "MacOS"
-        elif laptop.brand in ["Dell", "Acer"]:
-            laptop.operation_system = "Linux"
-        elif laptop.brand == "Lenovo":
-            laptop.operation_system = "Chrome OS"
-
-        laptop.save()
-
-    # Laptop.objects.filter(brand='Asus').update(operating_system='Windows')
-    # Laptop.objects.filter(brand='Apple').update(operating_system='MacOS')
-    # Laptop.objects.filter(brand__in=['Dell', 'Acer']).update(operating_system='Linux')
-    # Laptop.objects.filter(brand='Lenovo').update(operating_system='Chrome OS')
+def update_operation_systems():
+    Laptop.objects.filter(brand="Asus").update(operation_system="Windows")
+    Laptop.objects.filter(brand="Apple").update(operation_system="MacOS")
+    Laptop.objects.filter(brand__in=["Dell", "Acer"]).update(operation_system="Linux")
+    Laptop.objects.filter(brand="Lenovo").update(operation_system="Chrome OS")
 
 
-def delete_inexpensive_laptops() -> None:
+def delete_inexpensive_laptops():
     Laptop.objects.filter(price__lt=1200).delete()
 
 
@@ -186,7 +171,7 @@ def grand_chess_title_regular_player() -> None:
 
 
 def set_new_chefs() -> None:
-    Meal.objects.filter(meal_type='Breakfast').update(chef='Gordon Ramsey')
+    Meal.objects.filter(meal_type='Breakfast').update(chef='Gordon Ramsay')
     Meal.objects.filter(meal_type='Lunch').update(chef='Julia Child')
     Meal.objects.filter(meal_type='Dinner').update(chef='Jamie Oliver')
     Meal.objects.filter(meal_type='Snack').update(chef='Thomas Keller')
@@ -358,7 +343,6 @@ def set_new_duration_times() -> None:
 
 def delete_workouts() -> None:
     Workout.objects.exclude(workout_type__in=["Strength", "Calisthenics"]).delete()
-
 
 # # Create two Workout instances
 # workout1 = Workout.objects.create(
