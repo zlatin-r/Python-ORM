@@ -26,6 +26,8 @@ def populate_model_with_data(model, num_records=10):
                 field_values[field.name] = random.randint(1, 100)
             elif isinstance(field, BooleanField):
                 field_values[field.name] = random.choice([True, False])
+            elif isinstance(field, IntegerField):
+            	field_values[field.name] = random.choice(-100, 100)
             elif isinstance(field, CharField) or isinstance(field, TextField):
                 field_values[field.name] = f"{model.__name__} {_+1}"
             elif isinstance(field, EmailField):
