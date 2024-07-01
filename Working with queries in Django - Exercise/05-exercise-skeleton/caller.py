@@ -147,4 +147,53 @@ def grand_chess_title_regular_player() -> None:
     ChessPlayer.objects.filter(rating__range=[0, 2199]).update(title='regular player')
 
 
+# player1 = ChessPlayer(username='Player1',
+#                       title='no title',
+#                       rating=2200,
+#                       games_played=50,
+#                       games_won=20,
+#                       games_lost=25,
+#                       games_drawn=5, )
+# player2 = ChessPlayer(username='Player2',
+#                       title='IM',
+#                       rating=2350,
+#                       games_played=80,
+#                       games_won=40,
+#                       games_lost=25,
+#                       games_drawn=15, )
+#
+# # Call the bulk_create_chess_players function
+# bulk_create_chess_players([player1, player2])
+# # Call the delete_chess_players function
+# delete_chess_players()
+# # Check that the players are deleted
+# print("Number of Chess Players after deletion:", ChessPlayer.objects.count())
+
+
+def set_new_chefs() -> None:
+    Meal.objects.filter(meal_type='Breakfast').update(chef='Gordon Ramsay')
+    Meal.objects.filter(meal_type='Lunch').update(chef='Julia Child')
+    Meal.objects.filter(meal_type='Dinner').update(chef='Jamie Oliver')
+    Meal.objects.filter(meal_type='Snack').update(chef='Thomas Keller')
+
+
+def set_new_preparation_times() -> None:
+    Meal.objects.filter(meal_type='Breakfast').update(preparation_time='10 minutes')
+    Meal.objects.filter(meal_type='Lunch').update(preparation_time='12 minutes')
+    Meal.objects.filter(meal_type='Dinner').update(preparation_time='15 minutes')
+    Meal.objects.filter(meal_type='Snack').update(preparation_time='5 minutes')
+
+
+def update_low_calorie_meals() -> None:
+    Meal.objects.filter(meal_type__in=['Breakfast', 'Dinner']).update(calories=400)
+
+
+def update_high_calorie_meals() -> None:
+    Meal.objects.filter(meal_type__in=['Lunch', 'Snack']).update(calories=700)
+
+
+def delete_lunch_and_snack_meals() -> None:
+    Meal.objects.filter(meal_type__in=['Lunch', 'Snack']).delete()
+
+
 
