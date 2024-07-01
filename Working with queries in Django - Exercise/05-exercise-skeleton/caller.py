@@ -7,7 +7,7 @@ import django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
 
-from main_app.models import ArtworkGallery, Laptop, ChessPlayer, Meal, Dungeon, Workout
+from main_app.models import ArtworkGallery, Laptop, ChessPlayer, Meal, Dungeon, Workout, OperatingSystem
 
 
 def show_highest_rated_art() -> str:
@@ -59,10 +59,10 @@ def update_to_16_GB_memory():
 
 
 def update_operation_systems():
-    Laptop.objects.filter(brand="Asus").update(operation_system="Windows")
-    Laptop.objects.filter(brand="Apple").update(operation_system="MacOS")
-    Laptop.objects.filter(brand__in=["Dell", "Acer"]).update(operation_system="Linux")
-    Laptop.objects.filter(brand="Lenovo").update(operation_system="Chrome OS")
+    Laptop.objects.filter(brand="Asus").update(operation_system=OperatingSystem.WINDOWS)
+    Laptop.objects.filter(brand="Apple").update(operation_system=OperatingSystem.MACOS)
+    Laptop.objects.filter(brand__in=["Dell", "Acer"]).update(operation_system=OperatingSystem.LINUX)
+    Laptop.objects.filter(brand="Lenovo").update(operation_system=OperatingSystem.CHROME_OS)
 
 
 def delete_inexpensive_laptops():
