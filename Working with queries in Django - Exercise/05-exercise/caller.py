@@ -130,7 +130,7 @@ def bulk_create_dungeons(args: List[Dungeon]) -> None:
 
 
 def update_dungeon_names() -> None:
-    Dungeon.objects.filter(difficulty='Easy').update(name='The Erased Thombs')
+    Dungeon.objects.filter(difficulty='Easy').update(name='The Erased Tombs')
     Dungeon.objects.filter(difficulty='Medium').update(name='The Coral Labyrinth')
     Dungeon.objects.filter(difficulty='Hard').update(name='The Lost Haunt')
 
@@ -146,7 +146,7 @@ def update_dungeon_recommended_levels() -> None:
 
 
 def update_dungeon_rewards() -> None:
-    Dungeon.objects.filter(boss_health=500).update(reward=1000)
+    Dungeon.objects.filter(boss_health=500).update("1000 Gold")
     Dungeon.objects.filter(location__startswith='E').update(reward='New dungeon unlocked')
     Dungeon.objects.filter(location__endswith='s').update(reward='Dragonheart Amulet')
 

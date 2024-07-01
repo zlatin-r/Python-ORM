@@ -256,7 +256,7 @@ def bulk_create_dungeons(args: List[Dungeon]) -> None:
 
 
 def update_dungeon_names() -> None:
-    Dungeon.objects.filter(difficulty='Easy').update(name='The Erased Thombs')
+    Dungeon.objects.filter(difficulty='Easy').update(name='The Erased Tombs')
     Dungeon.objects.filter(difficulty='Medium').update(name='The Coral Labyrinth')
     Dungeon.objects.filter(difficulty='Hard').update(name='The Lost Haunt')
 
