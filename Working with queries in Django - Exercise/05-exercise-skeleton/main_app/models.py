@@ -89,6 +89,6 @@ class Laptop(models.Model):
     processor = models.CharField(max_length=100)
     memory = models.PositiveIntegerField(help_text='Memory in GB')
     storage = models.PositiveIntegerField(help_text='Storage in GB')
-    operation_system = models.CharField(choices=OperatingSystem.choices)
+    operation_system = models.CharField(max_length=20, choices=OperatingSystem.choices)
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
