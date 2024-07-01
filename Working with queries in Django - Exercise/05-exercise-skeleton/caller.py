@@ -196,4 +196,76 @@ def delete_lunch_and_snack_meals() -> None:
     Meal.objects.filter(meal_type__in=['Lunch', 'Snack']).delete()
 
 
+# meal1 = Meal.objects.create(name="Pancakes",
+#                             meal_type="Breakfast",
+#                             preparation_time="20 minutes",
+#                             difficulty=3,
+#                             calories=350,
+#                             chef="Jane", )
+#
+# meal2 = Meal.objects.create(name="Spaghetti Bolognese",
+#                             meal_type="Dinner",
+#                             preparation_time="45 minutes",
+#                             difficulty=4,
+#                             calories=550,
+#                             chef="Sarah", )
+#
+# # Test the set_new_chefs function
+# set_new_chefs()
+#
+# # Test the set_new_preparation_times function
+# set_new_preparation_times()
+#
+# # Refreshes the instances
+# meal1.refresh_from_db()
+# meal2.refresh_from_db()
+#
+# # Print the updated meal information
+# print("Meal 1 Chef:", meal1.chef)
+# print("Meal 1 Preparation Time:", meal1.preparation_time)
+# print("Meal 2 Chef:", meal2.chef)
+# print("Meal 2 Preparation Time:", meal2.preparation_time)
+
+
+def show_hard_dungeons() -> str:
+    hard_dungeons = Dungeon.objects.filter(difficulty='Hard').order_by('-location')
+
+    result = [f"{d.name} is guarded by {d.boss_name} who has {d.boss_health} health points!"
+              for d in hard_dungeons]
+
+    return '\n'.join(result)
+
+
+def bulk_create_dungeons(args: List[Dungeon]) -> None:
+    Dungeon.objects.bulk_create(args)
+
+
+def update_dungeon_names() -> None:
+    Dungeon.objects.filter(difficulty='Easy').update(name='The Erased Thombs')
+    Dungeon.objects.filter(difficulty='Medium').update(name='The Coral Labyrinth')
+    Dungeon.objects.filter(difficulty='Hard').update(name='The Lost Haunt')
+
+
+def update_dungeon_bosses_health() -> None:
+    Dungeon.objects.exclude(difficulty='Easy').update(boss_health=500)
+
+
+def update_dungeon_recommended_levels() -> None:
+    Dungeon.objects.filter(difficulty='Easy').update(recommended_level=25)
+    Dungeon.objects.filter(difficulty='Medium').update(recommended_level=50)
+    Dungeon.objects.filter(difficulty='Hard').update(recommended_level=75)
+
+
+def update_dungeon_rewards() -> None:
+    Dungeon.objects.filter(boss_health=500).update(reward="1000 Gold")
+    Dungeon.objects.filter(location__startswith='E').update(reward='New dungeon unlocked')
+    Dungeon.objects.filter(location__endswith='s').update(reward='Dragonheart Amulet')
+
+
+def set_new_locations() -> None:
+    Dungeon.objects.filter(recommended_level=25).update(location='Enchanted Maze')
+    Dungeon.objects.filter(recommended_level=50).update(location='Grimstone Mines')
+    Dungeon.objects.filter(recommended_level=75).update(location='Shadowed Abyss')
+
+
 
