@@ -91,7 +91,7 @@ def grand_chess_title_regular_player() -> None:
 
 
 def set_new_chefs() -> None:
-    Meal.objects.filter(meal_type='Breakfast').update(chef='Gordon Ramsey')
+    Meal.objects.filter(meal_type='Breakfast').update(chef='Gordon Ramsay')
     Meal.objects.filter(meal_type='Lunch').update(chef='Julia Child')
     Meal.objects.filter(meal_type='Dinner').update(chef='Jamie Oliver')
     Meal.objects.filter(meal_type='Snack').update(chef='Thomas Keller')
