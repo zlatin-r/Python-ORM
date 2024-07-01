@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83c49d5e-ca0c-4282-bd49-adc21d7e4f5f" name="Changes" comment="Commit">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4af05093-b7b7-45cc-93cb-b405f80abac0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/4af05093-b7b7-45cc-93cb-b405f80abac0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4af05093-b7b7-45cc-93cb-b405f80abac0/storage_v2/_src_/database/ex_05.ET3HBQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/4af05093-b7b7-45cc-93cb-b405f80abac0/storage_v2/_src_/database/ex_05.ET3HBQ/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../05-exercise/main_app/migrations/0003_laptop.py" beforeDir="false" afterPath="$PROJECT_DIR$/../05-exercise/main_app/migrations/0003_laptop.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../05-exercise/main_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../05-exercise/main_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../05-exercise/main_app/migrations/0003_laptop.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +164,7 @@
       <workItem from="1719732109113" duration="132000" />
       <workItem from="1719732249139" duration="13749000" />
       <workItem from="1719753780745" duration="5130000" />
-      <workItem from="1719833379273" duration="708000" />
+      <workItem from="1719833379273" duration="739000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />

@@ -7,7 +7,7 @@ import django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
 
-from main_app.models import ArtworkGallery, Laptop
+from main_app.models import ArtworkGallery, Laptop, ChessPlayer
 
 
 def show_highest_rated_art() -> str:
@@ -52,3 +52,39 @@ def update_operation_systems():
 
 def delete_inexpensive_laptops():
     Laptop.objects.filter(price__lt=1200).delete()
+
+
+def bulk_create_chess_players(args: List[ChessPlayer]) -> None:
+    ChessPlayer.objects.bulk_create(args)
+
+
+def delete_chess_players() -> None:
+    ChessPlayer.objects.filter(title='no title').delete()
+
+
+def change_chess_games_won() -> None:
+    ChessPlayer.objects.filter(title='GM').update(games_won=30)
+
+
+def change_chess_games_lost() -> None:
+    ChessPlayer.objects.filter(title='no title').update(games_lost=25)
+
+
+def change_chess_games_drawn() -> None:
+    ChessPlayer.objects.all().update(games_drawn=10)
+
+
+def grand_chess_title_GM() -> None:
+    ChessPlayer.objects.filter(rating__gte=2400).update(title='GM')
+
+
+def grand_chess_title_IM() -> None:
+    ChessPlayer.objects.filter(rating__range=[2300, 2399]).update(title='IM')
+
+
+def grand_chess_title_FM() -> None:
+    ChessPlayer.objects.filter(rating__range=[2200, 2299]).update(title='FM')
+
+
+def grand_chess_title_regular_player() -> None:
+    ChessPlayer.objects.filter(rating__range=[0, 2199]).update(title='regular player')
