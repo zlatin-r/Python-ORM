@@ -21,6 +21,9 @@ class Subject(models.Model):
         blank=True
     )
 
+    def __str__(self):
+        return f"{self.name}"
+
 
 class Student(models.Model):
     student_id = models.CharField(max_length=10, primary_key=True)
@@ -29,3 +32,19 @@ class Student(models.Model):
     birth_date = models.DateField()
     email = models.EmailField(unique=True)
     subjects = models.ManyToManyField(Subject)
+
+
+class StudentGrades(models.TextChoices):
+    A = 'A', 'A'
+    B = 'B', 'B'
+    C = 'C', 'C'
+    D = 'D', 'D'
+    E = 'E', 'E'
+    F = 'F', 'F'
+
+
+class StudentEnrollment(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    enrollment_date = models.DateField(auto_now_add=True)
+    grade = models.CharField(max_length=1, choices=StudentGrades.choices)
