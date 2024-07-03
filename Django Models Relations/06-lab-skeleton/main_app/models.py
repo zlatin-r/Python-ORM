@@ -1,4 +1,4 @@
-from datetime import timezone
+from datetime import timezone, date
 
 from django.db import models
 
@@ -47,5 +47,12 @@ class StudentGrades(models.TextChoices):
 class StudentEnrollment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
-    enrollment_date = models.DateField(auto_now_add=True)
+    enrollment_date = models.DateField(default=date.today)
     grade = models.CharField(max_length=1, choices=StudentGrades.choices, null=True, blank=True)
+
+
+class LecturerProfile(models.Model):
+    lecturer = models.OneToOneField(Lecturer, on_delete=models.CASCADE)
+    email = models.EmailField(unique=True)
+    bio = models.TextField(null=True, blank=True)
+    office_location = models.CharField(max_length=100, null=True, blank=True)
