@@ -31,7 +31,7 @@ class Student(models.Model):
     last_name = models.CharField(max_length=100)
     birth_date = models.DateField()
     email = models.EmailField(unique=True)
-    subjects = models.ManyToManyField(Subject)
+    subjects = models.ManyToManyField(Subject, through='StudentEnrollment')
 
 
 class StudentGrades(models.TextChoices):
@@ -39,7 +39,6 @@ class StudentGrades(models.TextChoices):
     B = 'B', 'B'
     C = 'C', 'C'
     D = 'D', 'D'
-    E = 'E', 'E'
     F = 'F', 'F'
 
 
@@ -47,4 +46,4 @@ class StudentEnrollment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     enrollment_date = models.DateField(auto_now_add=True)
-    grade = models.CharField(max_length=1, choices=StudentGrades.choices)
+    grade = models.CharField(max_length=1, choices=StudentGrades.choices, null=True, blank=True)
