@@ -85,7 +85,6 @@ def remove_song_from_artist(artist_name: str, song_title: str) -> None:
     song = Song.objects.get(title=song_title)
 
     artist.songs.remove(song)
-    artist.save()
 
 
 # # Create artists
