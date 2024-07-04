@@ -218,8 +218,30 @@ def get_drivers_with_expired_licenses(due_date: date):
 #     print(f"{driver.first_name} {driver.last_name} has to renew their driving license!")
 
 def register_car_by_owner(owner: Owner) -> str:
-    first_reg = Registration.objects.filter(car=None).first()
-    first_not_reg_car = Car.objects.filter(registration=None).first()
+    registration = Registration.objects.filter(car=None).first()
+    car = Car.objects.filter(registration=None).first()
+
+    registration.registration_date = date.today()
+
+    car.registration = registration
+
+    registration.save()
+    car.save()
+
+    return (f"Successfully registered {car.model} "
+            f"to {owner.name} "
+            f"with registration number {registration.registration_number}.")
 
 
+# Create owners
+owner1 = Owner.objects.create(name='Ivelin Milchev')
+owner2 = Owner.objects.create(name='Alice Smith')
 
+# Create cars
+car1 = Car.objects.create(model='Citroen C5', year=2004)
+car2 = Car.objects.create(model='Honda Civic', year=2021)
+
+# Create instances of the Registration model for the cars
+registration1 = Registration.objects.create(registration_number='TX0044XA')
+registration2 = Registration.objects.create(registration_number='XYZ789')
+print(register_car_by_owner(owner1))
