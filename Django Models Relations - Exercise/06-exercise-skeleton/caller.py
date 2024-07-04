@@ -142,6 +142,8 @@ def delete_products_without_reviews() -> None:
     products_without_reviews = Product.objects.filter(reviews=None)
     products_without_reviews.delete()
 
+    # get_products_with_no_reviews().delete()
+
 
 # # Create some products
 # product1 = Product.objects.create(name="Laptop")
