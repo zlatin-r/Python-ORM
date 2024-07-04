@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c906a820-da48-4f4f-ba58-500f17180e68" name="Changes" comment="Committing more changes">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/77ee9cd7-84d2-4595-a605-f8eb2ce805bb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/77ee9cd7-84d2-4595-a605-f8eb2ce805bb.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/77ee9cd7-84d2-4595-a605-f8eb2ce805bb/storage_v2/_src_/database/ex_06.Ej3HBQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/77ee9cd7-84d2-4595-a605-f8eb2ce805bb/storage_v2/_src_/database/ex_06.Ej3HBQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/caller.py" beforeDir="false" afterPath="$PROJECT_DIR$/caller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/migrations/0005_owner_car_registration.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/migrations/0005_owner_car_registration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,6 +135,7 @@
       <option name="presentableId" value="Default" />
       <updated>1720076774410</updated>
       <workItem from="1720076775418" duration="17615000" />
+      <workItem from="1720107086656" duration="805000" />
     </task>
     <task id="LOCAL-00001" summary="Commit changes">
       <option name="closed" value="true" />
@@ -308,7 +305,31 @@
       <option name="project" value="LOCAL" />
       <updated>1720095284797</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Committing more changes">
+      <option name="closed" value="true" />
+      <created>1720107096438</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1720107096438</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Committing more changes">
+      <option name="closed" value="true" />
+      <created>1720107103727</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1720107103727</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Committing more changes">
+      <option name="closed" value="true" />
+      <created>1720107890718</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1720107890718</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
