@@ -10,8 +10,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
 
 # Import your models here
-from main_app.models import Author, Book, Artist, Song, Product, Review, DrivingLicense, Driver, Owner, Registration, \
-    Car
+from main_app.models import Author, Artist, Song, Product, Review, DrivingLicense, Driver, Owner, Registration, Car
 
 
 # Create queries within functions
@@ -21,7 +20,7 @@ def show_all_authors_with_their_books() -> str:
     authors = Author.objects.all().order_by("id")
 
     for author in authors:
-        books = author.book_set.all()
+        books = author.book_set.all()  # Book.object.filter(author=author)
 
         if books:
             book_title = ", ".join([book.title for book in books])
@@ -33,6 +32,8 @@ def show_all_authors_with_their_books() -> str:
 def delete_all_authors_without_books() -> None:
     authors_without_books = Author.objects.filter(book__isnull=True)
     authors_without_books.delete()
+
+    # Author.objects.filter(book__isnull=True).delete()
 
 
 # # Create authors
@@ -232,7 +233,6 @@ def register_car_by_owner(owner: Owner) -> str:
     return (f"Successfully registered {car.model} "
             f"to {owner.name} "
             f"with registration number {registration.registration_number}.")
-
 
 # # Create owners
 # owner1 = Owner.objects.create(name='Ivelin Milchev')
