@@ -1,6 +1,7 @@
 import os
-from datetime import date, timedelta
+from datetime import timedelta, date
 
+import django.utils.timezone as timezone
 import django
 from django.db.models import QuerySet
 
@@ -221,7 +222,7 @@ def register_car_by_owner(owner: Owner) -> str:
     registration = Registration.objects.filter(car=None).first()
     car = Car.objects.filter(registration=None).first()
 
-    registration.registration_date = date.today()
+    registration.registration_date = timezone.now().date()
 
     car.registration = registration
 
@@ -233,15 +234,15 @@ def register_car_by_owner(owner: Owner) -> str:
             f"with registration number {registration.registration_number}.")
 
 
-# Create owners
-owner1 = Owner.objects.create(name='Ivelin Milchev')
-owner2 = Owner.objects.create(name='Alice Smith')
-
-# Create cars
-car1 = Car.objects.create(model='Citroen C5', year=2004)
-car2 = Car.objects.create(model='Honda Civic', year=2021)
-
-# Create instances of the Registration model for the cars
-registration1 = Registration.objects.create(registration_number='TX0044XA')
-registration2 = Registration.objects.create(registration_number='XYZ789')
-print(register_car_by_owner(owner1))
+# # Create owners
+# owner1 = Owner.objects.create(name='Ivelin Milchev')
+# owner2 = Owner.objects.create(name='Alice Smith')
+#
+# # Create cars
+# car1 = Car.objects.create(model='Citroen C5', year=2004)
+# car2 = Car.objects.create(model='Honda Civic', year=2021)
+#
+# # Create instances of the Registration model for the cars
+# registration1 = Registration.objects.create(registration_number='TX0044XA')
+# registration2 = Registration.objects.create(registration_number='XYZ789')
+# print(register_car_by_owner(owner1))

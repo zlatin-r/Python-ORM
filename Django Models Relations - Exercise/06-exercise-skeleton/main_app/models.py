@@ -97,7 +97,9 @@ class Car(models.Model):
     owner = models.ForeignKey(
         'Owner',
         on_delete=models.CASCADE,
-        related_name='cars'
+        related_name='cars',
+        null=True,
+        blank=True,
     )
 
 
@@ -110,10 +112,10 @@ class Registration(models.Model):
         null=True,
         blank=True
     )
-    car = models.ForeignKey(
+    car = models.OneToOneField(
         'Car',
         on_delete=models.CASCADE,
-        related_name='registrations',
+        related_name='registration',
         null=True,
-        blank=True
+        blank=True,
     )
