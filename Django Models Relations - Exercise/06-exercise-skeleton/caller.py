@@ -226,12 +226,14 @@ def register_car_by_owner(owner: Owner) -> str:
     registration = Registration.objects.filter(car=None).first()
     car = Car.objects.filter(registration=None).first()
 
+    car.owner = owner
+    car.save()
+
     registration.registration_date = timezone.now().date()
 
-    car.registration = registration
-
+    registration.car = car
     registration.save()
-    car.save()
+
 
     return (f"Successfully registered {car.model} "
             f"to {owner.name} "
