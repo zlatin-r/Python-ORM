@@ -234,7 +234,6 @@ def register_car_by_owner(owner: Owner) -> str:
     registration.car = car
     registration.save()
 
-
     return (f"Successfully registered {car.model} "
             f"to {owner.name} "
             f"with registration number {registration.registration_number}.")
