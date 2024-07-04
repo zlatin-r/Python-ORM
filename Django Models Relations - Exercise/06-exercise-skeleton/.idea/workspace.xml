@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c906a820-da48-4f4f-ba58-500f17180e68" name="Changes" comment="Committing more changes">
-      <change beforePath="$PROJECT_DIR$/caller.py" beforeDir="false" afterPath="$PROJECT_DIR$/caller.py" afterDir="false" />
-    </list>
+    <list default="true" id="c906a820-da48-4f4f-ba58-500f17180e68" name="Changes" comment="Committing more changes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -135,7 +133,7 @@
       <option name="presentableId" value="Default" />
       <updated>1720076774410</updated>
       <workItem from="1720076775418" duration="17615000" />
-      <workItem from="1720107086656" duration="805000" />
+      <workItem from="1720107086656" duration="1352000" />
     </task>
     <task id="LOCAL-00001" summary="Commit changes">
       <option name="closed" value="true" />
@@ -329,7 +327,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720107890718</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Committing more changes">
+      <option name="closed" value="true" />
+      <created>1720107899334</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1720107899334</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
