@@ -55,4 +55,6 @@ class LecturerProfile(models.Model):
     lecturer = models.OneToOneField(Lecturer, on_delete=models.CASCADE)
     email = models.EmailField(unique=True)
     bio = models.TextField(null=True, blank=True)
-    office_location = models.CharField(max_length=100, null=True, blank=True)
+    office_location = models.CharField(max_length=100, nul
+    l=True, blank=True)
+   

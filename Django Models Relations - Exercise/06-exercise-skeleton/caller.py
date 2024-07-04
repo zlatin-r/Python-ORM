@@ -9,7 +9,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
 
 # Import your models here
-from main_app.models import Author, Book, Artist, Song, Product, Review, DrivingLicense, Driver
+from main_app.models import Author, Book, Artist, Song, Product, Review, DrivingLicense, Driver, Owner, Registration, \
+    Car
 
 
 # Create queries within functions
@@ -215,3 +216,10 @@ def get_drivers_with_expired_licenses(due_date: date):
 # drivers_with_expired_licenses = get_drivers_with_expired_licenses(date(2023, 1, 1))
 # for driver in drivers_with_expired_licenses:
 #     print(f"{driver.first_name} {driver.last_name} has to renew their driving license!")
+
+def register_car_by_owner(owner: Owner) -> str:
+    first_reg = Registration.objects.filter(car=None).first()
+    first_not_reg_car = Car.objects.filter(registration=None).first()
+
+
+
