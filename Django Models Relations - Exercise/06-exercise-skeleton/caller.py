@@ -18,7 +18,13 @@ def show_all_authors_with_their_books() -> str:
     for author in authors:
         books = author.book_set.all()
 
-        book_title = ", ".join([book.title for book in books])
-        result.append(f"{author.name} has written - {book_title}!")
+        if books:
+            book_title = ", ".join([book.title for book in books])
+            result.append(f"{author.name} has written - {book_title}!")
 
     return "\n".join(result)
+
+
+def delete_all_authors_without_books() -> None:
+    authors_without_books = Author.objects.filter(book__isnull=True)
+    authors_without_books.delete()
