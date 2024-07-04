@@ -57,3 +57,5 @@ def delete_all_authors_without_books() -> None:
 # # Delete authors without books
 # delete_all_authors_without_books()
 # print(Author.objects.count())
+
+
