@@ -39,8 +39,8 @@ class SpecialityChoices(models.TextChoices):
     OTHERS = 'Others', 'Others'
 
 
-class Zookeeper(Employee):
-    speciality = models.CharField(max_length=10, choices=SpecialityChoices)
+class ZooKeeper(Employee):
+    specialty = models.CharField(max_length=10, choices=SpecialityChoices)
     managed_animals = models.ManyToManyField(Animal)
 
 
