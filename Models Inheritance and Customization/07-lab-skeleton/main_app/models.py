@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from datetime import date
 
 
 # Create your models here.
@@ -10,6 +11,11 @@ class Animal(models.Model):
     species = models.CharField(max_length=100)
     birth_date = models.DateField()
     sound = models.CharField(max_length=100)
+
+    @property
+    def age(self):
+        result = date.today() - self.birth_date
+        return result.days // 365
 
 
 class Mammal(Animal):
