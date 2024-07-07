@@ -50,3 +50,9 @@ from main_app.models import Animal, Mammal, Bird, Reptile, ZooKeeper, Veterinari
 # zookeeper.save()
 # --------------------------------------------------------------
 # Task 5:
+# all_animals_info = ZooDisplayAnimal.objects.all()
+# for a in all_animals_info:
+#     print(a.display_info())
+#     print(a.is_endangered())
+# -------------------------------------------------------------
+# Task 6:

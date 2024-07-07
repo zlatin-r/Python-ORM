@@ -35,7 +35,6 @@ class Employee(models.Model):
 
 class ZooKeeper(Employee):
     class SpecialityChoices(models.TextChoices):
-
         MAMMALS = 'Mammals', 'Mammals'
         BIRDS = 'Birds', 'Birds'
         REPTILES = 'Reptiles', 'Reptiles'
@@ -56,3 +55,13 @@ class Veterinarian(Employee):
 class ZooDisplayAnimal(Animal):
     class Meta:
         proxy = True
+
+    def display_info(self):
+        return (f"Meet {self.name}! Species: {self.species}, born {self.birth_date}. "
+                f"It makes a noise like '{self.sound}'.")
+
+    def is_endangered(self):
+        if self.species in ["Cross River Gorilla", "Orangutan", "Green Turtle"]:
+            return f"{self.species} is at risk!"
+        else:
+            return f"{self.species} is not at risk."
