@@ -54,7 +54,7 @@ class ZooKeeper(Employee):
             raise ValidationError("Specialty must be a valid choice.")
 
 
-class BooleanChoiceField(models.Field):
+class BooleanChoiceField(models.BooleanField):
     def __init__(self, *args, **kwargs):
         kwargs['choices'] = ((True, 'Available'), (False, 'Not Available'))
         kwargs['default'] = True
