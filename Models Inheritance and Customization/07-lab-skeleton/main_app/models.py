@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 
 
@@ -40,8 +41,12 @@ class SpecialityChoices(models.TextChoices):
 
 
 class ZooKeeper(Employee):
-    specialty = models.CharField(max_length=10, choices=SpecialityChoices)
+    specialty = models.CharField(max_length=10, choices=SpecialityChoices.choices)
     managed_animals = models.ManyToManyField(Animal)
+
+    def clean(self):
+        if self.specialty not in SpecialityChoices.choices:
+            raise ValidationError("Speciality must be a valid choice.")
 
 
 class Veterinarian(Employee):
