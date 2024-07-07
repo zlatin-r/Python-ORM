@@ -33,19 +33,19 @@ class Employee(models.Model):
         abstract = True
 
 
-class SpecialityChoices(models.TextChoices):
-    MAMMALS = 'Mammals', 'Mammals'
-    BIRDS = 'Birds', 'Birds'
-    REPTILES = 'Reptiles', 'Reptiles'
-    OTHERS = 'Others', 'Others'
-
-
 class ZooKeeper(Employee):
+    class SpecialityChoices(models.TextChoices):
+
+        MAMMALS = 'Mammals', 'Mammals'
+        BIRDS = 'Birds', 'Birds'
+        REPTILES = 'Reptiles', 'Reptiles'
+        OTHERS = 'Others', 'Others'
+
     specialty = models.CharField(max_length=10, choices=SpecialityChoices.choices)
     managed_animals = models.ManyToManyField(Animal)
 
     def clean(self):
-        if self.specialty not in SpecialityChoices.choices:
+        if self.specialty not in self.SpecialityChoices.choices:
             raise ValidationError("Specialty must be a valid choice.")
 
 
