@@ -46,7 +46,7 @@ class ZooKeeper(Employee):
 
     def clean(self):
         if self.specialty not in SpecialityChoices.choices:
-            raise ValidationError("Speciality must be a valid choice.")
+            raise ValidationError("Specialty must be a valid choice.")
 
 
 class Veterinarian(Employee):
