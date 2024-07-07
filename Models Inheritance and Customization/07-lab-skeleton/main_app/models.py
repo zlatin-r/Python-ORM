@@ -45,7 +45,7 @@ class ZooKeeper(Employee):
     managed_animals = models.ManyToManyField(Animal)
 
     def clean(self):
-        if self.specialty not in self.SpecialityChoices.choices:
+        if self.specialty not in ZooKeeper.SpecialityChoices:
             raise ValidationError("Specialty must be a valid choice.")
 
 
