@@ -107,7 +107,7 @@ class StudentIDField(models.PositiveIntegerField):
             return value
         try:
             value = int(value)
-        except (TypeError, ValueError):
+        except ValueError:
             raise ValueError("Invalid input for student ID")
         return value
 
@@ -124,3 +124,24 @@ class StudentIDField(models.PositiveIntegerField):
 class Student(models.Model):
     name = models.CharField(max_length=100)
     student_id = StudentIDField()
+
+
+class MaskedCreditCardField(models.CharField(max_length=20)):
+
+    def __init__(self, *args, **kwargs):
+
+        super().__init__(*args, **kwargs)
+
+    def to_python(self, value):
+        if isinstance(value, str):
+            return value
+        try:
+            value = int(value)
+        except ValueError:
+            raise ValueError("The card number must be a string")
+        return value
+
+
+class CreditCard(models.Model):
+    card_owner = models.CharField(max_length=100)
+    card_number = MaskedCreditCardField(max_length=20)
