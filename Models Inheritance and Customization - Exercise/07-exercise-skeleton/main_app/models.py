@@ -102,10 +102,6 @@ class Message(models.Model):
 
 class StudentIDField(models.PositiveIntegerField):
 
-    def __init__(self, *args, **kwargs):
-        kwargs['validators'] = [self.validate_student_id]
-        super().__init__(*args, **kwargs)
-
     def to_python(self, value):
         if isinstance(value, int):
             return value
