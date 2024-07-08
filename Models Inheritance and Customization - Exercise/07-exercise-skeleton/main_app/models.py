@@ -162,7 +162,7 @@ class Hotel(models.Model):
 
 class Room(models.Model):
     hotel = models.ForeignKey(to=Hotel, on_delete=models.CASCADE)
-    number = models.CharField(max_length=100)
+    number = models.CharField(max_length=100, unique=True)
     capacity = models.PositiveIntegerField()
     total_guests = models.PositiveIntegerField()
     price_per_night = models.DecimalField(max_digits=10, decimal_places=2)
