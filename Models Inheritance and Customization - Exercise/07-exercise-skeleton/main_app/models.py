@@ -80,8 +80,8 @@ class Message(models.Model):
 
     def reply_to_message(self, reply_content):
         reply_message = Message.objects.create(
-            sender=self.sender,
-            receiver=self.receiver,
+            sender=self.receiver,
+            receiver=self.sender,
             content=reply_content
         )
         return reply_message
