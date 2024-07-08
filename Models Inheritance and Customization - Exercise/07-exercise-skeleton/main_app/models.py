@@ -65,3 +65,15 @@ class Message(models.Model):
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
     is_read = models.BooleanField(default=False)
+
+    def mark_as_read(self):
+        self.is_read = True
+        self.save()
+
+    def reply_to_message(self, reply_content):
+        message = Message.objects.create(sender=self.sender, receiver=self.receiver, content=reply_content)
+        return message
+
+    def forward_message(self, new_receiver):
+        message = Message.objects.create(sender=self.sender, receiver=new_receiver, content=self.content)
+        return message
