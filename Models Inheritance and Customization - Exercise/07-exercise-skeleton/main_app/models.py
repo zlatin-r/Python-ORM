@@ -87,6 +87,7 @@ class Message(models.Model):
             receiver=self.sender,
             content=reply_content
         )
+        reply_message.save()
         return reply_message
 
     def forward_message(self, receiver):
@@ -95,6 +96,7 @@ class Message(models.Model):
             receiver=receiver,
             content=self.content
         )
+        forwarded_message.save()
         return forwarded_message
 
 
