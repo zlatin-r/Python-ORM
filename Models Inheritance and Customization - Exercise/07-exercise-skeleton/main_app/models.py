@@ -74,6 +74,6 @@ class Message(models.Model):
         message = Message.objects.create(sender=self.sender, receiver=self.receiver, content=reply_content)
         return message
 
-    def forward_message(self, new_receiver):
-        message = Message.objects.create(sender=self.sender, receiver=new_receiver, content=self.content)
+    def forward_message(self, receiver):
+        message = Message.objects.create(sender=self.sender, receiver=receiver, content=self.content)
         return message
