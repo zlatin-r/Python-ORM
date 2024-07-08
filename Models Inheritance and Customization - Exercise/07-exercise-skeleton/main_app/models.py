@@ -137,7 +137,7 @@ class MaskedCreditCardField(models.CharField):
             raise ValidationError("The card number must be a string")
         if not value.isdigit():
             raise ValidationError("The card number must contain only digits")
-        if not len(value) == 16:
+        if len(value) != 16:
             raise ValidationError("The card number must be exactly 16 characters long")
         return value
 
