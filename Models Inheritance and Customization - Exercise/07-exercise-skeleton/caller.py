@@ -95,7 +95,7 @@ from main_app.models import Mage, Necromancer, UserProfile, Message, Student, Cr
 #     print(error)
 # ---------------------------------------------------------------------------------------
 # Task 4:
-# # Create CreditCard instances with card owner names and card numbers
+# Create CreditCard instances with card owner names and card numbers
 # credit_card1 = CreditCard(
 #     card_owner="Krasimir",
 #     card_number="1234567890123450"

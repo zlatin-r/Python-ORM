@@ -137,12 +137,6 @@ class MaskedCreditCardField(models.CharField):
             raise ValidationError("The card number must contain only digits")
         if len(value) != 16:
             raise ValidationError("The card number must be exactly 16 characters long")
-        return value
-
-    def from_db_value(self, value, expression, connection):
-        return value
-
-    def get_prep_value(self, value):
         return f"****-****-****-{value[-4:]}"
 
 
