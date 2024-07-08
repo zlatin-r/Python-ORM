@@ -153,3 +153,14 @@ class CreditCard(models.Model):
     card_number = MaskedCreditCardField()
 
 
+class Hotel(models.Model):
+    name = models.CharField(max_length=100)
+    address = models.CharField(max_length=200)
+
+
+class Room(models.Model):
+    hotel = models.ForeignKey(to=Hotel, on_delete=models.CASCADE)
+    number = models.CharField(max_length=100)
+    capacity = models.PositiveIntegerField()
+    total_guest = models.PositiveIntegerField()
+    price_per_night = models.DecimalField(max_digits=10, decimal_places=2)
