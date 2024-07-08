@@ -60,8 +60,16 @@ class UserProfile(models.Model):
 
 
 class Message(models.Model):
-    sender = models.ForeignKey(to=UserProfile, on_delete=models.CASCADE, related_name='sent_messages')
-    receiver = models.ForeignKey(to=UserProfile, on_delete=models.CASCADE, related_name='received_messages')
+    sender = models.ForeignKey(
+        to=UserProfile,
+        on_delete=models.CASCADE,
+        related_name='sent_messages'
+    )
+    receiver = models.ForeignKey(
+        to=UserProfile,
+        on_delete=models.CASCADE,
+        related_name='received_messages'
+    )
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
     is_read = models.BooleanField(default=False)
@@ -71,9 +79,17 @@ class Message(models.Model):
         self.save()
 
     def reply_to_message(self, reply_content):
-        reply_message = Message.objects.create(sender=self.sender, receiver=self.receiver, content=reply_content)
+        reply_message = Message.objects.create(
+            sender=self.sender,
+            receiver=self.receiver,
+            content=reply_content
+        )
         return reply_message
 
     def forward_message(self, receiver):
-        forwarded_message = Message.objects.create(sender=self.sender, receiver=receiver, content=self.content)
+        forwarded_message = Message.objects.create(
+            sender=self.receiver,
+            receiver=receiver,
+            content=self.content
+        )
         return forwarded_message
