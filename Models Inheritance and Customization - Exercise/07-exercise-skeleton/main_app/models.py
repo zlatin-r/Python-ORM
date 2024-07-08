@@ -184,7 +184,7 @@ class BaseReservation(models.Model):
         abstract = True
 
     def reservation_period(self):
-        return (self.end_date - self.start_date).days + 1
+        return (self.end_date - self.start_date).days
 
     def calculate_total_cost(self):
         period = self.reservation_period()
