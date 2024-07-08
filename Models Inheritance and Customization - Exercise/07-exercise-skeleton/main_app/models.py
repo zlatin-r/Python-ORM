@@ -103,8 +103,6 @@ class Message(models.Model):
 class StudentIDField(models.PositiveIntegerField):
 
     def to_python(self, value):
-        if isinstance(value, int):
-            return value
         try:
             value = int(value)
         except ValueError:
