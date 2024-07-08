@@ -141,7 +141,7 @@ class MaskedCreditCardField(models.CharField):
             raise ValidationError("The card number must be exactly 16 characters long")
         return value
 
-    def from_db_value(self, value):
+    def from_db_value(self, value, expression, connection):
         return self.to_python(value)
 
     def get_prep_value(self, value):
