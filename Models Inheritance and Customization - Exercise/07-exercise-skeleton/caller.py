@@ -94,13 +94,16 @@ from main_app.models import Mage, Necromancer, UserProfile, Message, Student, Cr
 # Create CreditCard instances with card owner names and card numbers
 credit_card1 = CreditCard(
     card_owner="Krasimir",
-    card_number="1234567890123450")
+    card_number="1234567890123450"
+)
 credit_card2 = CreditCard(
     card_owner="Pesho",
-    card_number="9876543210987654")
+    card_number="9876543210987654"
+)
 credit_card3 = CreditCard(
     card_owner="Vankata",
-    card_number="4567890123456789")
+    card_number="4567890123456789"
+)
 
 # Save the instances to the database
 credit_card1.save()
