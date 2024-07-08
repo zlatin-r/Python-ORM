@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from django.core.exceptions import ValidationError
 from django.db import models
 
@@ -164,3 +166,71 @@ class Room(models.Model):
     capacity = models.PositiveIntegerField()
     total_guest = models.PositiveIntegerField()
     price_per_night = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def save(self, *args, **kwargs):
+        if self.total_guest > self.capacity:
+            raise ValidationError("Total guests are more than the capacity of the room")
+
+        super().save(*args, **kwargs)
+        return f"Room {self.number} created successfully"
+
+
+class BaseReservation(models.Model):
+    room = models.ForeignKey(to=Room, on_delete=models.CASCADE)
+    start_date = models.DateField()
+    end_date = models.DateField()
+
+    class Meta:
+        abstract = True
+
+    def reservation_period(self):
+        return (self.start_date - self.end_date).days + 1
+
+    def calculate_total_cost(self):
+        return round(self.room.price_per_night * self.reservation_period(), 2)
+
+
+class RegularReservation(BaseReservation):
+
+    def save(self, *args, **kwargs):
+        if self.start_date >= self.end_date:
+            raise ValidationError("Start date cannot be after or in the same end date")
+
+        existing_reservations = RegularReservation.objects.filter(room=self.room)
+
+        for reservation in existing_reservations:
+            if (self.start_date <= reservation.end_date and reservation.start_date <= self.end_date):
+                raise ValidationError(f"Room {self.room.number} cannot be reserved")
+
+        super().save(*args, **kwargs)
+        return f"Regular reservation for room {self.room.number}"
+
+
+class SpecialReservation(BaseReservation):
+
+    def save(self, *args, **kwargs):
+        if self.start_date >= self.end_date:
+            raise ValidationError("Start date cannot be after or in the same end date")
+
+        existing_reservations = SpecialReservation.objects.filter(room=self.room)
+        for reservation in existing_reservations:
+            if (self.start_date <= reservation.end_date and reservation.start_date <= self.end_date):
+                raise ValidationError(f"Room {self.room.number} cannot be reserved")
+
+        super().save(*args, **kwargs)
+        return f"Special reservation for room {self.room.number}"
+
+    def extend_reservation(self, days: int):
+        new_end_date = self.end_date + timedelta(days=days)
+        conflicting_reservations = SpecialReservation.objects.filter(
+            room=self.room,
+            start_date__lte=new_end_date,
+            end_date__gte=self.start_date
+        ).exclude(pk=self.pk)
+
+        if conflicting_reservations.exists():
+            raise ValidationError("Error during extending reservation")
+
+        self.end_date = new_end_date
+        self.save()
+        return f"Extended reservation for room {self.room.number} with {days} days"
