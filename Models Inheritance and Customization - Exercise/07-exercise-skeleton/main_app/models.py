@@ -164,11 +164,11 @@ class Room(models.Model):
     hotel = models.ForeignKey(to=Hotel, on_delete=models.CASCADE)
     number = models.CharField(max_length=100)
     capacity = models.PositiveIntegerField()
-    total_guest = models.PositiveIntegerField()
+    total_guests = models.PositiveIntegerField()
     price_per_night = models.DecimalField(max_digits=10, decimal_places=2)
 
     def save(self, *args, **kwargs):
-        if self.total_guest > self.capacity:
+        if self.total_guests > self.capacity:
             raise ValidationError("Total guests are more than the capacity of the room")
 
         super().save(*args, **kwargs)
@@ -184,10 +184,11 @@ class BaseReservation(models.Model):
         abstract = True
 
     def reservation_period(self):
-        return (self.start_date - self.end_date).days + 1
+        return (self.end_date - self.start_date).days + 1
 
     def calculate_total_cost(self):
-        return round(self.room.price_per_night * self.reservation_period(), 2)
+        period = self.reservation_period()
+        return round(self.room.price_per_night * period, 2)
 
 
 class RegularReservation(BaseReservation):
