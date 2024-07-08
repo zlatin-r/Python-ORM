@@ -151,3 +151,5 @@ class MaskedCreditCardField(models.CharField):
 class CreditCard(models.Model):
     card_owner = models.CharField(max_length=100)
     card_number = MaskedCreditCardField()
+
+
