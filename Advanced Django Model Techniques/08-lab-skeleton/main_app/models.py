@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import MinLengthValidator, MaxLengthValidator, MinValueValidator, MaxValueValidator
-from .validators import validate_menu_categories
+from validators import validate_menu_categories
 
 
 # Create your models here.
@@ -28,8 +28,8 @@ class Restaurant(models.Model):
         max_digits=3,
         decimal_places=2,
         validators=[
-            MinValueValidator(0, message="Rating must be at least 0.00."),
-            MaxValueValidator(5, message="Rating cannot exceed 5.00.")
+            MinValueValidator(0.00, message="Rating must be at least 0.00."),
+            MaxValueValidator(5.00, message="Rating cannot exceed 5.00.")
         ]
     )
 
