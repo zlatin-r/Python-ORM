@@ -21,6 +21,6 @@ class Restaurant(models.Model):
     rating = models.DecimalField(
         max_digits=3,
         decimal_places=2,
-        validators=[MinValueValidator(0.00, message="Location must be at least 2 characters long."),
-                    MaxValueValidator(5.00, message="Rating cannot exceed 5.00.")]
+        validators=[MinValueValidator(0, message="Rating must be at least 0.00."),
+                    MaxValueValidator(5, message="Rating cannot exceed 5.00.")]
     )
