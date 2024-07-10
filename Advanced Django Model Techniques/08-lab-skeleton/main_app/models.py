@@ -11,6 +11,7 @@ class Restaurant(models.Model):
                     MaxLengthValidator(100, message="Name cannot exceed 100 characters.")]
     )
     location = models.CharField(
+        max_length=200,
         validators=[MinLengthValidator(2, message="Location must be at least 2 characters long."),
                     MaxLengthValidator(200, message="Location cannot exceed 200 characters.")]
     )
