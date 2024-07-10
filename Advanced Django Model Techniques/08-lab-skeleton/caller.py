@@ -6,7 +6,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
 
 # Import your models here
-from main_app.models import Restaurant
+from main_app.models import Restaurant, Menu
 from django.core.exceptions import ValidationError
 
 # Create queries within functions
@@ -41,3 +41,30 @@ from django.core.exceptions import ValidationError
 #     print(f"Validation Error: {e}")
 # -------------------------------------------------------------------------------
 # Task 2:
+valid_menu = Menu(
+    name="Menu at The Delicious Bistro",
+    description="** Appetizers: **\nSpinach and Artichoke Dip\n** "
+                "Main Course: **\nGrilled Salmon\n** "
+                "Desserts: **\nChocolate Fondue",
+    restaurant=Restaurant.objects.first(),
+)
+
+try:
+    valid_menu.full_clean()
+    valid_menu.save()
+    print("Valid Menu saved successfully!")
+except ValidationError as e:
+    print(f"Validation Error: {e}")
+
+invalid_menu = Menu(
+    name="Incomplete Menu",
+    description="** Appetizers: **\nSpinach and Artichoke Dip",
+    restaurant=Restaurant.objects.first(),
+)
+
+try:
+    invalid_menu.full_clean()
+    invalid_menu.save()
+    print("Invalid Menu saved successfully!")
+except ValidationError as e:
+    print(f"Validation Error: {e}")
