@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import MinLengthValidator, MaxLengthValidator, MinValueValidator, MaxValueValidator
-from main_app.validators import validate_menu_categories
+from .validators import validate_menu_categories
 
 
 # Create your models here.
@@ -38,11 +38,12 @@ class Menu(models.Model):
     name = models.CharField(
         max_length=100
     )
-    description = models.TextField(validators=[
-        validate_menu_categories
-    ])
+    description = models.TextField(
+        validators=[
+            validate_menu_categories
+        ]
+    )
     restaurant = models.ForeignKey(
         to=Restaurant,
         on_delete=models.CASCADE
     )
-
