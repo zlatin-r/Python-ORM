@@ -43,7 +43,7 @@ class Menu(models.Model):
             validate_menu_categories
         ]
     )
-    restaurants = models.ForeignKey(
+    restaurant = models.ForeignKey(
         to=Restaurant,
         on_delete=models.CASCADE
     )
