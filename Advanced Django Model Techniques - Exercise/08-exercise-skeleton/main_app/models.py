@@ -9,8 +9,8 @@ class Customer(models.Model):
     name = models.CharField(
         max_length=100,
         validators=[
-            validate_name,
-            # ValidateName("Name can only contain letters and spaces")
+            # validate_name,
+            ValidateName("Name can only contain letters and spaces")
         ]
     )
 
@@ -44,10 +44,16 @@ class BaseMedia(models.Model):
         abstract = True,
         ordering = ["-created_at", "title"]
 
-    title = models.CharField(max_length=100)
+    title = models.CharField(
+        max_length=100
+    )
     description = models.TextField()
-    genre = models.CharField(max_length=50)
-    created_at = models.DateTimeField(auto_now_add=True)
+    genre = models.CharField(
+        max_length=50
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
 
 
 class Book(BaseMedia):
@@ -58,12 +64,14 @@ class Book(BaseMedia):
     author = models.CharField(
         max_length=100,
         validators=[
-            MinLengthValidator(5, message="Author must be at least 5 characters long")]
+            MinLengthValidator(5,
+                               message="Author must be at least 5 characters long")]
     )
     isbn = models.CharField(
         max_length=20,
         validators=[
-            MinLengthValidator(6, message="ISBN must be at least 6 characters long")]
+            MinLengthValidator(6,
+                               message="ISBN must be at least 6 characters long")]
     )
 
 

@@ -15,3 +15,10 @@ class ValidateName:
         for char in value:
             if not (char.isalpha() or char.isspace()):
                 raise ValidationError(self.message)
+
+    def deconstruct(self):
+        return (
+            "main_app.validators.ValidateName",
+            (self.message,),
+            {}
+        )
