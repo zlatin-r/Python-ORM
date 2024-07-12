@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be6cb720-27e2-4e1b-9bea-d0e711661d35" name="Changes" comment="Changes Commited">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/30078c85-82c5-4b13-abe1-be3721f25e08.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/30078c85-82c5-4b13-abe1-be3721f25e08.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/30078c85-82c5-4b13-abe1-be3721f25e08/storage_v2/_src_/database/ex_08.FD3HBQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/30078c85-82c5-4b13-abe1-be3721f25e08/storage_v2/_src_/database/ex_08.FD3HBQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/caller.py" beforeDir="false" afterPath="$PROJECT_DIR$/caller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_app/migrations/0002_book_movie_music_alter_customer_name.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sub.zip" beforeDir="false" afterPath="$PROJECT_DIR$/sub.zip" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +142,7 @@
       <option name="presentableId" value="Default" />
       <updated>1720780398812</updated>
       <workItem from="1720780399829" duration="4960000" />
-      <workItem from="1720791425229" duration="2042000" />
+      <workItem from="1720791425229" duration="3159000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -218,7 +224,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720793230043</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Changes Commited">
+      <option name="closed" value="true" />
+      <created>1720793663273</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1720793663273</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,6 +244,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Changes Commited" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/08_exercise_skeleton$caller.coverage" NAME="caller Coverage Results" MODIFIED="1720791650710" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/08_exercise_skeleton$caller.coverage" NAME="caller Coverage Results" MODIFIED="1720793899583" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
