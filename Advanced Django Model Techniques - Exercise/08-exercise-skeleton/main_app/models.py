@@ -2,6 +2,7 @@ from decimal import Decimal
 
 from django.db import models
 
+from main_app.mixins import RechargeEnergyMixin
 from main_app.validators import ValidateName, validate_name
 
 from django.core.validators import MinValueValidator, RegexValidator, MinLengthValidator
@@ -146,7 +147,7 @@ class DiscountedProduct(Product):
         return f"Discounted Product: {self.name}"
 
 
-class Hero(models.Model):
+class Hero(models.Model, RechargeEnergyMixin):
     name = models.CharField(
         max_length=100,
     )
