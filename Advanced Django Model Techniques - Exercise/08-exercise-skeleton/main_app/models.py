@@ -104,3 +104,4 @@ class Music(BaseMedia):
             MinLengthValidator(9, "Artist must be at least 9 characters long"),
         ]
     )
+
