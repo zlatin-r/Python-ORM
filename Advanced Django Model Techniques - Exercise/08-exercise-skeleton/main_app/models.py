@@ -1,5 +1,5 @@
 from django.db import models
-from .validators import letters_and_space_validator
+from .validators import validate_name
 
 
 # Create your models here.
@@ -8,6 +8,6 @@ class Customer(models.Model):
     name = models.CharField(
         max_length=100,
         validators=[
-            letters_and_space_validator
+            validate_name
         ]
     )
