@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import MinLengthValidator, MaxLengthValidator, MinValueValidator, MaxValueValidator
-from validators import validate_menu_categories
+from .validators import validate_menu_categories
 
 
 # Create your models here.
