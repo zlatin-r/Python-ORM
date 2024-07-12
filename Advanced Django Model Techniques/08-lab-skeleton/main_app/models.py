@@ -50,7 +50,7 @@ class Menu(models.Model):
 
 
 class RestaurantReview(models.Model):
-    review_name = models.CharField(
+    reviewer_name = models.CharField(
         max_length=100
     )
     restaurant = models.ForeignKey(
@@ -60,11 +60,13 @@ class RestaurantReview(models.Model):
     review_content = models.TextField()
 
     rating = models.PositiveIntegerField(
-        max_length=5
+        validators=[
+            MaxValueValidator(5)
+        ]
     )
 
     class Meta:
         ordering = ['-rating']
         verbose_name = 'Restaurant Review'
         verbose_name_plural = 'Restaurant Reviews'
-        unique_together = (('review_name', 'restaurant'),)
+        unique_together =['reviewer_name', 'restaurant']
