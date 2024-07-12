@@ -144,3 +144,39 @@ class DiscountedProduct(Product):
 
     def format_product_name(self) -> str:
         return f"Discounted Product: {self.name}"
+
+
+class Hero(models.Model):
+    name = models.CharField(
+        max_length=100,
+    )
+    hero_title = models.CharField(
+        max_length=100,
+    )
+    energy = models.PositiveIntegerField()
+
+
+class SpiderHero(Hero):
+    class Meta:
+        proxy = True
+
+    def swing_from_buildings(self):
+        if self.energy - 80 >= 0:
+            self.energy -= 80 if self.energy - 80 > 0 else 79
+            self.save()
+            return f"{self.name} as Spider Hero swings from buildings using web shooters"
+        else:
+            return f"{self.name} as Spider Hero is out of web shooter fluid"
+
+
+class FlashHero(Hero):
+    class Meta:
+        proxy = True
+
+    def run_at_super_speed(self):
+        if self.energy - 65 >= 0:
+            self.energy -= 65 if self.energy - 65 > 0 else 64
+            self.save()
+            return f"{self.name}  as Flash Hero runs at lightning speed, saving the day"
+        else:
+            return f"{self.name} as Flash Hero needs to recharge the speed force"
