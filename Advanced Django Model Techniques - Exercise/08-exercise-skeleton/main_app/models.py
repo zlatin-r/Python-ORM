@@ -6,6 +6,7 @@ from main_app.mixins import RechargeEnergyMixin
 from main_app.validators import ValidateName, validate_name
 
 from django.core.validators import MinValueValidator, RegexValidator, MinLengthValidator
+from django.contrib.postgres.search import SearchVectorField
 
 
 class Customer(models.Model):
@@ -183,3 +184,19 @@ class FlashHero(Hero):
             return f"{self.name} as Flash Hero runs at lightning speed, saving the day"
 
         return f"{self.name} as Flash Hero needs to recharge the speed force"
+
+
+class Document(models.Model):
+    class Meta:
+        indexes = [
+            models.Index(fields=["search_vector"])
+        ]
+
+    title = models.CharField(
+        max_length=200
+    )
+    content = models.TextField()
+
+    search_vector = SearchVectorField(
+        null=True
+    )
