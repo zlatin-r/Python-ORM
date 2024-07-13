@@ -30,9 +30,12 @@ def product_quantity_ordered():
     orders = Product.objects.annotate(
         total=Sum("orderproduct__quantity")
     ).values("name", "total"
-             ).order_by("total")
+             ).order_by("-total")
 
     for order in orders:
-        result.append(f"Quantity ordered of {order["name"]}: {orders["total"]}")
+        result.append(f'Quantity ordered of {order["name"]}: {order["total"]}')
 
     return "\n".join(result)
+
+
+print(product_quantity_ordered())
