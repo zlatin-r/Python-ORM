@@ -17,7 +17,7 @@ class Product(models.Model):
     def __str__(self):
         return f"{self.category.name}: {self.name}"
 
-    object = ProductManager()
+    objects = ProductManager()
 
 
 class Customer(models.Model):
