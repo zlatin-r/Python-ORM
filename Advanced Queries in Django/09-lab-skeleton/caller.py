@@ -59,4 +59,4 @@ def add_records_to_database():
 
 
 # Run and print your queries
-# print(add_records_to_database())
+print(add_records_to_database())
