@@ -7,4 +7,4 @@ class ProductManager(models.Manager):
         return self.filter(is_available=True)
 
     def available_products_in_category(self, category_name: str):
-        return self.filter(is_available=True, category_name=category_name)
+        return self.filter(is_available=True, category__name=category_name)
