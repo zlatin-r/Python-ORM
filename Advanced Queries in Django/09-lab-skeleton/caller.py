@@ -28,9 +28,8 @@ def product_quantity_ordered():
     result = []
 
     orders = Product.objects.annotate(
-        total=Sum("orderproduct__quantity")
-    ).values("name", "total"
-             ).order_by("-total")
+        total=Sum("orderproduct__quantity")).values("name", "total").exclude(
+        total=None).order_by("-total")
 
     for order in orders:
         result.append(f'Quantity ordered of {order["name"]}: {order["total"]}')
@@ -38,4 +37,24 @@ def product_quantity_ordered():
     return "\n".join(result)
 
 
-print(product_quantity_ordered())
+# print(product_quantity_ordered())
+# -------------------------------------------------------------------
+# Task 3:
+
+def ordered_products_per_customer():
+    prefetched_orders = Order.objects.prefetch_related('orderproduct_set__product__category').order_by('id')
+    result = []
+
+    for order in prefetched_orders:
+        result.append(f"Order ID: {order.id}, Customer:{order.customer.username}")
+        for order_product in order.orderproduct_set.all():
+            result.append(f"- Product: {order_product.product.name},"
+                          f"Category: {order_product.product.category.name}")
+
+    return "\n".join(result)
+
+
+# print(product_quantity_ordered())
+# ------------------------------------------------
+# Task 4:
+
