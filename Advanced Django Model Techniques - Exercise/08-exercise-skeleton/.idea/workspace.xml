@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be6cb720-27e2-4e1b-9bea-d0e711661d35" name="Changes" comment="Changes Commited">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/30078c85-82c5-4b13-abe1-be3721f25e08.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/30078c85-82c5-4b13-abe1-be3721f25e08.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/30078c85-82c5-4b13-abe1-be3721f25e08/storage_v2/_src_/database/ex_08.FD3HBQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/30078c85-82c5-4b13-abe1-be3721f25e08/storage_v2/_src_/database/ex_08.FD3HBQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/caller.py" beforeDir="false" afterPath="$PROJECT_DIR$/caller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/migrations/0002_book_movie_music_alter_customer_name.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sub.zip" beforeDir="false" afterPath="$PROJECT_DIR$/sub.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Submission_40813210.zip" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,26 +47,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.caller.executor": "Run",
-    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/zl/GitHub Repos/Python-ORM/Advanced Django Model Techniques - Exercise/08-exercise-skeleton",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.caller.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/zl/GitHub Repos/Python-ORM/Advanced Django Model Techniques - Exercise/08-exercise-skeleton&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Python.caller">
     <configuration name="caller" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="08-exercise-skeleton" />
@@ -142,7 +138,8 @@
       <option name="presentableId" value="Default" />
       <updated>1720780398812</updated>
       <workItem from="1720780399829" duration="4960000" />
-      <workItem from="1720791425229" duration="3159000" />
+      <workItem from="1720791425229" duration="8249000" />
+      <workItem from="1720811107033" duration="54000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -232,7 +229,95 @@
       <option name="project" value="LOCAL" />
       <updated>1720793663273</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Changes Commited">
+      <option name="closed" value="true" />
+      <created>1720794824342</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1720794824342</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Changes Commited">
+      <option name="closed" value="true" />
+      <created>1720795852709</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1720795852709</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Changes Commited">
+      <option name="closed" value="true" />
+      <created>1720795885940</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1720795885940</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Changes Commited">
+      <option name="closed" value="true" />
+      <created>1720796099015</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1720796099015</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Changes Commited">
+      <option name="closed" value="true" />
+      <created>1720796378530</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1720796378530</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Changes Commited">
+      <option name="closed" value="true" />
+      <created>1720797374945</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1720797374945</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Changes Commited">
+      <option name="closed" value="true" />
+      <created>1720797445598</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1720797445598</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Changes Commited">
+      <option name="closed" value="true" />
+      <created>1720797669047</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1720797669047</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Changes Commited">
+      <option name="closed" value="true" />
+      <created>1720797946044</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1720797946044</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Changes Commited">
+      <option name="closed" value="true" />
+      <created>1720799352372</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1720799352372</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Changes Commited">
+      <option name="closed" value="true" />
+      <created>1720799762921</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1720799762921</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,6 +329,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Changes Commited" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/08_exercise_skeleton$caller.coverage" NAME="caller Coverage Results" MODIFIED="1720793899583" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/08_exercise_skeleton$caller.coverage" NAME="caller Coverage Results" MODIFIED="1720796102869" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
