@@ -46,10 +46,10 @@ def ordered_products_per_customer():
     result = []
 
     for order in prefetched_orders:
-        result.append(f"Order ID: {order.id}, Customer:{order.customer.username}")
+        result.append(f"Order ID: {order.id}, Customer: {order.customer.username}")
         for order_product in order.orderproduct_set.all():
-            result.append(f" - Product: {order_product.product.name},"
-                          f"Category: {order_product.product.category.name}")
+            result.append(f"- Product: {order_product.product.name},"
+                          f" Category: {order_product.product.category.name}")
 
     return "\n".join(result)
 
