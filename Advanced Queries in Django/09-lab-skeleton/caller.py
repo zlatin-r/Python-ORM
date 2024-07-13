@@ -54,7 +54,7 @@ def ordered_products_per_customer():
     return "\n".join(result)
 
 
-print(ordered_products_per_customer())
+# print(ordered_products_per_customer())
 # ------------------------------------------------
 # Task 4:
 
