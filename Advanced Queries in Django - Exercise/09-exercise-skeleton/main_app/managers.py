@@ -34,8 +34,9 @@ class VideoGameManager(models.Manager):
         # return self.order_by("-rating")[0]
 
     def lowest_rated_game(self):
-        return self.annotate(min_rating=Min("rating")).order_by("-min_rating").first()
+        return self.annotate(min_rating=Min("rating")).order_by("min_rating").first()
         # return self.order_by("rating")[0]
 
     def average_rating(self):
-        return f'{self.aggregate(average=Avg("rating"))["average"]:.1f}'
+        result = self.aggregate(average=Avg("rating"))["average"]
+        return f'{result:.1f}'
