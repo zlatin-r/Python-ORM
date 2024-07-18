@@ -39,10 +39,11 @@ class VideoGame(models.Model):
         choices=GENRE_CHOICES)
     release_year = models.PositiveIntegerField(
         validators=[release_year_validator])
+    #               RangeValidator(1990, 2023, message='The release year must be between 1990 and 2023')
     rating = models.DecimalField(
         max_digits=2,
         decimal_places=1,
-        validators=[rating_validator])  # RatingValidator(0, 10)
+        validators=[rating_validator])  # RangeValidator(0, 10)
 
     def __str__(self):
         return self.title

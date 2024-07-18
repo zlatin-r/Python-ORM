@@ -11,7 +11,7 @@ def release_year_validator(value):
         raise ValidationError("The release year must be between 1990 and 2023")
 
 
-# class RatingValidator:
+# class RangeValidator:
 #     def __init__(self, min_value, max_value, message):
 #         self.min_value = min_value
 #         self.max_value = max_value
