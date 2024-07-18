@@ -1,31 +1,14 @@
 import os
-from decimal import Decimal
 
 import django
 from django.db import models
-from django.db.models import F, Q
+
 
 # Set up Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
 
 from main_app.models import RealEstateListing
-
-
-class RealEstateListingManager(models.Manager):
-
-    def by_property_type(self, property_type: str):
-        return RealEstateListing.objects.filter(property_type=property_type)
-
-    def in_price_range(self, min_price: Decimal, max_price: Decimal):
-        query = Q(price__gt=min_price, price__lte=max_price)
-        return RealEstateListing.objects.filter(query)
-
-    def with_bedrooms(self, bedrooms_count: int):
-        return RealEstateListing.objects.filter(bedrooms_count=bedrooms_count)
-
-    def popular_locations(self):
-        pass
 
 
 # Create instances of RealEstateListing with locations
@@ -49,3 +32,9 @@ RealEstateListing.objects.create(
     price=120000.00,
     bedrooms=3,
     location='San Francisco')
+
+# Run the 'by_property_type' method
+house_listings = RealEstateListing.objects.by_property_type('House')
+print("House listings:")
+for listing in house_listings:
+    print(f"- {listing.property_type} in {listing.location}")
