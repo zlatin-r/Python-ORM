@@ -19,3 +19,7 @@ class RealEstateListingManager(models.Manager):
     def popular_locations(self):
         return self.values('location').annotate(
             location_count=Count('location')).order_by("-location_count", "location")[:2]
+
+
+class VideoGameManager(models.Manager):
+

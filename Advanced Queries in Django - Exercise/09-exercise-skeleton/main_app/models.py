@@ -1,5 +1,6 @@
 from django.db import models
 from main_app.managers import RealEstateListingManager
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 
