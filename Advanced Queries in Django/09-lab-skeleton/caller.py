@@ -86,3 +86,6 @@ def give_discount():
         result.append(f"{product.name}: {product.price}lv.")
 
     return "\n".join(result)
+
+
+# print(give_discount())
