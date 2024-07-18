@@ -1,6 +1,6 @@
 import os
 import django
-from django.db.models import Sum, Q
+from django.db.models import Sum, Q, F
 
 # Set up Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
@@ -75,4 +75,14 @@ def filter_products():
 # Task 5:
 
 def give_discount():
+    query = Q(is_available=True) & Q(price__gt=3)
+    reduction = F("price") * 0.7
+    Product.objects.filter(query).update(price=reduction)
+    all_available_products = Product.objects.filter(is_available=True).order_by('-price', 'name')
 
+    result = []
+
+    for product in all_available_products:
+        result.append(f"{product.name}: {product.price}lv.")
+
+    return "\n".join(result)
