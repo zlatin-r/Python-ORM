@@ -112,20 +112,26 @@ class Task(models.Model):
     creation_date = models.DateField()
     completion_date = models.DateField()
 
-    def ongoing_high_priority_tasks(self):
-        query = Q(priority='High') & Q(is_completed=False) & Q(completion_date__gt="creation_date")
+    @classmethod
+    def ongoing_high_priority_tasks(cls):
+        query = Q(priority='High') & Q(is_completed=False) & Q(completion_date__gt=F("creation_date"))
         return Task.objects.filter(query)
 
-    def completed_mid_priority_tasks(self):
-        query = Q(priority="Medium") & Q(is_complete=True)
+    @classmethod
+    def completed_mid_priority_tasks(cls):
+        query = Q(priority="Medium") & Q(is_completed=True)
         return Task.objects.filter(query)
 
-    def search_tasks(self, query: str):
-        return Task.objects.filter(field__contains=query)
+    @classmethod
+    def search_tasks(cls, query: str):
+        query = Q(title__contains=query) & Q(description__contains=query)
+        return Task.objects.filter(query)
 
-    def recent_completed_tasks(self, days: int):
+    @classmethod
+    def recent_completed_tasks(cls, days: int):
         subtracted_date = F("creation_date") - timedelta(days=days)
         query = Q(is_completed=True) & Q(completion_date__gte=subtracted_date)
+        return Task.objects.filter(query)
 
 
 class Exercise(models.Model):
