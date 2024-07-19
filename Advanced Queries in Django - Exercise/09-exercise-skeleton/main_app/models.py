@@ -1,4 +1,8 @@
+from datetime import timedelta
+
 from django.db import models
+from django.db.models import Q, F
+
 from main_app.managers import RealEstateListingManager, VideoGameManager
 from main_app.validators import rating_validator, release_year_validator
 
@@ -107,6 +111,21 @@ class Task(models.Model):
     is_completed = models.BooleanField(default=False)
     creation_date = models.DateField()
     completion_date = models.DateField()
+
+    def ongoing_high_priority_tasks(self):
+        query = Q(priority='High') & Q(is_completed=False) & Q(completion_date__gt="creation_date")
+        return Task.objects.filter(query)
+
+    def completed_mid_priority_tasks(self):
+        query = Q(priority="Medium") & Q(is_complete=True)
+        return Task.objects.filter(query)
+
+    def search_tasks(self, query: str):
+        return Task.objects.filter(field__contains=query)
+
+    def recent_completed_tasks(self, days: int):
+        subtracted_date = F("creation_date") - timedelta(days=days)
+        query = Q(is_completed=True) & Q(completion_date__gte=subtracted_date)
 
 
 class Exercise(models.Model):
