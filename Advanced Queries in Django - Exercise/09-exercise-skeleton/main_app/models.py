@@ -145,7 +145,7 @@ class Exercise(models.Model):
     def get_long_and_hard_exercises(cls):
         return cls.objects.filter(
             duration_minutes__gt=30,
-            difficulty_level__gt=10,
+            difficulty_level__gte=10,
         )
 
     @classmethod
@@ -158,9 +158,7 @@ class Exercise(models.Model):
     @classmethod
     def get_exercises_within_duration(cls, min_duration: int, max_duration: int):
         return cls.objects.filter(
-            duration_minutes__gte=min_duration,
-            difficulty_level__lte=max_duration,
-        )
+            duration_minutes__range=(min_duration, max_duration))
 
     @classmethod
     def get_exercises_with_difficulty_and_repetitions(cls, min_difficulty: int, min_repetitions: int):
