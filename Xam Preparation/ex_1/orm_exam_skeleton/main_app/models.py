@@ -15,6 +15,9 @@ class BasePerson(models.Model):
         default='Unknown'
     )
 
+    def __str__(self):
+        return self.full_name
+
     class Meta:
         abstract = True
 
@@ -74,3 +77,6 @@ class Movie(AwardedMixin, UpdatedMixin):
         to=Actor,
         related_name='actor_movies'
     )
+
+    def __str__(self):
+        return self.title
