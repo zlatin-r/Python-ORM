@@ -9,7 +9,7 @@ class Base(models.Model):
     full_name = models.CharField(
         max_length=120,
         validators=[
-            MinLengthValidator(2),
+            MinLengthValidator(2)
         ]
     )
     birth_date = models.DateField(
@@ -24,7 +24,7 @@ class Base(models.Model):
 class Director(Base):
     years_of_experience = models.SmallIntegerField(
         validators=[
-            MinValueValidator(0),
+            MinValueValidator(0)
         ],
         default=0
     )
@@ -44,40 +44,43 @@ class Movie(AwardedMixin, UpdatedMixin):
     title = models.CharField(
         max_length=150,
         validators=[
-            MinLengthValidator(5),
+            MinLengthValidator(5)
         ]
     ),
     release_date = models.DateField(),
     storyline = models.TextField(
         null=True,
-        blank=True,
+        blank=True
     ),
     genre = models.CharField(
-        choices=GenreChoices,
         max_length=6,
-        default='Other',
+        choices=GenreChoices,
+        default='Other'
     ),
     rating = models.DecimalField(
-        3,
-        1,
+        max_digits=3,
+        decimal_places=1,
         validators=[
-            MinValueValidator(0),
-            MaxValueValidator(10),
+            MinValueValidator(0.0),
+            MaxValueValidator(10.0),
         ],
-        default=0,
+        default=0.0
     ),
     is_classic = models.BooleanField(
-        default=False,
+        default=False
     ),
     director = models.ForeignKey(
         to=Director,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='director_movies'
     ),
     starring_actor = models.ForeignKey(
         to=Actor,
         null=True,
         on_delete=models.SET_NULL,
+        related_name='starring_actor_movies'
     ),
     actors = models.ManyToManyField(
         to=Actor,
+        related_name='actor_movies'
     )
