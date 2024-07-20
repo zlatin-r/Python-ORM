@@ -5,11 +5,10 @@ from main_app.mixins import AwardedMixin, UpdatedMixin
 
 # Create your models here.
 
-class Base(models.Model):
+class BasePerson(models.Model):
     full_name = models.CharField(
         max_length=120,
-        validators=[MinLengthValidator(2)]
-    )
+        validators=[MinLengthValidator(2)])
     birth_date = models.DateField(default='1900-01-01')
     nationality = models.CharField(
         max_length=50,
@@ -20,14 +19,14 @@ class Base(models.Model):
         abstract = True
 
 
-class Director(Base):
+class Director(BasePerson):
     years_of_experience = models.SmallIntegerField(
         validators=[MinValueValidator(0)],
         default=0
     )
 
 
-class Actor(Base, AwardedMixin, UpdatedMixin):
+class Actor(BasePerson, AwardedMixin, UpdatedMixin):
     pass
 
 
@@ -58,9 +57,7 @@ class Movie(AwardedMixin, UpdatedMixin):
         ],
         default=0.0
     ),
-    is_classic = models.BooleanField(
-        default=False
-    ),
+    is_classic = models.BooleanField(default=False),
     director = models.ForeignKey(
         to=Director,
         on_delete=models.CASCADE,
@@ -68,10 +65,10 @@ class Movie(AwardedMixin, UpdatedMixin):
     ),
     starring_actor = models.ForeignKey(
         to=Actor,
-        null=True,
-        blank=True,
         on_delete=models.SET_NULL,
-        related_name='starring_actor_movies'
+        related_name='starring_actor_movies',
+        null=True,
+        blank=True
     ),
     actors = models.ManyToManyField(
         to=Actor,
