@@ -8,24 +8,21 @@ from main_app.mixins import AwardedMixin, UpdatedMixin
 class Base(models.Model):
     full_name = models.CharField(
         max_length=120,
-        validators=[
-            MinLengthValidator(2)
-        ]
+        validators=[MinLengthValidator(2)]
     )
-    birth_date = models.DateField(
-        default='1900-01-01'
-    )
+    birth_date = models.DateField(default='1900-01-01')
     nationality = models.CharField(
         max_length=50,
         default='Unknown'
     )
 
+    class Meta:
+        abstract = True
+
 
 class Director(Base):
     years_of_experience = models.SmallIntegerField(
-        validators=[
-            MinValueValidator(0)
-        ],
+        validators=[MinValueValidator(0)],
         default=0
     )
 
@@ -43,19 +40,14 @@ class Movie(AwardedMixin, UpdatedMixin):
 
     title = models.CharField(
         max_length=150,
-        validators=[
-            MinLengthValidator(5)
-        ]
+        validators=[MinLengthValidator(5)]
     ),
     release_date = models.DateField(),
-    storyline = models.TextField(
-        null=True,
-        blank=True
-    ),
+    storyline = models.TextField(null=True, blank=True),
     genre = models.CharField(
         max_length=6,
-        choices=GenreChoices,
-        default='Other'
+        choices=GenreChoices.choices,
+        default=GenreChoices.OTHER
     ),
     rating = models.DecimalField(
         max_digits=3,
@@ -77,6 +69,7 @@ class Movie(AwardedMixin, UpdatedMixin):
     starring_actor = models.ForeignKey(
         to=Actor,
         null=True,
+        blank=True,
         on_delete=models.SET_NULL,
         related_name='starring_actor_movies'
     ),
