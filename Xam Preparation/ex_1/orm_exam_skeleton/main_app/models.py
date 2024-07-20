@@ -1,7 +1,10 @@
-from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator
+from django.core.validators import MinLengthValidator, MaxValueValidator, MinValueValidator
 from django.db import models
 
-from main_app.mixins import LastUpdatedMixin, IsAwardedMixin
+from main_app.mixins import AwardedMixin, UpdatedMixin
+
+
+# Create your models here.
 
 
 class BasePerson(models.Model):
@@ -26,17 +29,16 @@ class Director(BasePerson):
         validators=[MinValueValidator(0)])
 
 
-class Actor(LastUpdatedMixin, IsAwardedMixin, BasePerson):
+class Actor(BasePerson, AwardedMixin, UpdatedMixin):
     pass
 
 
-class Movie(LastUpdatedMixin, IsAwardedMixin):
-    GENRE_CHOICES = [
-        ('Action', 'Action'),
-        ('Comedy', 'Comedy'),
-        ('Drama', 'Drama'),
-        ('Other', 'Other'),
-    ]
+class Movie(AwardedMixin, UpdatedMixin):
+    class GenreChoices(models.TextChoices):
+        ACTION = "Action", "Action"
+        COMEDY = "Comedy", "Comedy"
+        DRAMA = "Drama", "Drama"
+        OTHER = "Other", "Other"
 
     title = models.CharField(
         max_length=150,
@@ -48,8 +50,8 @@ class Movie(LastUpdatedMixin, IsAwardedMixin):
 
     genre = models.CharField(
         max_length=6,
-        choices=GENRE_CHOICES,
-        default='Other')
+        choices=GenreChoices.choices,
+        default=GenreChoices.OTHER)
 
     rating = models.DecimalField(
         max_digits=3,
