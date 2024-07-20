@@ -1,25 +1,27 @@
-from django.core.validators import MinLengthValidator, MaxLengthValidator, MinValueValidator, MaxValueValidator
+from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator
 from django.db import models
+from main_app.mixins import AwardedMixin, UpdatedMixin
 
 
 # Create your models here.
 
-class Director(models.Model):
+class Base(models.Model):
     full_name = models.CharField(
+        max_length=120,
         validators=[
-            MaxLengthValidator(120),
-            MinLengthValidator(2)
+            MinLengthValidator(2),
         ]
     )
     birth_date = models.DateField(
-        default="1900-01-01"
+        default='1900-01-01'
     )
     nationality = models.CharField(
-        validators=[
-            MaxLengthValidator(50)
-        ],
-        default="Unknown"
+        max_length=50,
+        default='Unknown'
     )
+
+
+class Director(Base):
     years_of_experience = models.SmallIntegerField(
         validators=[
             MinValueValidator(0),
@@ -28,82 +30,54 @@ class Director(models.Model):
     )
 
 
-class Actor(models.Model):
-    full_name = models.CharField(
-        validators=[
-            MinLengthValidator(2),
-            MaxLengthValidator(120)
-        ]
-    )
-    birth_date = models.DateField(
-        default="1900-01-01"
-    )
-    nationality = models.CharField(
-        validators=[
-            MaxLengthValidator(50)
-        ],
-        default="Unknown"
-    )
-    is_awarded = models.BooleanField(
-        default=False
-    )
-    last_updated = models.DateField(
-        auto_now=True
-    )
+class Actor(Base, AwardedMixin, UpdatedMixin):
+    pass
 
 
-class Movie(models.Model):
+class Movie(AwardedMixin, UpdatedMixin):
     class GenreChoices(models.TextChoices):
-        ACTION = 'Action', 'Action'
-        COMEDY = 'Comedy', 'Comedy'
-        DRAMA = 'Drama', 'Drama'
-        OTHER = 'Other', 'Other'
+        ACTION = "Action", "Action"
+        COMEDY = "Comedy", "Comedy"
+        DRAMA = "Drama", "Drama"
+        OTHER = "Other", "Other"
 
     title = models.CharField(
+        max_length=150,
         validators=[
             MinLengthValidator(5),
-            MaxLengthValidator(50)
         ]
-    )
-    release_date = models.DateField()
-
+    ),
+    release_date = models.DateField(),
     storyline = models.TextField(
         null=True,
-    )
+        blank=True,
+    ),
     genre = models.CharField(
-        choices=GenreChoices.choices,
-        validators=[
-            MaxLengthValidator(6),
-        ],
-        default="Other"
-    )
+        choices=GenreChoices,
+        max_length=6,
+        default='Other',
+    ),
     rating = models.DecimalField(
         3,
         1,
         validators=[
             MinValueValidator(0),
-            MaxValueValidator(10)
+            MaxValueValidator(10),
         ],
-        default=0.0
-    )
+        default=0,
+    ),
     is_classic = models.BooleanField(
-        default=False
-    )
-    is_awarded = models.BooleanField(
-        default=False
-    )
-    last_updated = models.DateField(
-        auto_now=True
-    )
+        default=False,
+    ),
     director = models.ForeignKey(
         to=Director,
-        on_delete=models.CASCADE,
-    )
+        on_delete=models.CASCADE
+    ),
     starring_actor = models.ForeignKey(
         to=Actor,
         null=True,
-        on_delete=models.SET_NULL
-    )
+        on_delete=models.SET_NULL,
+    ),
     actors = models.ManyToManyField(
         to=Actor,
     )
