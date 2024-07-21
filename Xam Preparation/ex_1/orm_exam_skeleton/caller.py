@@ -1,6 +1,6 @@
 import os
 import django
-from django.db.models import Q, Count, Avg
+from django.db.models import Q, Count, Avg, Max
 
 # Set up Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
@@ -8,7 +8,7 @@ django.setup()
 
 # Import your models here
 
-from main_app.models import Director, Actor
+from main_app.models import Director, Actor, Movie
 
 
 # Create queries within functions
@@ -78,3 +78,15 @@ def get_actors_by_movies_count():
 
 
 def get_top_rated_awarded_movie():
+    top_movie = Movie.objects.select_related("starring_actor").prefetch_related("actors").filter(is_awarded=True) \
+        .order_by("-rating", "title").first()
+
+    staring_actor = top_movie.starring_actor.full_name if top_movie.starring_actor else "N/A"
+
+    participating_actors = top_movie.actors.order_by("full_name").values_list("full_name", flat=True)
+
+    cast = ", ".join(participating_actors)
+
+    return f"Top rated awarded movie: {top_movie.title}, rating: {top_movie.rating:.1f}. "\
+           f"Starring actor: {staring_actor}. "\
+           f"Cast: {cast}."
