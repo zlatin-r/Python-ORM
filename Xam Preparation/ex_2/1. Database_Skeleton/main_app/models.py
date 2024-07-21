@@ -26,8 +26,8 @@ class Product(CreationDateMixin):
 
 
 class Order(CreationDateMixin):
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='order_profiles')
-    products = models.ManyToManyField(Product, related_name='order_products')
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='orders')
+    products = models.ManyToManyField(Product, related_name='orders')
     total_price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.01)])
     is_completed = models.BooleanField(default=False)
 
