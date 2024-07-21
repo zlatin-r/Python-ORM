@@ -76,10 +76,16 @@ def get_actors_by_movies_count():
     for a in actors:
         result.append(f"{a.full_name}, participated in {a.movies_count} movies")
 
+    return "\n".join(result)
+
 
 def get_top_rated_awarded_movie():
-    top_movie = Movie.objects.select_related("starring_actor").prefetch_related("actors").filter(is_awarded=True) \
+    top_movie = Movie.objects.select_related("starring_actor") \
+        .prefetch_related("actors").filter(is_awarded=True) \
         .order_by("-rating", "title").first()
+
+    if top_movie is None:
+        return ""
 
     staring_actor = top_movie.starring_actor.full_name if top_movie.starring_actor else "N/A"
 
