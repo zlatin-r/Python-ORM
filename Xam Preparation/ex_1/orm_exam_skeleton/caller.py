@@ -46,7 +46,7 @@ def get_top_director():
     if not director:
         return ""
 
-    return f"Top Director: {director.full_name}, movies: {director.movies_count}"
+    return f"Top Director: {director.full_name}, movies: {director.movies_count}."
 
 
 def get_top_actor():
@@ -55,3 +55,11 @@ def get_top_actor():
         avg_rating=Avg("starring_movies__rating")
     ).order_by("-movie_count", "full_name").first()
 
+    if not actor or not actor.movie_count:
+        return ""
+
+    movies = ", ".join(m.title for m in actor.starring_movies.all() if m)
+
+    return (f"Top Actor: {actor.full_name}, "
+            f"starring in movies: {movies}, "
+            f"movies average rating: {actor.avg_rating:.1f}")
