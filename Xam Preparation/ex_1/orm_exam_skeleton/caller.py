@@ -1,6 +1,6 @@
 import os
 import django
-from django.db.models import Q, Count, Avg, Max
+from django.db.models import Q, Count, Avg, Max, F
 
 # Set up Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
@@ -87,6 +87,18 @@ def get_top_rated_awarded_movie():
 
     cast = ", ".join(participating_actors)
 
-    return f"Top rated awarded movie: {top_movie.title}, rating: {top_movie.rating:.1f}. "\
-           f"Starring actor: {staring_actor}. "\
+    return f"Top rated awarded movie: {top_movie.title}, rating: {top_movie.rating:.1f}. " \
+           f"Starring actor: {staring_actor}. " \
            f"Cast: {cast}."
+
+
+def increase_rating():
+    movies_to_update = Movie.objects.filter(is_classic=True, rating__lt=10)
+
+    if not movies_to_update:
+        return "No ratings increased."
+
+    updated_movies_count = movies_to_update.count()
+    movies_to_update.update(rating=F("rating") + 0.1)
+
+    return f"Rating increased for {updated_movies_count} movies."
