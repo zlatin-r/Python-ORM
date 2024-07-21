@@ -1,5 +1,7 @@
 from django.core.validators import MinLengthValidator, MinValueValidator
 from django.db import models
+
+from main_app.managers import ProfileManager
 from main_app.mixins import CreationDateMixin
 
 
@@ -12,6 +14,8 @@ class Profile(CreationDateMixin):
     address = models.TextField()
     is_active = models.BooleanField(default=True)
 
+    objects = ProfileManager()
+
 
 class Product(CreationDateMixin):
     name = models.CharField(max_length=100)
@@ -22,8 +26,8 @@ class Product(CreationDateMixin):
 
 
 class Order(CreationDateMixin):
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    products = models.ManyToManyField(Product)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='order_profiles')
+    products = models.ManyToManyField(Product, related_name='order_products')
     total_price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.01)])
     is_completed = models.BooleanField(default=False)
 
