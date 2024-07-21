@@ -2,6 +2,7 @@ from django.core.validators import MinLengthValidator, MaxValueValidator, MinVal
 from django.db import models
 
 from main_app.mixins import AwardedMixin, UpdatedMixin
+from main_app.managers import DirectorManager
 
 
 # Create your models here.
@@ -27,6 +28,8 @@ class Director(BasePerson):
     years_of_experience = models.SmallIntegerField(
         default=0,
         validators=[MinValueValidator(0)])
+
+    objects = DirectorManager()
 
 
 class Actor(BasePerson, AwardedMixin, UpdatedMixin):
