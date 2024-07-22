@@ -67,13 +67,13 @@ def get_top_products():
 
 
 def apply_discounts():
-    products_to_update = Order.objects.annotate(ordered_product=Count('products')
-                                                ).filter(is_completed=False).update(
-        total_price=F('total_price') * 0.9)
+    products_to_update = Order.objects.annotate(ordered_product=Count('order_products')
+                                                ).filter(ordered_products__gt=2, is_completed=False).update(
+                                                total_price=F('total_price') * 0.9)
 
     num_of_updated_orders = products_to_update.count()
 
-    return f"Discount applied to {num_of_updated_orders} orders."
+    return f"Discount applied to {products_to_update} orders."
 
 
 def complete_order():
