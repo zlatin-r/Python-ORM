@@ -67,17 +67,15 @@ def get_top_products():
 
 
 def apply_discounts():
-    products_to_update = Order.objects.annotate(ordered_product=Count('order_products')
-                                                ).filter(ordered_products__gt=2, is_completed=False).update(
-                                                total_price=F('total_price') * 0.9)
+    discounted_orders = Order.objects.annotate(num_products=Count('products')) \
+        .filter(num_products__gt=2, is_completed=False) \
+        .update(total_price=F('total_price') * 0.9)
 
-    num_of_updated_orders = products_to_update.count()
-
-    return f"Discount applied to {products_to_update} orders."
+    return f'Discount applied to {discounted_orders} orders.'
 
 
 def complete_order():
-    oldest_order = Order.objects.filter(is_completed=True).order_by('creation_date').first()
+    oldest_order = Order.objects.filter(is_completed=False).order_by('creation_date').first()
 
     if not oldest_order:
         return ""
@@ -86,9 +84,9 @@ def complete_order():
     oldest_order.save()
 
     for product in oldest_order.products.all():
-        product.in_stock = F('in_stock') - 1
-        if product.in_stock <= 0:
-            product.in_stock = 0
+        product.in_stock -= 1
+
+        if product.in_stock == 0:
             product.is_available = False
         product.save()
 
