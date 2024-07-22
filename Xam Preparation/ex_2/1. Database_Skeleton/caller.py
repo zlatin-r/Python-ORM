@@ -56,7 +56,7 @@ def get_last_sold_products():
 
 
 def get_top_products():
-    top_products = Product.objects.annotate(num_orders=Count('orders')) \
+    top_products = Product.objects.annotate(num_orders=Count('order_products')) \
                        .filter(num_orders__gt=0) \
                        .order_by('-num_orders', 'name')[:5]
 
