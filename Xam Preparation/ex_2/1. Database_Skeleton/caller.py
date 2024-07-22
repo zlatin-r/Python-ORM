@@ -1,6 +1,6 @@
 import os
 import django
-from django.db.models import Q, Count
+from django.db.models import Q, Count, F
 
 # Set up Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
@@ -53,3 +53,43 @@ def get_last_sold_products():
         return ""
     except Order.DoesNotExist:
         return ""
+
+
+def get_top_products():
+    top_products = Product.objects.annotate(orders_count=Count('order_profiles')
+                                            ).order_by('-orders_count', "name")[:5]
+
+    result = ["Top products:"]
+
+    [result.append(f"{p.name}, sold {p.orders_count} times") for p in top_products]
+
+    return "\n".join(result) if top_products else ""
+
+
+def apply_discounts():
+    products_to_update = Order.objects.annotate(ordered_product=Count('products')
+                                                ).filter(is_completed=False).update(
+        total_price=F('total_price') * 0.9)
+
+    num_of_updated_orders = products_to_update.count()
+
+    return f"Discount applied to {num_of_updated_orders} orders."
+
+
+def complete_order():
+    oldest_order = Order.objects.filter(is_completed=True).order_by('creation_date').first()
+
+    if not oldest_order:
+        return ""
+
+    oldest_order.is_completed = True
+    oldest_order.save()
+
+    for product in oldest_order.products.all():
+        product.in_stock = F('in_stock') - 1
+        if product.in_stock <= 0:
+            product.in_stock = 0
+            product.is_available = False
+        product.save()
+
+    return "Order has been completed!"
