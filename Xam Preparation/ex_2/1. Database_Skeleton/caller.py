@@ -56,14 +56,14 @@ def get_last_sold_products():
 
 
 def get_top_products():
-    top_products = Product.objects.annotate(orders_count=Count('order_profiles')
-                                            ).order_by('-orders_count', "name")[:5]
+    top_products = Product.objects.annotate(num_orders=Count('orders')) \
+                       .filter(num_orders__gt=0) \
+                       .order_by('-num_orders', 'name')[:5]
 
-    result = ["Top products:"]
-
-    [result.append(f"{p.name}, sold {p.orders_count} times") for p in top_products]
-
-    return "\n".join(result) if top_products else ""
+    if top_products:
+        top_products_str = "\n".join(f'{product.name}, sold {product.num_orders} times' for product in top_products)
+        return f"Top products:\n{top_products_str}"
+    return ""
 
 
 def apply_discounts():
