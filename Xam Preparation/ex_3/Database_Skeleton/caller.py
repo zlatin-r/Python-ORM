@@ -1,6 +1,8 @@
 import os
+from pprint import pprint
+
 import django
-from django.db.models import Q
+from django.db.models import Q, Count
 
 from main_app.managers import AuthorManager
 
@@ -50,3 +52,15 @@ def get_top_publisher():
 
     return (f"Top Author: {top_author.full_name} "
             f"with {top_author.article_count} published articles.") if top_author else ""
+
+
+def get_top_reviewer():
+    top_author = Author.objects.annotate(count_reviews=Count('reviews')).order_by('email').first()
+
+    return (f"Top Reviewer: {top_author.full_name} "
+            f"with {top_author.count_reviews} published reviews.") if top_author else ""
+
+
+# for a in Author.objects.get_authors_by_article_count():
+#     print(f"name: {a.full_name}, article count: {a.article_count}")
+# print(get_top_publisher())
