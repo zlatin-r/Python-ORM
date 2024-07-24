@@ -24,17 +24,20 @@ def get_authors(search_name=None, search_email=None):
             |
             Q(email__icontains=search_email))
 
-    elif search_name and not search_email:
+    elif search_name and search_email is None:
         authors_matched = Author.objects.all().filter(
             Q(full_name__icontains=search_name)
         )
 
-    elif search_email and not search_name:
+    elif search_email and search_name is None:
         authors_matched = Author.objects.all().filter(
             Q(email__icontains=search_email)
         )
 
-    if (not search_email and not search_name) or not authors_matched:
+    if search_name is None and search_email is None:
+        return ""
+
+    if authors_matched is None:
         return ""
 
     result = []
