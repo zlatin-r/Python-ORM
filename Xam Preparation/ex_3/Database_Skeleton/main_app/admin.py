@@ -24,5 +24,5 @@ class ArticleAdmin(admin.ModelAdmin):
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ('author', 'article', 'rating', 'published_on')
     list_filter = ('rating', 'published_on')
-    search_fields = ('article_title',)
+    search_fields = ('article__title',)
     readonly_fields = ('published_on',)
