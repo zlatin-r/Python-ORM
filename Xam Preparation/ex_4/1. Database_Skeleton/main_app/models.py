@@ -13,7 +13,7 @@ class TennisPlayer(models.Model):
     ranking = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(300)])
     is_active = models.BooleanField(default=True)
 
-    object = TennisPlayerManager()
+    objects = TennisPlayerManager()
 
 
 class Tournament(models.Model):

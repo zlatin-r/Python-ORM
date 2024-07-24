@@ -9,6 +9,3 @@ django.setup()
 from main_app.models import TennisPlayer
 
 # Create queries within functions
-# players = TennisPlayer.object.get_tennis_players_by_wins_count()
-# for p in players:
-#     print(p.full_name, p.wins_count)
