@@ -1,6 +1,7 @@
 from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator
 from django.db import models
 
+from main_app.managers import AuthorManager
 from main_app.mixins import Content, PublishedOn
 
 
@@ -14,6 +15,8 @@ class Author(models.Model):
     birth_year = models.PositiveIntegerField(
         validators=[MinValueValidator(1900), MaxValueValidator(2005)])
     website = models.URLField(null=True, blank=True)
+
+    objects = AuthorManager()
 
 
 class Article(Content, PublishedOn):
