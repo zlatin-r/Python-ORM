@@ -4,4 +4,4 @@ from django.db.models import Count
 
 class TennisPlayerManager(models.Manager):
     def get_tennis_players_by_wins_count(self):
-        return self.all().annotate(wins_count=Count('winner')).order_by('-wins_count', 'full_name')
+        return self.annotate(wins_count=Count('winner')).order_by('-wins_count', 'full_name')

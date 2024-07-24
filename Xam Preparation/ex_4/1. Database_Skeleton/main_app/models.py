@@ -13,6 +13,8 @@ class TennisPlayer(models.Model):
     ranking = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(300)])
     is_active = models.BooleanField(default=True)
 
+    object = TennisPlayerManager()
+
 
 class Tournament(models.Model):
     class SurfaceChoices(models.TextChoices):
@@ -26,8 +28,6 @@ class Tournament(models.Model):
     prize_money = models.DecimalField(max_digits=10, decimal_places=2)
     start_date = models.DateField()
     surface_type = models.CharField(max_length=12, choices=SurfaceChoices, default=SurfaceChoices.NOT_SELECTED)
-
-    object = TennisPlayerManager
 
 
 class Match(models.Model):

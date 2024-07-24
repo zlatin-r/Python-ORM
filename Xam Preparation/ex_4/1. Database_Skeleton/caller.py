@@ -6,9 +6,9 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
 
 # Import your models here
-from poulate import populate_model_with_data
-from main_app.models import TennisPlayer, Tournament, Match
+from main_app.models import TennisPlayer
 
 # Create queries within functions
-
-populate_model_with_data(Match, 20)
+# players = TennisPlayer.object.get_tennis_players_by_wins_count()
+# for p in players:
+#     print(p.full_name, p.wins_count)
