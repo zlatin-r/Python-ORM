@@ -101,8 +101,8 @@ def get_top_rated_article():
 
     avg_rating = top_rated_article.avg_rating or 0.0
 
-    return f"The top-rated article is: {top_rated_article.title}, "\
-           f"with an average rating of {avg_rating:.2f}, "\
+    return f"The top-rated article is: {top_rated_article.title}, " \
+           f"with an average rating of {avg_rating:.2f}, " \
            f"reviewed {num_reviews} times."
 
 
@@ -113,11 +113,24 @@ def ban_author(email=None):
     author = Author.objects.filter(email=email).first()
 
     if not author:
-        return "No author found."
+        return "No authors banned."
 
     num_reviews = author.reviews.count()
+
     author.is_banned = True
-    author.reviews.delete()
+    author.reviews.all().delete()
     author.save()
 
     return f"Author: {author.full_name} is banned! {num_reviews} reviews deleted."
+
+
+# a = Author.objects.get(full_name="Author 5")
+# print(a.reviews.count())
+
+# a = Author.objects.get(email="Author 1")
+# print(a.reviews.count())
+# print(ban_author("Author 1"))
+# print(a.reviews.count())
+# print(a.is_banned)
+
+print(ban_author("Author 111"))
