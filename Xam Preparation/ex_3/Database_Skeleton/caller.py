@@ -111,6 +111,7 @@ def ban_author(email=None):
         return "No authors banned."
 
     author = Author.objects.filter(email=email).first()
+    # author = Author.objects.prefetch_related('reviews').filter(email__exact=email).first()
 
     if not author:
         return "No authors banned."
@@ -118,19 +119,8 @@ def ban_author(email=None):
     num_reviews = author.reviews.count()
 
     author.is_banned = True
-    author.reviews.all().delete()
     author.save()
 
+    author.reviews.all().delete()
+
     return f"Author: {author.full_name} is banned! {num_reviews} reviews deleted."
-
-
-# a = Author.objects.get(full_name="Author 5")
-# print(a.reviews.count())
-
-# a = Author.objects.get(email="Author 1")
-# print(a.reviews.count())
-# print(ban_author("Author 1"))
-# print(a.reviews.count())
-# print(a.is_banned)
-
-print(ban_author("Author 111"))
