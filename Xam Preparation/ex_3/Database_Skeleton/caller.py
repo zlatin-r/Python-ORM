@@ -4,8 +4,6 @@ from pprint import pprint
 import django
 from django.db.models import Q, Count
 
-from main_app.managers import AuthorManager
-
 # Set up Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
@@ -26,12 +24,12 @@ def get_authors(search_name=None, search_email=None):
             |
             Q(email__icontains=search_email))
 
-    if search_name and not search_email:
+    elif search_name and not search_email:
         authors_matched = Author.objects.all().filter(
             Q(full_name__icontains=search_name)
         )
 
-    if search_email and not search_name:
+    elif search_email and not search_name:
         authors_matched = Author.objects.all().filter(
             Q(email__icontains=search_email)
         )
@@ -65,7 +63,6 @@ def get_top_reviewer():
                 f"with {top_author.count_reviews} published reviews.")
     else:
         return ""
-
 
 # for a in Author.objects.get_authors_by_article_count():
 #     print(f"name: {a.full_name}, article count: {a.article_count}")
