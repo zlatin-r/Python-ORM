@@ -107,4 +107,17 @@ def get_top_rated_article():
 
 
 def ban_author(email=None):
-    pass
+    if email is None:
+        return "No authors banned."
+
+    author = Author.objects.filter(email=email).first()
+
+    if not author:
+        return "No author found."
+
+    num_reviews = author.reviews.count()
+    author.is_banned = True
+    author.reviews.delete()
+    author.save()
+
+    return f"Author: {author.full_name} is banned! {num_reviews} reviews deleted."
