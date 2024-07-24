@@ -91,19 +91,20 @@ def get_latest_article():
 
 
 def get_top_rated_article():
-    top_rated = Article.objects.annotate(avg_rating=Avg('reviews__rating'))\
-        .order_by('-avg_rating', 'title').first()
+    top_rated_article = Article.objects.annotate(avg_rating=Avg('reviews__rating')) \
+        .order_by('-avg_rating', 'title') \
+        .first()
 
-    num_reviews = top_rated.reviews.count() if top_rated else 0
-    if top_rated is None or num_reviews == 0:
+    num_reviews = top_rated_article.reviews.count() if top_rated_article else 0
+    if top_rated_article is None or num_reviews == 0:
         return ""
 
-    avg_rating = top_rated.avg_rating or 0.0
+    avg_rating = top_rated_article.avg_rating or 0.0
 
-    return (f"The top-rated article is: {top_rated.title}, "
-            f"with an average rating of {avg_rating:2f}., "
-            f"reviewed {num_reviews} times.")
+    return f"The top-rated article is: {top_rated_article.title}, "\
+           f"with an average rating of {avg_rating:.2f}, "\
+           f"reviewed {num_reviews} times."
 
 
-# print(get_latest_article())
-# print(get_top_rated_article())
+def ban_author(email=None):
+    pass
