@@ -50,15 +50,21 @@ def get_authors(search_name=None, search_email=None):
 def get_top_publisher():
     top_author = Author.objects.get_authors_by_article_count().first()
 
-    return (f"Top Author: {top_author.full_name} "
-            f"with {top_author.article_count} published articles.") if top_author else ""
+    if top_author.article_count > 0:
+        return (f"Top Author: {top_author.full_name} "
+                f"with {top_author.article_count} published articles.")
+    else:
+        return ""
 
 
 def get_top_reviewer():
     top_author = Author.objects.annotate(count_reviews=Count('reviews')).order_by('email').first()
 
-    return (f"Top Reviewer: {top_author.full_name} "
-            f"with {top_author.count_reviews} published reviews.") if top_author else ""
+    if top_author.count_reviews > 0:
+        return (f"Top Reviewer: {top_author.full_name} "
+                f"with {top_author.count_reviews} published reviews.")
+    else:
+        return ""
 
 
 # for a in Author.objects.get_authors_by_article_count():
