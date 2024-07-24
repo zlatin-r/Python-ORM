@@ -18,6 +18,9 @@ from main_app.models import Author
 def get_authors(search_name=None, search_email=None):
     authors_matched = None
 
+    if search_name is None and search_email is None:
+        return ""
+
     if search_name and search_email:
         authors_matched = Author.objects.all().filter(
             Q(full_name__icontains=search_name)
@@ -33,9 +36,6 @@ def get_authors(search_name=None, search_email=None):
         authors_matched = Author.objects.all().filter(
             Q(email__icontains=search_email)
         )
-
-    if search_name is None and search_email is None:
-        return ""
 
     if authors_matched is None:
         return ""
