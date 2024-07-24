@@ -18,17 +18,24 @@ from main_app.models import Author
 def get_authors(search_name=None, search_email=None):
     authors_matched = None
 
-    if search_name is None and search_email is None:
-        return ""
-
     if search_name and search_email:
-        authors_matched = Author.objects.all().filter(full_name__icontains=search_name, email__icontains=search_email)
+        authors_matched = Author.objects.all().filter(
+            Q(full_name__icontains=search_name)
+            &
+            Q(email__icontains=search_email))
 
     elif search_name and search_email is None:
-        authors_matched = Author.objects.all().filter(full_name__icontains=search_name)
+        authors_matched = Author.objects.all().filter(
+            Q(full_name__icontains=search_name)
+        )
 
     elif search_email and search_name is None:
-        authors_matched = Author.objects.all().filter(email__icontains=search_email)
+        authors_matched = Author.objects.all().filter(
+            Q(email__icontains=search_email)
+        )
+
+    if search_name is None and search_email is None:
+        return ""
 
     if authors_matched is None:
         return ""
@@ -44,6 +51,9 @@ def get_authors(search_name=None, search_email=None):
 def get_top_publisher():
     top_author = Author.objects.get_authors_by_article_count().first()
 
+    if not top_author:
+        return ""
+
     if top_author.article_count > 0:
         return (f"Top Author: {top_author.full_name} "
                 f"with {top_author.article_count} published articles.")
@@ -53,6 +63,9 @@ def get_top_publisher():
 
 def get_top_reviewer():
     top_author = Author.objects.annotate(count_reviews=Count('reviews')).order_by('email').first()
+
+    if not top_author:
+        return ""
 
     if top_author.count_reviews > 0:
         return (f"Top Reviewer: {top_author.full_name} "
