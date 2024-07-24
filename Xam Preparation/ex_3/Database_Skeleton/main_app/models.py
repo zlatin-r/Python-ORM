@@ -27,10 +27,10 @@ class Article(Content, PublishedOn):
 
     title = models.CharField(max_length=200, validators=[MinLengthValidator(5)])
     category = models.CharField(max_length=10, choices=CatChoices, default=CatChoices.TECHNOLOGY)
-    authors = models.ManyToManyField(Author)
+    authors = models.ManyToManyField(Author, related_name='articles')
 
 
 class Review(Content, PublishedOn):
     rating = models.FloatField(validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
     author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='reviews')
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='article_reviews')

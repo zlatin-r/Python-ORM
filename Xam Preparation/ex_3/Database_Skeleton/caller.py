@@ -10,7 +10,7 @@ django.setup()
 
 # Import your models here
 
-from main_app.models import Author
+from main_app.models import Author, Article
 
 
 # Create queries within functions
@@ -62,7 +62,7 @@ def get_top_publisher():
 
 
 def get_top_reviewer():
-    top_author = Author.objects.annotate(count_reviews=Count('reviews')).order_by('email').first()
+    top_author = Author.objects.annotate(count_reviews=Count('reviews')).order_by('-count_reviews', 'email').first()
 
     if not top_author:
         return ""
@@ -73,6 +73,21 @@ def get_top_reviewer():
     else:
         return ""
 
-# for a in Author.objects.get_authors_by_article_count():
-#     print(f"name: {a.full_name}, article count: {a.article_count}")
-# print(get_top_publisher())
+
+def get_latest_article():
+    last_article = Article.objects.prefetch_related('authors', 'article_reviews').order_by('-published_on').first()
+
+    if not last_article:
+        return ""
+
+    authors = ", ".join(a.full_name for a in last_article.authors.all().order_by('full_name'))
+    num_reviews = last_article.article_reviews.count()
+    avg_reviews = sum([v.rating for v in last_article.article_reviews.all()]) / num_reviews if num_reviews else 0.0
+
+    return (f"The latest article is: {last_article.title}. "
+            f"Authors: {authors}. "
+            f"Reviewed: {num_reviews} times. "
+            f"Average Rating: {avg_reviews:.2f}.")
+
+
+print(get_latest_article())
