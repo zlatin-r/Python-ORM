@@ -11,7 +11,7 @@ class Author(models.Model):
     full_name = models.CharField(max_length=100, validators=[MinLengthValidator(3)])
     email = models.EmailField(unique=True)
     is_banned = models.BooleanField(default=False)
-    birth_year = models.PositiveSmallIntegerField(
+    birth_year = models.PositiveIntegerField(
         validators=[MinValueValidator(1900), MaxValueValidator(2005)])
     website = models.URLField(null=True, blank=True)
 
@@ -23,7 +23,7 @@ class Article(Content, PublishedOn):
         EDUCATION = 'Education', 'Education'
 
     title = models.CharField(max_length=200, validators=[MinLengthValidator(5)])
-    category = models.TextField(max_length=10, choices=CatChoices, default=CatChoices.TECHNOLOGY)
+    category = models.CharField(max_length=10, choices=CatChoices, default=CatChoices.TECHNOLOGY)
     authors = models.ManyToManyField(Author)
 
 
