@@ -1,6 +1,8 @@
 from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator
 from django.db import models
 
+from main_app.managers import TennisPlayerManager
+
 
 # Create your models here.
 
@@ -24,6 +26,8 @@ class Tournament(models.Model):
     prize_money = models.DecimalField(max_digits=10, decimal_places=2)
     start_date = models.DateField()
     surface_type = models.CharField(max_length=12, choices=SurfaceChoices, default=SurfaceChoices.NOT_SELECTED)
+
+    object = TennisPlayerManager
 
 
 class Match(models.Model):
