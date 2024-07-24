@@ -2,7 +2,7 @@ import os
 from pprint import pprint
 
 import django
-from django.db.models import Q, Count
+from django.db.models import Q, Count, Avg
 
 # Set up Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
@@ -75,14 +75,14 @@ def get_top_reviewer():
 
 
 def get_latest_article():
-    last_article = Article.objects.prefetch_related('authors', 'article_reviews').order_by('-published_on').first()
+    last_article = Article.objects.prefetch_related('authors', 'reviews').order_by('-published_on').first()
 
     if not last_article:
         return ""
 
     authors = ", ".join(a.full_name for a in last_article.authors.all().order_by('full_name'))
-    num_reviews = last_article.article_reviews.count()
-    avg_reviews = sum([v.rating for v in last_article.article_reviews.all()]) / num_reviews if num_reviews else 0.0
+    num_reviews = last_article.reviews.count()
+    avg_reviews = sum([v.rating for v in last_article.reviews.all()]) / num_reviews if num_reviews else 0.0
 
     return (f"The latest article is: {last_article.title}. "
             f"Authors: {authors}. "
@@ -90,4 +90,20 @@ def get_latest_article():
             f"Average Rating: {avg_reviews:.2f}.")
 
 
-print(get_latest_article())
+def get_top_rated_article():
+    top_rated = Article.objects.annotate(avg_rating=Avg('reviews__rating'))\
+        .order_by('-avg_rating', 'title').first()
+
+    num_reviews = top_rated.reviews.count() if top_rated else 0
+    if top_rated is None or num_reviews == 0:
+        return ""
+
+    avg_rating = top_rated.avg_rating or 0.0
+
+    return (f"The top-rated article is: {top_rated.title}, "
+            f"with an average rating of {avg_rating:2f}., "
+            f"reviewed {num_reviews} times.")
+
+
+# print(get_latest_article())
+# print(get_top_rated_article())
