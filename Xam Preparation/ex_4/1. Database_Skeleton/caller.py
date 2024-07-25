@@ -69,16 +69,13 @@ def get_tournaments_by_surface_type(surface=None):
     return "\n".join(result)
 
 
-print(get_tournaments_by_surface_type("Grass"))
-
-
 def get_latest_match_info():
-    latest_match = Match.objects.prefetch_related("players", "tournament").order_by("-date_played").first()
+    latest_match = Match.objects.prefetch_related("players").order_by("-date_played", "-id").first()
 
     if not latest_match:
         return ""
 
-    players = latest_match.players.all()
+    players = latest_match.players
     player_one = players.first().full_name
     player_two = players.last().full_name
     winner = latest_match.winner.full_name if latest_match.winner else "TBA"
@@ -91,8 +88,5 @@ def get_latest_match_info():
             f"summary: {latest_match.summary}")
 
 
-# print(get_latest_match_info())
-
-
-def get_matches_by_tournament(tournament_name=None):
+def gget_matches_by_tournament(tournament_name=None):
     pass
