@@ -55,10 +55,18 @@ def get_tennis_player_by_matches_count():
 
 
 def get_tournaments_by_surface_type(surface=None):
+    if not surface:
+        return ""
+
     tournaments = Tournament.objects.all().annotate(
         count_matches=Count("matches")).filter(surface_type__icontains=surface).order_by("-start_date")
 
-    if not tournaments or surface is None:
+    # matching_tournaments = Tournament.objects.prefetch_related('matches') \
+    #     .annotate(num_matches=Count('matches')) \
+    #     .filter(surface_type__icontains=surface) \
+    #     .order_by('-start_date')
+
+    if not tournaments:
         return ""
 
     result = [f"Tournament: {t.name}, start date: {t.start_date}, matches: {t.count_matches}"
