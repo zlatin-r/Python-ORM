@@ -7,7 +7,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
 
 # Import your models here
-from main_app.models import TennisPlayer
+from main_app.models import TennisPlayer, Tournament
 
 
 # Create queries within functions
@@ -53,3 +53,18 @@ def get_tennis_player_by_matches_count():
 
     return f"Tennis Player: {top_player.full_name} with {top_player.count_matches} matches played."
 
+
+def get_tournaments_by_surface_type(surface=None):
+    tournaments = Tournament.objects.all().annotate(
+        count_matches=Count("matches")).filter(surface_type__icontains=surface).order_by("-start_date")
+
+    if not tournaments or surface is None:
+        return ""
+
+    result = [f"Tournament: {t.name}, start date: {t.start_date}, matches: {t.count_matches}"
+              for t in tournaments]
+
+    return "\n".join(result)
+
+
+# print(get_tournaments_by_surface_type("Grass"))
