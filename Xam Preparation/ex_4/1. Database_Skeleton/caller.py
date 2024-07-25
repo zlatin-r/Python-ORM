@@ -48,7 +48,7 @@ def get_tennis_player_by_matches_count():
     top_player = TennisPlayer.objects.annotate(
         count_matches=Count("matches")).order_by("-count_matches", "ranking").first()
 
-    if not top_player:
+    if not top_player or not top_player.count_matches:
         return ""
 
     return f"Tennis Player: {top_player.full_name} with {top_player.count_matches} matches played."
