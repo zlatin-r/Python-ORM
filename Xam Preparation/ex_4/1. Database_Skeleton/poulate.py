@@ -27,7 +27,7 @@ def populate_model_with_data(model, num_records=10):
             elif isinstance(field, BooleanField):
                 field_values[field.name] = random.choice([True, False])
             elif isinstance(field, CharField) or isinstance(field, TextField):
-                field_values[field.name] = f"{model.__name__} {_+1}"
+                field_values[field.name] = f"{model.__name__} {_ + 1}"
             elif isinstance(field, EmailField):
                 field_values[field.name] = f"{random.choice(['user', 'admin', 'customer'])}@example.com"
             elif isinstance(field, DecimalField):
