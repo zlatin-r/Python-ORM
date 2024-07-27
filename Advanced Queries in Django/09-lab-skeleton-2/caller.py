@@ -108,3 +108,12 @@ def filter_products():
     products = Product.objects.all().filter(query).order_by("-price", "name")
 
     return "\n".join(f"{p.name}: {p.price}lv." for p in products)
+
+
+def give_discount():
+    query = Q(is_available=True) & Q(price__gt=3)
+    reduction = F("price") * 0.70
+    Product.objects.all().filter(query).update(price=reduction)
+    products = Product.objects.filter(is_available=True).order_by('-price', 'name')
+
+    return "\n".join(f"{p.name}: {p.price}lv." for p in products)
