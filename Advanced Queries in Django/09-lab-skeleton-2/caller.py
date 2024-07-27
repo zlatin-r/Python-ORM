@@ -1,5 +1,6 @@
 import os
 import django
+from django.db.models import Count, Sum
 
 # Set up Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
@@ -60,3 +61,17 @@ def add_records_to_database():
 
 # Run and print your queries
 # print(add_records_to_database())
+
+def product_quantity_ordered():
+    products = (Product.objects
+                .annotate(count_orders=Sum("orderproduct__quantity"))
+                .filter(is_available=True, count_orders__gt=0)
+                .order_by('-count_orders'))
+
+    result = [f"Quantity ordered of {p.name}: {p.count_orders}" for p in products]
+
+    return "\n".join(result)
+
+
+print(product_quantity_ordered())
+
