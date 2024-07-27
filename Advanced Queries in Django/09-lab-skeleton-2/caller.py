@@ -65,10 +65,11 @@ def add_records_to_database():
 def product_quantity_ordered():
     products = (Product.objects
                 .annotate(count_orders=Sum("orderproduct__quantity"))
+                .values("name", "count_orders")
                 .filter(is_available=True, count_orders__gt=0)
                 .order_by('-count_orders'))
 
-    result = [f"Quantity ordered of {p.name}: {p.count_orders}" for p in products]
+    result = [f"Quantity ordered of {p['name']}: {p['count_orders']}" for p in products]
 
     return "\n".join(result)
 
