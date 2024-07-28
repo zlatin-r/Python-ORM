@@ -115,7 +115,7 @@ class Task(models.Model):
 
     @classmethod
     def ongoing_high_priority_tasks(cls):
-        query = Q(priority="High") & Q(is_completed=False) & Q(completion_date=F("creation_date"))
+        query = Q(priority="High") & Q(is_completed=False) & Q(completion_date__gt=F("creation_date"))
         return cls.objects.filter(query)
 
     @classmethod
