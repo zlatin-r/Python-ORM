@@ -26,7 +26,7 @@ class VideoGameManager(models.Manager):
         return self.filter(genre=genre)
 
     def recently_released_games(self, year: int):
-        return self.filter(release_date__gte=year)
+        return self.filter(release_year__gte=year)
 
     def highest_rated_game(self):
         return self.annotate(max_rating=Max("rating")).order_by("-max_rating").first()
