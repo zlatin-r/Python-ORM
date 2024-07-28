@@ -10,6 +10,7 @@ class RealEstateListingManager(models.Manager):
 
     def in_price_range(self, min_price: Decimal, max_price: Decimal):
         return self.filter(price__gte=min_price, price__lte=max_price)
+        # return self.filter(price__range=[min_price, max_price])
 
     def with_bedrooms(self, bedrooms_count: int):
         return self.filter(bedrooms=bedrooms_count)
