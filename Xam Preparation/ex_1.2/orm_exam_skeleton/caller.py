@@ -29,13 +29,13 @@ def get_directors(search_name=None, search_nationality=None):
         return ""
 
     result = [f"Director: {d.full_name}, nationality: {d.nationality}, experience: {d.years_of_experience}"
-              for d in directors]
+              for d in directors.order_by("full_name")]
 
     return "\n".join(result) if result else ""
 
 
 def get_top_director():
-    top_director = Director.objects.get_directors_by_movies_count()
+    top_director = Director.objects.get_directors_by_movies_count().first()
 
     if not top_director:
         return ""
