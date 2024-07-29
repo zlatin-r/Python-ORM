@@ -11,6 +11,12 @@ class PersonInfoMixin(models.Model):
 class IsAwarded(models.Model):
     is_awarded = models.BooleanField(default=False)
 
+    class Meta:
+        abstract = True
+
 
 class LastUpdated(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
