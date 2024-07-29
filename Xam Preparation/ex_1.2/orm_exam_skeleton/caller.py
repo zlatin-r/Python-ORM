@@ -60,4 +60,34 @@ def get_top_actor():
             f"movies average rating: {top_actor.avg_rating:.1f}")
 
 
+def get_actors_by_movies_count():
+    actors = Actor.objects.annotate(count_movies=Count("actor_movies")).order_by("-count_movies", "full_name")[:3]
 
+    if not actors or not actors[0].count_movies:
+        return ""
+
+    result = [f"{a.full_name}, participated in {a.movies_count} movies" for a in actors]
+
+    return "\n".join(result) if result else ""
+
+
+def get_top_rated_awarded_movie():
+    movie = Movie.objects.select_related("starring_actor") \
+        .prefetch_related("actors") \
+        .filter(is_awarded=True) \
+        .order_by("-rating", "title") \
+        .first()
+
+    if not movie:
+        return ""
+
+    starring_actor = movie.starring_actor.full_name if movie.starring_actor else "N/A"
+    cast = ", ".join(movie.actors.order_by("full_name").values_list("full_name", flat=True))
+
+    return (f"Top rated awarded movie: {movie.title}, "
+            f"rating: {movie.rating}. "
+            f"Starring actor: {starring_actor}. "
+            f"Cast: {cast}.")
+
+
+def increase_rating():
