@@ -84,21 +84,19 @@ def apply_discounts() -> str:
 
 
 def complete_order():
-    order = Order.objects.filter(
-            is_completed=False
-        ).order_by(
-            'creation_date'
-        ).first()
+    oldest_order = Order.objects.filter(is_completed=False).order_by('creation_date').first()
 
-    if not order:
+    if not oldest_order:
         return ""
 
-    for product in order.products.all():
+    oldest_order.is_completed = True
+    oldest_order.save()
+
+    for product in oldest_order.products.all():
         product.in_stock -= 1
 
         if product.in_stock == 0:
             product.is_available = False
-
         product.save()
 
     # order.products.update(
