@@ -1,6 +1,7 @@
-from django.core.validators import MaxLengthValidator, MinLengthValidator, MinValueValidator
+from django.core.validators import MinLengthValidator, MinValueValidator
 from django.db import models
 
+from main_app.managers import ProfileManager
 from main_app.mixins import TimeStampMixin
 
 
@@ -12,6 +13,8 @@ class Profile(TimeStampMixin):
     phone_number = models.CharField(max_length=15)
     address = models.TextField()
     is_active = models.BooleanField(default=True)
+
+    objects = ProfileManager()
 
 
 class Product(TimeStampMixin):
