@@ -32,5 +32,5 @@ class Movie(IsAwarded, LastUpdated):
                                  validators=[MinValueValidator(0), MaxValueValidator(10)])
     is_classic = models.BooleanField(default=False)
     director = models.ForeignKey(Director, on_delete=models.CASCADE, related_name='director_movies')
-    starring_actor = models.ForeignKey(Actor, on_delete=models.SET_NULL, null=True, related_name='starring_actor')
-    actors = models.ManyToManyField(Actor, related_name='actors')
+    starring_actor = models.ForeignKey(Actor, on_delete=models.SET_NULL, null=True, related_name='starring_act_movies')
+    actors = models.ManyToManyField(Actor, related_name='actor_movies')
