@@ -14,9 +14,15 @@ class DirectorAdmin(admin.ModelAdmin):
 
 @admin.register(Actor)
 class ActorAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('full_name', 'birth_date', 'nationality')
+    list_filter = ('is_awarded',)
+    search_fields = ('full_name',)
+    readonly_fields = ('last_updated',)
 
 
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('title', 'storyline', 'rating', 'director')
+    list_filter = ('is_awarded', 'is_classic', 'genre')
+    search_fields = ('title', 'director__full_name')
+    readonly_fields = ('last_updated',)
