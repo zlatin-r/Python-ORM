@@ -66,9 +66,9 @@ def get_actors_by_movies_count():
     if not actors or not actors[0].count_movies:
         return ""
 
-    result = [f"{a.full_name}, participated in {a.movies_count} movies" for a in actors]
+    result = [f"{a.full_name}, participated in {a.count_movies} movies" for a in actors]
 
-    return "\n".join(result) if result else ""
+    return "\n".join(result)
 
 
 def get_top_rated_awarded_movie():
