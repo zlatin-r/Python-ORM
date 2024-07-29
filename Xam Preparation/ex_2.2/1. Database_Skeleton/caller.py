@@ -59,8 +59,8 @@ def get_last_sold_products():
 
 def get_top_products():
     top_products = Product.objects.annotate(count_orders=Count("orders")) \
-        .filter(count_orders__gt=0) \
-        .order_by('-count_orders', 'name')[:5]
+                       .filter(count_orders__gt=0) \
+                       .order_by('-count_orders', 'name')[:5]
 
     if not top_products.exists():
         return ""
@@ -81,3 +81,36 @@ def apply_discounts() -> str:
     )
 
     return f"Discount applied to {updated_orders_count} orders."
+
+
+def complete_order():
+    order = Order.objects.filter(
+            is_completed=False
+        ).order_by(
+            'creation_date'
+        ).first()
+
+    if not order:
+        return ""
+
+    for product in order.products.all():
+        product.in_stock -= 1
+
+        if product.in_stock == 0:
+            product.is_available = False
+
+        product.save()
+
+    # order.products.update(
+    #     in_stock=F('in_stock') - 1,
+    #     is_available=Case(
+    #         When(in_stock=1, then=Value(False)),
+    #         default=F('is_available'),
+    #         output_field=BooleanField()
+    #     )
+    # )
+    #
+    # order.is_completed = True
+    # order.save()
+
+    return "Order has been completed!"
