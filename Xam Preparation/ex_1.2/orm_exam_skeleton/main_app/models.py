@@ -31,6 +31,6 @@ class Movie(IsAwarded, LastUpdated):
     rating = models.DecimalField(max_digits=3, decimal_places=1, default=0,
                                  validators=[MinValueValidator(0), MaxValueValidator(10)])
     is_classic = models.BooleanField(default=False)
-    director = models.ForeignKey(Director, on_delete=models.CASCADE, related_name='director')
+    director = models.ForeignKey(Director, on_delete=models.CASCADE, related_name='director_movies')
     starring_actor = models.ForeignKey(Actor, on_delete=models.SET_NULL, null=True, related_name='starring_actor')
     actors = models.ManyToManyField(Actor, related_name='actors')
