@@ -1,6 +1,6 @@
 import os
 import django
-from django.db.models import Count, Avg
+from django.db.models import Count, Avg, F
 
 # Set up Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
@@ -91,3 +91,12 @@ def get_top_rated_awarded_movie():
 
 
 def increase_rating():
+    movies = Movie.objects.filter(is_classic=True, rating__lt=10)
+
+    if not movies:
+        return "No ratings increased."
+
+    count_movies = movies.count()
+    movies.update(rating=F("rating") + 0.1)
+
+    return f"Rating increased for {count_movies} movies."
