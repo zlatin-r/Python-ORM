@@ -11,7 +11,7 @@ class Author(models.Model):
     email = models.EmailField(unique=True)
     is_banned = models.BooleanField(default=False)
     birth_year = models.PositiveIntegerField(validators=[MinValueValidator(1900), MaxValueValidator(2005)])
-    web_site = models.URLField(null=True, blank=True)
+    website = models.URLField(null=True)
 
 
 class Article(PublishedMixin, ContentMixin):
