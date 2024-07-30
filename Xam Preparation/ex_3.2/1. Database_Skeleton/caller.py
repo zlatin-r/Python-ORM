@@ -70,7 +70,7 @@ def get_latest_article():
             f"Average Rating: {average_rating:.2f}.")
 
 
-def gget_top_rated_article():
+def get_top_rated_article():
     article = Article.objects.annotate(avg_rating=Avg("reviews__rating")) \
         .order_by("-avg_rating", "title") \
         .first()
@@ -84,3 +84,15 @@ def gget_top_rated_article():
     return f"The top-rated article is: {article.title}, " \
            f"with an average rating of {avg_rating:.2f}, " \
            f"reviewed {num_reviews} times."
+
+
+def ban_author(email=None):
+    author = Author.objects.get(email=email)
+
+    author.is_banned = True
+    author.save()
+
+    count_reviews = author.reviews.count()
+    author.reviews.delete()
+
+    return f"Author: {author.full_name} is banned! {count_reviews} reviews deleted."
