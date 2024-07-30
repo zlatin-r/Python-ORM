@@ -8,3 +8,6 @@ django.setup()
 # Import your models here
 
 # Create queries within functions
+
+def get_authors(search_name=None, search_email=None):
+    pass

@@ -7,3 +7,5 @@ class AuthorManager(models.Manager):
         return self.prefetch_related("articles") \
             .annotate(count=Count("articles")) \
             .order_by("-count", "email")
+
+        # return self.annotate(count=Count("articles")).order_by("-count", "email")
