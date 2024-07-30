@@ -1,0 +1,254 @@
+1. Database – 100 points
+
+You will need to create three models in the models.py file:
+
+Owner Model
+
+name
+A character field.
+Represents the full name of the owner.
+Validation: Minimum length of 3 characters, maximum length of 100 characters.
+phone_number
+A character field.
+Represents the phone number of the owner.
+Validation: Must be a valid phone number format.
+email
+An email field.
+Represents the email address of the owner.
+Validation: Must be a valid email format.
+address
+A character field.
+Represents the address of the owner.
+Validation: Minimum length of 5 characters, maximum length of 200 characters.
+Pet Model
+
+name
+A character field.
+Represents the name of the pet.
+Validation: Minimum length of 2 characters, maximum length of 50 characters.
+species
+A character field.
+Represents the species of the pet (e.g., Dog, Cat).
+Validation: Minimum length of 2 characters, maximum length of 30 characters.
+breed
+A character field.
+Represents the breed of the pet.
+Validation: Minimum length of 2 characters, maximum length of 50 characters.
+age
+An integer field.
+Represents the age of the pet in years.
+Validation: Minimum value of 0.
+owner
+A foreign key to the Owner model.
+Establishes a many-to-one relationship with the Owner model, associating each pet with an owner.
+ON DELETE constraint must be set to CASCADE.
+Appointment Model
+
+appointment_date
+A date/time field.
+Represents the date and time of the appointment.
+reason
+A character field.
+Represents the reason for the appointment.
+Validation: Minimum length of 5 characters, maximum length of 200 characters.
+pet
+A foreign key to the Pet model.
+Establishes a many-to-one relationship with the Pet model, associating each appointment with a pet.
+ON DELETE constraint must be set to CASCADE.
+vet_name
+A character field.
+Represents the name of the veterinarian conducting the appointment.
+Validation: Minimum length of 3 characters, maximum length of 100 characters.
+2. Customizing Django Admin Site – 30 points
+
+Register your models to the Django Admin Site (admin.py file) and make the following customizations which will enhance the admin interface by providing more meaningful and searchable information:
+
+OwnerAdmin
+
+Display fields: Specify the fields to be displayed in the list view of the admin site for the Owner model.
+Fields: 'name', 'phone_number', 'email', 'address'
+Search fields: Enable search by 'name' and 'email' in the admin site.
+PetAdmin
+
+Display fields: Specify the fields to be displayed in the list view of the admin site for the Pet model.
+Fields: 'name', 'species', 'breed', 'age', 'owner'
+Search fields: Enable search by 'name' and 'species' in the admin site.
+AppointmentAdmin
+
+Display fields: Specify the fields to be displayed in the list view of the admin site for the Appointment model.
+Fields: 'appointment_date', 'reason', 'pet', 'vet_name'
+Filters: Add a filter for the 'appointment_date' in the admin site.
+Search fields: Enable search by 'pet__name' and 'vet_name' in the admin site.
+3. Custom Model Manager – 20 points
+
+Create a custom model manager for the Pet model and add your custom method:
+get_pets_by_appointments_count()
+This method retrieves and returns all pet objects, ordered by the number of appointments each pet has in descending order, then by their names in ascending order.
+
+4. Django Queries I – 75 points
+
+In the caller.py file create the following functions:
+
+get_pets(search_name=None, search_species=None)
+
+This function accepts the following arguments with default None values:
+search_name – string value or None
+search_species – string value or None
+It retrieves pet objects by partially and case-insensitively matching the given searching criteria for name and/or species.
+First, check if both values are not None. Then search for pets whose names contain the search_name string and their species contain the search_species string (searching by both criteria).
+Otherwise, check if at least one of the values is not None and search for pets by the corresponding field.
+Finally, if both arguments are None, return an empty string ("").
+If there are pet objects that match the criteria, order them by age, ascending.
+Return a string in the following format, each pet's info on a new line:
+css
+Copy code
+"Pet: {name1}, species: {species1}, breed: {breed1}, age: {age1}, owner: {owner_name1}
+Pet: {name2}, species: {species2}, breed: {breed2}, age: {age2}, owner: {owner_name2}
+…
+Pet: {nameN}, species: {speciesN}, breed: {breedN}, age: {ageN}, owner: {owner_nameN}"
+If no pets match the criteria, return an empty string ("").
+get_top_pet()
+
+This function accepts no arguments.
+It retrieves the pet with the most appointments.
+If there is more than one pet with the same number of appointments, order them by name, ascending, and return the first one’s info.
+Return a string in the following format:
+css
+Copy code
+"Top Pet: {name} with {num_of_appointments} appointments."
+If there are no pets, return an empty string ("").
+get_owner_by_pets_count()
+
+This function accepts no arguments.
+It retrieves the owner with the greatest number of pets.
+If there is more than one owner with the same number of pets, order them by name, ascending, and return the first one’s info.
+Return a string in the following format:
+arduino
+Copy code
+"Owner: {name} with {num_of_pets} pets."
+If there are no owners or no pets, return an empty string ("").
+5. Django Queries II – 75 points
+
+get_appointments_by_pet(pet_name=None)
+
+This function accepts one argument with a default None value:
+pet_name – string value or None
+It retrieves the appointment objects whose pet's name matches the given string partially and case-insensitively. Order them by appointment_date, descending.
+Return a string in the following format. Each appointment’s info on a new line:
+css
+Copy code
+"Appointment: {appointment_date1}, reason: {reason1}, vet: {vet_name1}
+Appointment: {appointment_date2}, reason: {reason2}, vet: {vet_name2}
+…
+Appointment: {appointment_dateN}, reason: {reasonN}, vet: {vet_nameN}"
+If there are no matching appointments, no appointments, or the pet name value is None, return an empty string ("").
+get_latest_appointment_info()
+
+This function accepts no arguments.
+It retrieves the latest appointment considering its appointment date. If you have appointments with the same date and time, get the last one (last id).
+Return a string in the following format:
+css
+Copy code
+"Latest appointment on: {appointment_date}, pet: {pet_name}, reason: {reason}, vet: {vet_name}"
+If there are no appointments, return an empty string ("").
+get_owners_by_pet(pet_name=None)
+
+This function accepts one argument with a default None value:
+pet_name – string, representing the exact value of the pet’s name or None
+It retrieves all owners by the given pet name (exact match) and orders them by the owner's name, ascending.
+Return a string in the following format:
+css
+Copy code
+"Owner: {owner_name1}, phone: {phone_number1}, email: {email1}, address: {address1}
+Owner: {owner_name2}, phone: {phone_number2}, email: {email2}, address: {address2}
+…
+
+
+tests:
+
+
+
+from django.test import TestCase
+from django.utils import timezone
+from .models import Owner, Pet, Appointment
+from .models import get_pets, get_top_pet, get_owner_by_pets_count, get_appointments_by_pet, get_latest_appointment_info, get_owners_by_pet
+
+class OwnerModelTest(TestCase):
+    def setUp(self):
+        self.owner1 = Owner.objects.create(name="John Doe", phone_number="1234567890", email="john@example.com", address="1234 Elm Street")
+        self.owner2 = Owner.objects.create(name="Jane Smith", phone_number="0987654321", email="jane@example.com", address="5678 Oak Street")
+
+    def test_owner_creation(self):
+        self.assertEqual(self.owner1.name, "John Doe")
+        self.assertEqual(self.owner1.phone_number, "1234567890")
+        self.assertEqual(self.owner1.email, "john@example.com")
+        self.assertEqual(self.owner1.address, "1234 Elm Street")
+
+class PetModelTest(TestCase):
+    def setUp(self):
+        self.owner = Owner.objects.create(name="John Doe", phone_number="1234567890", email="john@example.com", address="1234 Elm Street")
+        self.pet1 = Pet.objects.create(name="Buddy", species="Dog", breed="Golden Retriever", age=3, owner=self.owner)
+        self.pet2 = Pet.objects.create(name="Whiskers", species="Cat", breed="Siamese", age=2, owner=self.owner)
+
+    def test_pet_creation(self):
+        self.assertEqual(self.pet1.name, "Buddy")
+        self.assertEqual(self.pet1.species, "Dog")
+        self.assertEqual(self.pet1.breed, "Golden Retriever")
+        self.assertEqual(self.pet1.age, 3)
+        self.assertEqual(self.pet1.owner, self.owner)
+
+class AppointmentModelTest(TestCase):
+    def setUp(self):
+        self.owner = Owner.objects.create(name="John Doe", phone_number="1234567890", email="john@example.com", address="1234 Elm Street")
+        self.pet = Pet.objects.create(name="Buddy", species="Dog", breed="Golden Retriever", age=3, owner=self.owner)
+        self.appointment = Appointment.objects.create(appointment_date=timezone.now(), reason="Regular Checkup", pet=self.pet, vet_name="Dr. Smith")
+
+    def test_appointment_creation(self):
+        self.assertEqual(self.appointment.reason, "Regular Checkup")
+        self.assertEqual(self.appointment.pet, self.pet)
+        self.assertEqual(self.appointment.vet_name, "Dr. Smith")
+
+class QueryTests(TestCase):
+    def setUp(self):
+        self.owner1 = Owner.objects.create(name="John Doe", phone_number="1234567890", email="john@example.com", address="1234 Elm Street")
+        self.owner2 = Owner.objects.create(name="Jane Smith", phone_number="0987654321", email="jane@example.com", address="5678 Oak Street")
+        self.pet1 = Pet.objects.create(name="Buddy", species="Dog", breed="Golden Retriever", age=3, owner=self.owner1)
+        self.pet2 = Pet.objects.create(name="Whiskers", species="Cat", breed="Siamese", age=2, owner=self.owner1)
+        self.pet3 = Pet.objects.create(name="Fluffy", species="Dog", breed="Poodle", age=4, owner=self.owner2)
+        self.appointment1 = Appointment.objects.create(appointment_date=timezone.now(), reason="Checkup", pet=self.pet1, vet_name="Dr. Brown")
+        self.appointment2 = Appointment.objects.create(appointment_date=timezone.now(), reason="Vaccination", pet=self.pet1, vet_name="Dr. Green")
+        self.appointment3 = Appointment.objects.create(appointment_date=timezone.now(), reason="Surgery", pet=self.pet2, vet_name="Dr. Brown")
+
+    def test_get_pets(self):
+        result = get_pets(search_name="Buddy", search_species=None)
+        self.assertIn("Buddy", result)
+        self.assertNotIn("Whiskers", result)
+
+        result = get_pets(search_name=None, search_species="Dog")
+        self.assertIn("Buddy", result)
+        self.assertIn("Fluffy", result)
+        self.assertNotIn("Whiskers", result)
+
+    def test_get_top_pet(self):
+        result = get_top_pet()
+        self.assertIn("Buddy", result)
+
+    def test_get_owner_by_pets_count(self):
+        result = get_owner_by_pets_count()
+        self.assertIn("John Doe", result)
+        self.assertNotIn("Jane Smith", result)
+
+    def test_get_appointments_by_pet(self):
+        result = get_appointments_by_pet(pet_name="Buddy")
+        self.assertIn("Checkup", result)
+        self.assertIn("Vaccination", result)
+
+    def test_get_latest_appointment_info(self):
+        result = get_latest_appointment_info()
+        self.assertIn("Surgery", result)
+
+    def test_get_owners_by_pet(self):
+        result = get_owners_by_pet(pet_name="Buddy")
+        self.assertIn("John Doe", result)
+        self.assertNotIn("Jane Smith", result)
+
