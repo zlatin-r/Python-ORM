@@ -90,7 +90,8 @@ def get_matches_by_tournament(tournament_name=None):
         return "No matches found."
 
     matches = Match.objects.select_related("tournament", "winner") \
-        .filter(tournament__name__exact=tournament_name).order_by("-date_played")
+        .filter(tournament__name__exact=tournament_name) \
+        .order_by("-date_played")
 
     if not matches:
         return "No matches found."
