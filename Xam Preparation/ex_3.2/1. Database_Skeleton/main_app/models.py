@@ -1,6 +1,7 @@
 from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator
 from django.db import models
 
+from main_app.managers import AuthorManager
 from main_app.mixins import PublishedMixin, ContentMixin
 
 
@@ -13,6 +14,8 @@ class Author(models.Model):
     birth_year = models.PositiveIntegerField(validators=[MinValueValidator(1900), MaxValueValidator(2005)])
     website = models.URLField(null=True)
 
+    objects = AuthorManager()
+
 
 class Article(PublishedMixin, ContentMixin):
     class CategoryChoices(models.TextChoices):
@@ -22,7 +25,7 @@ class Article(PublishedMixin, ContentMixin):
 
     title = models.CharField(max_length=200, validators=[MinLengthValidator(5)])
     category = models.CharField(max_length=10, choices=CategoryChoices, default=CategoryChoices.TECHNOLOGY)
-    authors = models.ManyToManyField(Author)
+    authors = models.ManyToManyField(Author, related_name='articles')
 
 
 class Review(PublishedMixin, ContentMixin):
