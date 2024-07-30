@@ -1,6 +1,6 @@
 import os
 import django
-from django.db.models import Q
+from django.db.models import Q, Count
 
 # Set up Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
@@ -33,3 +33,21 @@ def get_authors(search_name=None, search_email=None):
               f"status: {'Banned' if a.is_banned else 'Not Banned'}" for a in authors]
 
     return "\n".join(result)
+
+
+def get_top_publisher():
+    top_author = Author.objects.annotate(count_articles=Count("articles")).order_by("-count_articles", "email").first()
+
+    if not top_author or top_author.count_articles <= 0:
+        return ""
+
+    return f"Top Author: {top_author.full_name} with {top_author.count_articles} published articles."
+
+
+def get_top_reviewer():
+    top_author = Author.objects.annotate(count_reviews=Count("reviews")).order_by("-count_reviews", "email").first()
+
+    if not top_author or top_author.count_reviews <= 0:
+        return ""
+
+    return f"Top Reviewer: {top_author.full_name} with {top_author.count_reviews} published reviews."
