@@ -87,7 +87,7 @@ def get_top_rated_awarded_movie():
     return f"Top rated awarded movie: {movie.title}, " \
            f"rating: {movie.rating}. " \
            f"Starring actor: {starring_actor}. " \
-           f"Cast: {", ".join(cast)}."
+           f"Cast: {', '.join(cast)}."
 
 
 def increase_rating():
