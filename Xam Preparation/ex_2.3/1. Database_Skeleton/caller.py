@@ -13,7 +13,7 @@ from main_app.models import Profile, Product, Order
 # Create queries within functions
 
 def get_profiles(search_string=None):
-    if not search_string:
+    if search_string is None:
         return ""
 
     query = Q(full_name__icontains=search_string) \
@@ -22,7 +22,7 @@ def get_profiles(search_string=None):
 
     profiles = Profile.objects.filter(query).order_by('full_name')
 
-    if not profiles.exists():
+    if not profiles:
         return ""
 
     result = [(f"Profile: {p.full_name}, "
