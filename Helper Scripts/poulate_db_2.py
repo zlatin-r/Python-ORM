@@ -46,6 +46,10 @@ def populate_model_with_data(model, num_records=10):
                 related_instance = related_model.objects.order_by('?').first()
                 if related_instance:
                     field_values[field.name] = related_instance
+                else:
+                    # Create a new related instance if none exists
+                    related_instance = related_model.objects.create()
+                    field_values[field.name] = related_instance
 
         # Create the model instance
         instance = model.objects.create(**field_values)

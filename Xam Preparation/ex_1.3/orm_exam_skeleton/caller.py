@@ -9,4 +9,3 @@ django.setup()
 from main_app.models import Actor, Movie, Director
 
 # Create queries within functions
-
