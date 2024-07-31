@@ -26,7 +26,7 @@ class Movie(IsAwarded, LastUpdated):
     genre = models.CharField(choices=GenreChoices, max_length=6, default=GenreChoices.OTHER)
     rating = models.DecimalField(max_digits=3, decimal_places=1, default=0,
                                  validators=[MinValueValidator(0), MaxValueValidator(10)])
-    is_classical = models.BooleanField(default=False)
+    is_classic = models.BooleanField(default=False)
     director = models.ForeignKey(Director, on_delete=models.CASCADE, related_name='directors')
     starring_actor = models.ForeignKey(Actor, on_delete=models.SET_NULL, null=True, related_name='starring_actors')
     actors = models.ManyToManyField(Actor, related_name='actors')
