@@ -77,6 +77,9 @@ def get_actors_by_movies_count():
 
 def get_top_rated_awarded_movie():
     movie = Movie.objects.all().filter(is_awarded=True).order_by("-rating", "title").first()
+    # movie = Movie.objects.select_related("starring_actor") \
+    #         .prefetch_related("actors").filter(is_awarded=True) \
+    #         .order_by("-rating", "title").first()
 
     if not movie:
         return ""
