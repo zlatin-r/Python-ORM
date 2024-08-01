@@ -61,10 +61,12 @@ def get_top_products():
                    .filter(count_orders__gt=0) \
                    .order_by('-count_orders', 'name')[:5]
 
-    if not products:
+    if not products.exists():
         return ""
 
-    return f"Top products:\n{'\n'.join([f'{p.name}, sold {p.count_orders} times' for p in products])}"
+    result = "\n".join(f"{p.name}, sold {p.count_orders} times" for p in products)
+
+    return f"Top products:\n" + result
 
 
 def apply_discounts():
@@ -72,9 +74,22 @@ def apply_discounts():
         .filter(is_completed=False, count_products__gt=2) \
         .update(total_price=F("total_price") * 0.90)
 
-    num_updated = orders.count()
+    return f"Discount applied to {orders} orders."
 
-    return f"Discount applied to {num_updated} orders."
+# def apply_discounts() -> str:
+#     updated_orders_count = Order.objects.annotate(
+#         products_count=Count('products')
+#     ).filter(
+#         products_count__gt=2,
+#         is_completed=False
+#     ).update(
+#         total_price=F('total_price') * 0.90
+#     )
+#
+#     return f"Discount applied to {updated_orders_count} orders."
+
+
+print(apply_discounts())
 
 
 def complete_order():
