@@ -2,14 +2,13 @@ import os
 import django
 from django.db.models import Q, Count, Avg
 
-from main_app.models import Author, Article
-
 # Set up Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
 
-
 # Import your models here
+from main_app.models import Author, Article, Review
+
 
 # Create queries within functions
 
@@ -60,14 +59,16 @@ def get_top_reviewer():
 
 
 def get_latest_article():
-    article = Article.objects.order_by("-published_on").last()
+    article = Article.objects \
+        .prefetch_related("authors", "reviews") \
+        .order_by("-published_on").last()
 
-    if not article:
+    if not article or article.reviews.count() == 0:
         return ""
 
-    authors = ", ".join([a.full_name for a in article.authors.all().order_by("full_name")])
+    authors = ", ".join(a.full_name for a in article.authors.all().order_by("full_name"))
     reviews = article.reviews.count()
-    avg_rating = sum([r.rating for r in article.reviews.all()]) / reviews
+    avg_rating = sum([r.rating for r in article.reviews.all()]) / reviews if reviews else 0
 
     return (f"The latest article is: {article.title}. "
             f"Authors: {authors}. "
