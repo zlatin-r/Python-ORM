@@ -1,6 +1,6 @@
 import os
 import django
-from django.db.models import Q
+from django.db.models import Q, Count
 
 # Set up Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
@@ -54,3 +54,17 @@ def get_last_sold_products():
     products = ", ".join(p.name for p in order.products.all())
 
     return f"Last sold products: {products}"
+
+
+def get_top_products():
+    products = Product.objects.annotate(count_orders=Count("order_products")) \
+                   .filter(count_orders__gt=0) \
+                   .order_by('-count_orders', 'name')[:5]
+
+    if not products.exists():
+        return ""
+
+    return f"Top products:\n{'\n'.join([f"{p.name}, sold {p.count_orders} times" for p in products])}"
+
+
+print(get_top_products())
