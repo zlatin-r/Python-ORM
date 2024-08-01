@@ -76,21 +76,6 @@ def apply_discounts():
 
     return f"Discount applied to {orders} orders."
 
-# def apply_discounts() -> str:
-#     updated_orders_count = Order.objects.annotate(
-#         products_count=Count('products')
-#     ).filter(
-#         products_count__gt=2,
-#         is_completed=False
-#     ).update(
-#         total_price=F('total_price') * 0.90
-#     )
-#
-#     return f"Discount applied to {updated_orders_count} orders."
-
-
-print(apply_discounts())
-
 
 def complete_order():
     order = Order.objects.order_by("-creation_date") \
