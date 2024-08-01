@@ -61,19 +61,19 @@ def get_top_reviewer():
 def get_latest_article():
     article = Article.objects \
         .prefetch_related("authors", "reviews") \
-        .order_by("-published_on").last()
+        .order_by("-published_on").first()
 
-    if not article or article.reviews.count() == 0:
+    if not article:
         return ""
 
     authors = ", ".join(a.full_name for a in article.authors.all().order_by("full_name"))
-    reviews = article.reviews.count()
-    avg_rating = sum([r.rating for r in article.reviews.all()]) / reviews if reviews else 0
+    num_reviews = article.reviews.count()
+    avg_reviews = sum([r.rating for r in article.reviews.all()]) / num_reviews if num_reviews else 0.0
 
     return (f"The latest article is: {article.title}. "
             f"Authors: {authors}. "
-            f"Reviewed: {reviews} times. "
-            f"Average Rating: {avg_rating:.2f}.")
+            f"Reviewed: {num_reviews} times. "
+            f"Average Rating: {avg_reviews:.2f}.")
 
 
 def get_top_rated_article():
@@ -86,8 +86,10 @@ def get_top_rated_article():
     if not article or num_reviews == 0:
         return ""
 
+    avg_rating = article.avg_rating or 0.0
+
     return (f"The top-rated article is: {article.title}, "
-            f"with an average rating of {article.avg_rating}, "
+            f"with an average rating of {avg_rating:.2f}, "
             f"reviewed {num_reviews} times.")
 
 
@@ -95,7 +97,7 @@ def ban_author(email=None):
     if not email:
         return "No authors banned."
 
-    author = Author.objects.filter(email__exact=email)
+    author = Author.objects.filter(email=email).first()
 
     if not author:
         return "No authors banned."
