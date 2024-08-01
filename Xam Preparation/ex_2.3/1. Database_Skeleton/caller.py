@@ -78,4 +78,20 @@ def apply_discounts():
 
 
 def complete_order():
-    order = Order.objects.order_by("creation_date").filter(is_completed=False).last().update(is_completed=True)
+    order = Order.objects.order_by("-creation_date") \
+        .filter(is_completed=False).last()
+
+    if not order:
+        return ""
+
+    order.is_completed = True
+    order.save()
+
+    for p in order.products.all():
+        p.in_stock -= 1
+
+        if p.in_stock == 0:
+            p.is_available = False
+        p.save()
+
+    return "Order has been completed!"
