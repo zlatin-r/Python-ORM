@@ -64,7 +64,7 @@ def get_top_products():
     if not products:
         return ""
 
-    return f"Top products:\n{'\n'.join([f"{p.name}, sold {p.count_orders} times" for p in products])}"
+    return f"Top products:\n{'\n'.join([f'{p.name}, sold {p.count_orders} times' for p in products])}"
 
 
 def apply_discounts():
