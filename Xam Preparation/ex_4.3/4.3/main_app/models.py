@@ -1,6 +1,9 @@
 from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator
 from django.db import models
 
+from main_app.managers import TennisPlayerManager
+
+
 # Create your models here.
 
 
@@ -11,7 +14,7 @@ class TennisPlayer(models.Model):
     ranking = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(300)])
     is_active = models.BooleanField(default=True)
 
-    # objects = TennisPlayerManager()
+    objects = TennisPlayerManager()
 
 
 class Tournament(models.Model):
