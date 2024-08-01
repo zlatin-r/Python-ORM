@@ -22,4 +22,5 @@ class TournamentAdmin(admin.ModelAdmin):
 @admin.register(Match)
 class MatchAdmin(admin.ModelAdmin):
     list_display = ('date_played', 'score', 'summary')
-
+    list_filter = ('date_played',)
+    search_fields = ('tournament__name',)
