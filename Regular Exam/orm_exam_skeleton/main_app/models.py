@@ -37,4 +37,4 @@ class Mission(NameMixin):
     updated_at = models.DateTimeField(auto_now=True)
     spacecraft = models.ForeignKey(Spacecraft, on_delete=models.CASCADE, related_name='missions')
     astronauts = models.ManyToManyField(Astronaut, related_name='missions')
-    commander = models.ForeignKey(Astronaut, on_delete=models.SET_NULL, null=True)
+    commander = models.ForeignKey(Astronaut, on_delete=models.SET_NULL, null=True, related_name='commander')
