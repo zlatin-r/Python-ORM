@@ -15,7 +15,7 @@
             <!-- fruit description -->
             <p class="description">{{ fruit.description|truncatechars:15 }}.</p>
             <!-- fruit details button -->
-            <a class="details-btn" href="#">More Info</a>
+            <a class="details-btn" href="{% url 'details_fruit' fruit.pk %}">More Info</a>
         </div>
     {% endfor %}
     </section>
