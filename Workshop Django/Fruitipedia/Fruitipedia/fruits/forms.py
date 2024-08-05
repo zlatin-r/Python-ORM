@@ -37,3 +37,14 @@ class BaseFruitForm(forms.ModelForm):
 
 class AddFruitForm(BaseFruitForm):
     pass
+
+
+class EditFruitForm(BaseFruitForm):
+    pass
+
+
+class DeleteFruitForm(BaseFruitForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.disabled = True

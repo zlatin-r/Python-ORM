@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView
 
-from Fruitipedia.fruits.forms import CategoryAddForm, AddFruitForm
+from Fruitipedia.fruits.forms import CategoryAddForm, AddFruitForm, EditFruitForm, DeleteFruitForm
 from Fruitipedia.fruits.models import Fruit
 
 
@@ -28,7 +28,23 @@ class CreateFruitView(CreateView):
 
 
 def edit_view(request, pk):
-    return render(request, 'fruits/edit-fruit.html')
+    fruit = Fruit.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        form = EditFruitForm(instance=fruit)
+    else:
+        form = EditFruitForm(request.POST, instance=fruit)
+
+    if form.is_valid():
+        form.save()
+        return redirect('dashboard')
+
+    context = {
+        "fruit": fruit,
+        "form": form,
+    }
+
+    return render(request, 'fruits/edit-fruit.html', context)
 
 
 def details_view(request, pk):
