@@ -1,12 +1,20 @@
 from django.shortcuts import render
 
+from Fruitipedia.fruits.models import Fruit
+
 
 def index(request):
     return render(request, 'common/index.html')
 
 
 def dashboard(request):
-    return render(request, 'common/dashboard.html')
+    fruits = Fruit.objects.all()
+
+    context = {
+        'fruits': fruits
+    }
+
+    return render(request, 'common/dashboard.html', context)
 
 
 def create_view(request):
