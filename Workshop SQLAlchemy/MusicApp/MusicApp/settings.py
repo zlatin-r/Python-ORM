@@ -65,8 +65,8 @@ WSGI_APPLICATION = 'MusicApp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = "postgresql+psycopg2://postgres:password@localhost/music_db"
-engine = create_engine(DATABASES)
+DATABASE_URL = "postgresql+psycopg2://postgres:password@localhost/music_db"
+engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)
 Base = declarative_base()
 session = Session()
