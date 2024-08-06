@@ -1,7 +1,7 @@
-from django.db import models
-from sqlalchemy import Column, Integer, String, Float, relationship, ForeignKey
+from sqlalchemy import Column, Integer, String, Float, ForeignKey
+from sqlalchemy.orm import relationship
 
-from MusicApp.settings import Base
+from MusicApp.settings import Base, engine
 
 
 # Create your models here.
@@ -45,11 +45,12 @@ class Song(Base):
         nullable=False,
     )
     album_id = Column(
-        ForeignKey('albums.id'),
         Integer,
+        ForeignKey('albums.id'),
         nullable=False
     )
     album = relationship(
         "Album",
         back_populates="songs",
     )
+
