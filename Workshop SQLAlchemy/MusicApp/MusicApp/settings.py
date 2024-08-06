@@ -74,16 +74,7 @@ WSGI_APPLICATION = 'MusicApp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "music_db",
-        "USER": "postgres",
-        "PASSWORD": "password",
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
-    }
-}
+DATABASES = "postgresql+psycopg2://postgres:admin@localhost/music_db"
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
