@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from MusicApp.common.session_decorator import session_decorator
+from MusicApp.musics.forms import SongCreateForm, AlbumCreateForm
 from MusicApp.musics.models import Album
 from MusicApp.settings import session
 
@@ -19,7 +20,20 @@ def index(request):
 
 
 def create_album(request):
-    return render(request, 'albums/create-album.html')
+    if request.method == "GET":
+        form = AlbumCreateForm()
+    else:
+        form = AlbumCreateForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+
+    context = {
+        "form": form,
+    }
+
+    return render(request, 'albums/create-album.html', context)
 
 
 def edit_album(request, pk: int):
@@ -45,4 +59,17 @@ def album_details(request, pk: int):
 
 
 def create_song(request):
-    return render(request, 'songs/create-song.html')
+    if request.method == "GET":
+        form = SongCreateForm()
+    else:
+        form = SongCreateForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+
+    context = {
+        "form": form,
+    }
+
+    return render(request, 'songs/create-song.html', context)
