@@ -36,6 +36,13 @@ class AlbumCreateForm(AlbumBaseForm):
         session.add(new_album)
 
 
+class AlbumEditForm(AlbumBaseForm):
+    def save(self, album):
+        album.album_name = self.cleaned_data['album_name']
+        album.image_url = self.cleaned_data['image_url']
+        album.price = self.cleaned_data['price']
+
+
 class SongBaseForm(forms.Form):
     song_name = forms.CharField(
         label="Song Name:",
