@@ -14,7 +14,7 @@ class Album(Base):
         primary_key=True
     )
     album_name = Column(
-        String(30),
+        String(50),
         nullable=False,
         unique=True
     )

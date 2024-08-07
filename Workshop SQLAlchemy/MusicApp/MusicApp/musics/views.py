@@ -30,8 +30,18 @@ def delete_album(request, pk: int):
     return render(request, 'albums/delete-album.html')
 
 
+@session_decorator(session)
 def album_details(request, pk: int):
-    return render(request, 'albums/album-details.html')
+    album = (session.query(Album)
+                    .filter_by(id=pk)
+                    .first()
+             )
+
+    contex = {
+        'album': album
+    }
+
+    return render(request, 'albums/album-details.html', contex)
 
 
 def create_song(request):
