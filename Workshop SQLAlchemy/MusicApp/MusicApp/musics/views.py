@@ -1,19 +1,18 @@
-from django.shortcuts import render, redirect
 
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from MusicApp.common.session_decorator import session_decorator
-from MusicApp.musics.forms import SongCreateForm, AlbumCreateForm, AlbumEditForm
-from MusicApp.musics.models import Album
+from MusicApp.musics.forms import SongCreateForm, AlbumCreateForm, AlbumEditForm, AlbumDeleteForm
+from MusicApp.musics.models import Album, Song
 from MusicApp.settings import session
 
-
-# Create your views here.
 
 @session_decorator(session)
 def index(request):
     albums = session.query(Album).all()
 
     context = {
-        'albums': albums
+        "albums": albums,
     }
 
     return render(request, 'common/index.html', context)
@@ -66,31 +65,54 @@ def edit_album(request, pk: int):
 
 
 def delete_album(request, pk: int):
-    return render(request, 'albums/delete-album.html')
+    album = (
+        session.query(Album)
+        .filter(Album.id == pk)
+        .first()
+    )
+
+    if request.method == "GET":
+        form = AlbumDeleteForm(initial={
+            "album_name": album.album_name,
+            "image_url": album.image_url,
+            "price": album.price,
+        })
+    else:
+        session.delete(album)
+        return redirect('index')
+
+    context = {
+        "album": album,
+        "form": form
+    }
+
+    return render(request, 'albums/delete-album.html', context)
 
 
 @session_decorator(session)
 def album_details(request, pk: int):
-    album = (session.query(Album)
-                    .filter_by(id=pk)
-                    .first()
-             )
+    album = (
+        session.query(Album)
+        .filter(Album.id == pk)
+        .first()
+    )
 
-    contex = {
-        'album': album
+    context = {
+        "album": album,
     }
 
-    return render(request, 'albums/album-details.html', contex)
+    return render(request, 'albums/album-details.html', context)
 
 
 def create_song(request):
+
     if request.method == "GET":
         form = SongCreateForm()
     else:
-        form = SongCreateForm(request.POST)
+        form = SongCreateForm(request.POST, request.FILES)
 
         if form.is_valid():
-            form.save()
+            form.save(request)
             return redirect('index')
 
     context = {
@@ -98,3 +120,34 @@ def create_song(request):
     }
 
     return render(request, 'songs/create-song.html', context)
+
+
+@session_decorator(session)
+def play_song(request, pk):
+    song = (
+        session.query(Song)
+        .filter(Song.id == pk)
+        .first()
+    )
+
+    context = {
+        "song": song,
+    }
+
+    return render(request, 'songs/music-player.html', context)
+
+
+@session_decorator(session)
+def serve_song(request, pk):
+    song = (
+        session.query(Song)
+        .filter(Song.id == pk)
+        .first()
+    )
+
+    if song:
+        response = HttpResponse(song.music_file_data, content_type="audio/mpeg")
+        response["Content-Disposition"] = f'inline; filename="{song.song_name}"'
+        return response
+    else:
+        return HttpResponse('Song not found', status=404)
