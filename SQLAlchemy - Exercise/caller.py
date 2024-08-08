@@ -56,3 +56,13 @@ def delete_recipe_by_name(name: str) -> int:
 
     return records_changed
 
+
+@session_decorator(session, autoclose_session=False)
+def get_recipes_by_ingredient(ingredient_name: str) -> List:
+    recipes_with_ingredient = (
+        session.query(Recipe)
+        .filter(Recipe.ingredients.ilike(f"%{ingredient_name}%"))
+        .all()
+    )
+
+    return recipes_with_ingredient
