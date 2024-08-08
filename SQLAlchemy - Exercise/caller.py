@@ -45,3 +45,14 @@ def update_recipe_by_name(name: str, new_name: str, new_ingredients: str, new_in
 
     return records_changed
 
+
+@session_decorator(session)
+def delete_recipe_by_name(name: str) -> int:
+    records_changed: int = (
+        session.query(Recipe)
+        .filter_by(name=name)
+        .delete()
+    )
+
+    return records_changed
+
