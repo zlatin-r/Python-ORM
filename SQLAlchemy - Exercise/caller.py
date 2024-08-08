@@ -103,3 +103,24 @@ def relate_recipe_with_chef_by_name(recipe_name: str, chef_name: str) -> str:
     return f"Related recipe {recipe_name} with chef {chef_name}"
 
 
+def get_recipes_with_chef() -> str:
+    recipes_with_chef = (
+        session.query(Recipe.name, Chef.name.label("chef_name"))  # label is alais, here is not needed
+        .join(Chef, Recipe.chef)
+        .all()
+    )
+
+#   SELECT
+#     recipe.name,
+#     chef.name AS "chef_name"
+#   FROM
+#     recipes
+#   JOIN
+#     chef
+#   ON
+#     recipe.chef_id = chef.id
+
+    return "\n".join(
+        f"Recipe: {recipe_name} made by chef: {chef_name}"
+        for recipe_name, chef_name in recipes_with_chef
+    )
