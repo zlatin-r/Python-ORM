@@ -68,3 +68,23 @@ def get_recipes_by_ingredient(ingredient_name: str) -> List:
     )
 
     return recipes_with_ingredient
+
+
+@session_decorator(session)
+def swap_recipe_ingredients_by_name(first_recipe_name: str, second_recipe_name: str) -> None:
+    first_recipe = (
+        session.query(Recipe)
+        .filter_by(name=first_recipe_name)
+        .with_for_update()
+        .one()
+    )
+
+    second_recipe = (
+        session.query(Recipe)
+        .filter_by(name=second_recipe_name)
+        .with_for_update()
+        .one()
+    )
+
+    first_recipe.ingredients, second_recipe.ingredients = second_recipe.ingredients, first_recipe.ingredients
+
